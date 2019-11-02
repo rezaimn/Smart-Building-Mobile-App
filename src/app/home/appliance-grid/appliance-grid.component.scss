@@ -1,0 +1,11 @@
+
+appliance-grid{
+  @import "../../variables";
+
+  .charge{
+    border:solid .4vw $primary-clr!important;
+  }
+  .details{
+    height: 10vh!important;
+  }
+}

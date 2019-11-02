@@ -1,0 +1,291 @@
+<div>
+
+    <div class="tab-container">
+        <div class="scrollable-container">
+            <form>
+
+                <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                    <div class="data-box">
+                        <div class="submit-box">
+                            <button *ngIf="!editMode&&!addMode" (click)="changeEditMode(true)" type="button"
+                                    class="btn btn-primary"
+                            >{{'shared.update'|translate}}
+                            </button>
+                            <button *ngIf="editMode||addMode" (click)="changeEditMode(false)" type="button"
+                                    class="btn btn-danger"
+                            >{{'shared.cancel'|translate}}
+                            </button>
+                            <button *ngIf="editMode||addMode" (click)="addUpdateScenario()" type="button"
+                                    class="btn btn-success"
+                            >{{'shared.save'|translate}}
+                            </button>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12" style="margin-top: -3vh">
+                            <p style="text-align: center;font-size: 4vmin;">مدیریت سناریو</p>
+                            <hr>
+                        </div>
+
+                        <div class="form-group col-xs-12 col-sm-12" style="padding: 0px">
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="Name" class="farsi-font-im"
+                                > نام سناریو</label>
+                                <input type="text" class="form-control farsi-font-im" name="name" id="Name"
+                                       [(ngModel)]="prepareScenario.name" [disabled]="!editMode"
+                                       placeholder="نام">
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="device" class="farsi-font-im">نوع دستگاه
+                                    ورودی
+                                </label>
+                                <select class=" form-control" id="device" name="selectedInputDeviceTypeId"
+                                        style="font-family: tw-regular"
+                                        #selectedInputDeviceType="ngModel"
+
+                                        [(ngModel)]="selectedInputDeviceTypeId" [disabled]="!editMode"
+                                        (change)="getInputDevices()"
+                                        required>
+                                    <option disabled value="-1" style="">انتخاب نوع دستگاه</option>
+                                    <option *ngFor="let deviceT of inputDeviceTypeList;" [ngValue]="deviceT.id">
+                                        <p *ngIf="appService.currentLang=='en'">{{deviceT?.name}}</p>
+                                        <p *ngIf="appService.currentLang=='fa'">
+                                            {{deviceT?.name}}</p>
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="deviceI" class="farsi-font-im">دستگاه ورودی
+                                </label>
+                                <select class=" form-control" id="deviceI" name="selectedInputDeviceId"
+                                        style="font-family: tw-regular"
+                                        #selectedInputDevice="ngModel"
+
+                                        [(ngModel)]="selectedInputDeviceId" [disabled]="!editMode"
+                                        required>
+                                    <option disabled value="-1" style="">انتخاب دستگاه</option>
+                                    <option *ngFor="let device of inputDeviceList;" [ngValue]="device.id">
+                                        <p *ngIf="appService.currentLang=='en'">{{device?.name}}</p>
+                                        <p *ngIf="appService.currentLang=='fa'">
+                                            {{device?.name}}</p>
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 "
+                                 *ngIf="selectedInputDeviceTypeId==15||selectedInputDeviceTypeId==14">
+                                <label class="farsi-font-im"
+                                >مقدار ورودی</label>
+                                <select class="form-control farsi-font-im "
+
+                                        name="inval" [disabled]="!editMode"
+                                        [(ngModel)]="prepareScenario.sourcestate" id="trig"
+                                        style="    padding: 0 12px;font-family: tw-regular">
+                                    <option disabled value="-1" style="">انتخاب نوع دستگاه</option>
+                                    <option *ngFor="let inpu of skStatus" name="" [value]="inpu.id">
+                                        {{inpu.value}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 "
+                                 *ngIf="!(selectedInputDeviceTypeId==15||selectedInputDeviceTypeId==14)">
+                                <label class="farsi-font-im"
+                                >مقدار ورودی</label>
+                                <select class="form-control farsi-font-im "
+
+                                        name="input1" [disabled]="!editMode"
+                                        [(ngModel)]="prepareScenario.sourcestate"
+                                        style="    padding: 0 12px;font-family: tw-regular">
+                                    <option disabled value="-1" style="">انتخاب نوع دستگاه</option>
+                                    <option *ngFor="let inpu of inputSelections" name="" [value]="inpu.id">
+                                        {{inpu.value}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-sm-12">
+                                <hr>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6" style="float: right">
+                                <label for="deviceTo" class="farsi-font-im">نوع دستگاه
+                                    خروجی
+                                </label>
+                                <select class=" form-control" id="deviceTo" name="selectedOutputDeviceTypeId"
+                                        #selectedOutputDeviceType="ngModel" style="font-family: tw-regular"
+
+                                        [(ngModel)]="selectedOutputDeviceTypeId" [disabled]="!editMode"
+                                        (change)="getOutputDevices()"
+                                        required>
+                                    <option disabled value="-1" style="">انتخاب نوع دستگاه</option>
+                                    <option *ngFor="let deviceT of outputDeviceTypeList;" [ngValue]="deviceT.id">
+                                        <p *ngIf="appService.currentLang=='en'">{{deviceT?.name}}</p>
+                                        <p *ngIf="appService.currentLang=='fa'">
+                                            {{deviceT?.name}}</p>
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6" style="float: right">
+                                <label for="deviceO" class="farsi-font-im">دستگاه خروجی
+                                </label>
+                                <select class=" form-control" id="deviceO" name="selectedOutputDeviceId"
+                                        #selectedOutputDevice="ngModel" style="font-family: tw-regular"
+
+                                        [(ngModel)]="selectedOutputDeviceId" [disabled]="!editMode"
+                                        required>
+                                    <option disabled value="-1" style="">انتخاب دستگاه</option>
+                                    <option *ngFor="let device of outputDeviceList;" [ngValue]="device.id">
+                                        <p *ngIf="appService.currentLang=='en'">{{device?.name}}</p>
+                                        <p *ngIf="appService.currentLang=='fa'">
+                                            {{device?.name}}</p>
+                                    </option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 " *ngIf="!showOutputtext" style="float: right;" >
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="float: right;padding: 0px"
+                                     *ngIf="selectedInputDeviceTypeId==15||selectedInputDeviceTypeId==14">
+                                    <label class="farsi-font-im"
+                                    >مقدار ورودی</label>
+                                    <select class="form-control farsi-font-im "
+
+                                            name="outval" [disabled]="!editMode"
+                                            [(ngModel)]="outputDevice.destinationstate" id="out"
+                                            style="    padding: 0 12px;font-family: tw-regular">
+                                        <option disabled value="-1" style="">انتخاب نوع دستگاه</option>
+                                        <option *ngFor="let inpu of skStatus" name="" [value]="inpu.id">
+                                            {{inpu.value}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="float: right;padding: 0px"
+                                     *ngIf="!(selectedInputDeviceTypeId==15||selectedInputDeviceTypeId==14)">
+                                    <label class="farsi-font-im"
+                                    >مقدار ورودی</label>
+                                    <select class="form-control farsi-font-im "
+
+                                            name="out" [disabled]="!editMode"
+                                            [(ngModel)]="outputDevice.destinationstate"
+                                            style="    padding: 0 12px;font-family: tw-regular">
+                                        <option disabled value="-1" style="">انتخاب نوع دستگاه</option>
+                                        <option *ngFor="let inpu of inputSelections" name="" [value]="inpu.id">
+                                            {{inpu.value}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <img src="./assets/images/add.png"
+                                         style="float: left;margin-top: 3.6vh;height: 5vh;"
+                                         *ngIf="!selectDeviceToUpdate"
+                                         (click)="addToSelectedOutputList('add')">
+                                    <img src="./assets/images/update.png"
+                                         style="float: left;margin-top: 3.6vh;height: 5vh;"
+                                         *ngIf="selectDeviceToUpdate"
+                                         (click)="addToSelectedOutputList('update')">
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 " *ngIf="showOutputtext" style="float: right">
+                                <label class="farsi-font-im"
+                                >حالت ترموستات</label>
+                                <select class="form-control farsi-font-im " id="status" [disabled]="!editMode"
+
+                                        [(ngModel)]="outputDevice.destinationmode" name="hvac"
+                                        style=" padding: 0 12px;font-family: tw-regular">
+                                    <option value="0" class="farsi-font-im">Auto</option>
+                                    <option value="1" class="farsi-font-im">Comfort</option>
+                                    <option value="2" class="farsi-font-im">PreComfort</option>
+                                    <option value="3" class="farsi-font-im">Economy</option>
+                                    <option value="4" class="farsi-font-im">Protect</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6" *ngIf="showOutputtext" style="padding: 0px">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="float: right">
+                                    <label for="listName" class="farsi-font-im"
+                                    >مقدار</label>
+                                    <input type="number" class="form-control farsi-font-im" style=" float: right"
+                                           [disabled]="!editMode"
+                                           id="listName" name="listName" [(ngModel)]="outputDevice.destinationstate"
+                                           placeholder="مقدار">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <img src="./assets/images/add.png"
+                                         style="float: left;margin-top: 3.6vh;height: 5vh;"
+                                         *ngIf="!selectDeviceToUpdate"
+                                         (click)="addToSelectedOutputList('add')">
+                                    <img src="./assets/images/update.png"
+                                         style="float: left;margin-top: 3.6vh;height: 5vh;"
+                                         *ngIf="selectDeviceToUpdate"
+                                         (click)="addToSelectedOutputList('update')">
+                                </div>
+                            </div>
+                            <div style="padding: 2vh">
+                                <div class="col-xs-12 col-sm-12 selected-device" style="">
+                                    <div class="delete-select col-xs-6 col-sm-6" style="width: 50%;float: right;padding: 2vw"
+                                         *ngFor="let selectedDevice of outputSelectedList">
+                                        <p class="device-name" (click)="loadOutputDevice(selectedDevice)"
+                                           style="font-size: 4vmin">
+                                            {{selectedDevice?.destinationdevicename}}</p>
+                                        <img src="./assets/images/min.png"
+                                             style="height: 5vh;position: absolute"
+                                             (click)="deleteFromSelectedOutputDeviceList(selectedDevice.destinationdeviceid)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 ">
+                                <label class="farsi-font-im"
+                                >دوره زمانی</label>
+                                <select class="form-control farsi-font-im "
+                                        [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                        [(ngModel)]="prepareScenario.frequency" name="fre"
+                                        id="daily" style="    padding: 0 12px;" [disabled]="!editMode">
+                                    <option value="Daily" class="farsi-font-im">روزانه</option>
+                                    <option value="Weekly" class="farsi-font-im">هفتگی</option>
+                                    <option value="Monthly" class="farsi-font-im">ماهانه</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="time" class="farsi-font-im"
+                                >زمان</label>
+                                <input style="direction: ltr" type="time" name="time"
+                                       [(ngModel)]="prepareScenario.executiontime"
+                                       class="form-control farsi-font-im" id="time" [disabled]="!editMode"
+                                       step="1"
+                                       placeholder="--:--">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            <div class="middle-btn-container">
+                <button type="button" class="btn btn-danger" style="margin-top: 2vh"
+                        (click)="openModal('delete')">
+                    {{'shared.delete'|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="delete" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom w3-card-4">
+            <header class="w3-container ">
+        <span (click)="closeModal('delete')"
+              class="w3-button w3-display-topright">&times;</span>
+            </header>
+            <div class="w3-container">
+                <p class="farsi-font-im" style="float: none;text-align: center; ">
+                    {{'shared.confirm'|translate}}</p>
+            </div>
+            <footer class="w3-container ">
+                <div class="modal-btn-container">
+                    <button type="button" class="btn btn-danger" (click)="closeModal('delete')"
+                    >
+                        {{'shared.no'|translate}}
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="closeModal('delete');deleteScenario()"
+                    >
+                        {{'shared.yes'|translate}}
+                    </button>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+
+</div>

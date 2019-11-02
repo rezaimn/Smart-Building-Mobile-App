@@ -1,0 +1,395 @@
+<div class="clearfix"></div>
+<div class="dashboard-wrapper" *ngIf="userHasAccessToModule('HOME')">
+
+    <!-- <div class="dashboard-head"><span class="pageDetail">main dashboard</span></div> -->
+    <!-- malihu-scrollbar [scrollbarOptions]="scrollbarOptions" -->
+    <div class="dashboard-inner" style="padding: 0px">
+        <div class="status-bar">
+            <img src="./assets/images/home/home-screen/logo.png" (click)="about()" class="logo-btn">
+            <img src="./assets/images/home/slider/refresh.png" (click)="reloadSwipers()" class="refresh-btn">
+            <p class="time-stamp">{{dataPassService.timeStamp | date: 'dd-MMM-yyyy hh:mm:ss'}}</p>
+        </div>
+        <div style="margin-bottom: 2vh;margin-top: 3vh;">
+            <swiper class="" [config]="config" [index]="3">
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','APLG')">
+
+                    <label class="swiper-title">{{'home.appliance-grid.title'|translate}}</label>
+                    <hr>
+                    <div class="row"
+                         style="margin-top: 10vh;margin-left: 0px;margin-right: 0px;">
+                        <div class="col-xs-6">
+                            <p style="font-size:4.5vmin;text-align: center;    margin-top: -2vh!important;margin-bottom: 2vh!important;">غیر متصل</p>
+                            <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/appliance/unplugged-light.png"
+                                 style="height: 15vh;margin: auto;display: flex">
+                            <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/appliance/unplugged-dark.png"
+                                 style="height: 15vh;margin: auto;display: flex">
+                            <p class="device-count">
+                                {{dataPassService?.applianceModel?.applianceStatusCount?.unPluggedCount}}</p>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <p style="font-size:4.5vmin;text-align: center;    margin-top: -2vh!important;margin-bottom: 2vh!important;">متصل</p>
+                            <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/appliance/plugged-light.png"
+                                 style="height: 15vh;margin: auto;display: flex">
+                            <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/appliance/plugged-dark.png"
+                                 style="height: 15vh;margin: auto;display: flex">
+                            <p class="device-count">
+                                {{dataPassService?.applianceModel?.applianceStatusCount?.pluggedCount}}</p>
+                        </div>
+
+
+                    </div>
+                    <!--<hr style="border: 1px solid #888">-->
+
+                </div>
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','DVCS')">
+
+                    <label class="swiper-title">{{'home.device-stats.title'|translate}}</label>
+                    <hr>
+                  <div style="overflow-y: scroll;height: 30vh;margin-top: 8vh">
+                    <div class="row"
+                         style="margin-top: 0vh;margin-left: 0px;margin-right: 0px;">
+                      <div class="col-xs-3" style="padding: 5px;height: 55px"
+                           *ngFor="let deviceType of dataPassService.deviceStatsModel.deviceCount">
+                        <img *ngIf="!appService.darkTheme" [src]="'./assets/images/device-type/'+deviceType.deviceType+'-light.png'"
+                             style="height: 5vh;display: flex;margin: 0px auto auto;">
+                        <img *ngIf="appService.darkTheme" [src]="'./assets/images/device-type/'+deviceType.deviceType+'-dark.png'"
+                             style="height: 5vh;display: flex;margin: 0px auto auto;">
+                        <p style="text-align: center;color: #f9961e;font-size: 4vmin;font-family: tw-regular!important;">{{deviceType.count}}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                    <!--<hr style="border: 1px solid #888">-->
+
+                </div>
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','HVCG')">
+
+                    <label class="swiper-title">{{'home.hvac-grid.title'|translate}}</label>
+                    <hr>
+                    <div class="row" style="margin-bottom: 20px;width: 100%">
+                        <div class="col-md-12" style="margin-top: 7.2vh;">
+                            <div class="line-chart">
+                                <div style="">
+                                    <h5 style="font-size: 5vmin">{{'home.hvac-grid.temperature' | translate}}</h5>
+                                    <div>
+                                        <canvas baseChart style="width: 100%"
+                                                [datasets]="dataPassService?.hvacModel?.tempratureChartBarData"
+                                                [colors]=""
+                                                [labels]="dataPassService?.hvacModel?.tempratureBarChartLabels"
+                                                [options]="lineChartOptions"
+                                                [legend]="barChartLegend"
+                                                [chartType]="barChartType"
+                                                (chartHover)="chartHovered($event)"
+                                                (chartClick)="chartClicked($event)"
+                                        ></canvas>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','LGHG')">
+
+                    <label class="swiper-title">{{'home.lighting-grid.title'|translate}}</label>
+                    <hr>
+                    <div class="row" style="margin-top: 10vh;margin-right: 0px;margin-left: 0px;">
+                        <div class="col-xs-6">
+
+                            <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/lighting/off-light-light.png"
+                                 style="height: 15vh;margin: auto;display: flex">
+                            <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/lighting/off-light-dark.png"
+                                 style="height: 15vh;margin: auto;display: flex">
+                            <p class="device-count">
+                                {{dataPassService?.lightingModel?.lightingStatusCount?.offCount}}</p>
+                        </div>
+                        <div class="col-xs-6">
+
+                            <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/lighting/on-light-light.png"
+                                 style="height: 15vh;margin: auto;display: flex">
+                            <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/lighting/on-light-dark.png"
+                                 style="height: 15vh;margin: auto;display: flex">
+                            <p class="device-count">{{dataPassService?.lightingModel?.lightingStatusCount?.onCount}}</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','ORGS')">
+                    <label class="swiper-title">{{'home.organization-stats.title'|translate}}</label>
+                    <hr>
+                    <div class="row" style="margin-top: 35pt;">
+                        <div class="col-xs-6" style="padding: 5px;">
+                            <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/org-stats/personnel-light.png"
+                                 style="height: 15vh;display: flex;margin: 10px auto 14px;">
+                            <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/org-stats/personnel-dark.png"
+                                 style="height: 15vh;display: flex;margin: 10px auto 14px;">
+                            <p class="org-slider-count">
+                                {{dataPassService.organizationModel.allUsers.length}}</p>
+                        </div>
+                        <div class="col-xs-6" style="padding: 5px;">
+                            <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/org-stats/device-light.png"
+                                 style="height: 15vh;display: flex;margin: 10px auto 14px;">
+                            <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/org-stats/device-dark.png"
+                                 style="height: 15vh;display: flex;margin: 10px auto 14px;">
+
+                            <p class="org-slider-count">
+                                {{dataPassService.nodeCount}}</p>
+                        </div>
+
+                    </div>
+                    <!--<hr style="border: 1px solid #888">-->
+
+                </div>
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','PRKS')">
+
+                    <label class="swiper-title">{{'home.parking-status.title'|translate}}</label>
+                    <hr>
+                    <div class="row" style="margin-top: 9vh;margin-right: 10px;margin-left: 15px!important;width: 100%">
+                        <div class="row" style="margin-left: 0px;margin-right: 0px;margin-bottom: 2vh">
+                            <div class="col-xs-3 parking-count-back" style="border-radius: 5px;">
+                                <p class="parking-seven-segment" style="color: #afcc10!important;">
+                                    {{dataPassService.parkingModel.parkingStatus.free}}</p>
+                            </div>
+                            <div class="col-xs-9" style="margin-top: 1vh">
+                                <img src="./assets/images/home/slider/parking/green-car.png" style="height: 7vw;float: right;    margin-left: 2vw;">
+                                <p class="blue-color" style="font-size: 4vmin;text-align: right;margin-top: .5vh!important;">
+                                    خالی</p>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 0px;margin-right: 0px;margin-bottom:2vh">
+                            <div class="col-xs-3 parking-count-back" style="border-radius: 5px; ">
+                                <p class="parking-seven-segment" style="color: #f86149!important;">
+                                    {{dataPassService.parkingModel.parkingStatus.occupied}}</p>
+                            </div>
+                            <div class="col-xs-9" style="margin-top: 1vh">
+                                <img src="./assets/images/home/slider/parking/red-car.png" style="height: 7vw;float: right;    margin-left: 2vw;">
+                                <p class="blue-color" style="font-size: 4vmin;text-align: right;margin-top: .5vh!important;">اشغال
+                                    شده</p>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 0px;margin-right: 0px;margin-bottom: 2vh">
+                            <div class="col-xs-3 parking-count-back" style="border-radius: 5px; ">
+                                <p class="parking-seven-segment "  style="color: #dbdbdb!important;">
+                                    {{dataPassService.parkingModel.parkingStatus.outOfService}}</p>
+                            </div>
+                            <div class="col-xs-9" style="margin-top: 1vh">
+                                <img src="./assets/images/home/slider/parking/gray-car.png" style="height: 7vw;float: right;    margin-left: 2vw;">
+                                <p class="blue-color" style="font-size: 4vmin;text-align: right;margin-top: .5vh!important;">خارج
+                                    از سرویس</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','SFTS')">
+
+                    <label class="swiper-title">{{'home.safety-status.title'|translate}}</label>
+                    <hr>
+                    <div class="row" style="width: 100%" >
+
+                        <div class="col-xs-5" style="margin-top: 6vh;padding:0px">
+                            <p style="font-size:4.5vmin;text-align: center">فعال شده</p>
+                            <img src="./assets/images/home/slider/safety/device.png"
+                                 style="height: 21vw;margin: auto;display: flex">
+                            <p class="numbers" style="font-size:8vmin;text-align: center">
+                                {{dataPassService?.safetyDeviceModel?.statusCount?.triggeredCount}}</p>
+
+                        </div>
+                        <div class="col-xs-5" style="margin-top: 6vh;padding:0px">
+                            <p style="font-size:4.5vmin;text-align: center">خارج از سرویس</p>
+                            <img src="./assets/images/home/slider/safety/device-out-of-service.png"
+                                 style="height: 21vw;margin: auto;display: flex">
+                            <p class="numbers" style="font-size: 8vmin;text-align: center">
+                                {{dataPassService?.safetyDeviceModel?.statusCount?.outOfServiceCount}}</p>
+                        </div>
+                        <div class="col-xs-2" style="margin-top: 5vh">
+                            <img src="./assets/images/home/slider/safety/battery-low.png"
+                                 style="height: 5vh;margin: auto;display: flex">
+                            <p class="low-count">
+                                {{dataPassService?.safetyDeviceModel?.batteryStatusCount?.batteryLowCount}}</p>
+
+                            <img src="./assets/images/home/slider/safety/battery-middle.png"
+                                 style="height: 5vh;margin: auto;display: flex">
+                            <p class="middle-count">
+                                {{dataPassService?.safetyDeviceModel?.batteryStatusCount?.batteryMediumCount}}</p>
+
+                            <img src="./assets/images/home/slider/safety/battery-full.png"
+                                 style="height: 5vh;margin: auto;display: flex">
+                            <p class="high-count">
+                                {{dataPassService?.safetyDeviceModel?.batteryStatusCount?.batteryHighCount}}</p>
+                        </div>
+                    </div>
+                    <!--<hr style="border: 1px solid #888">-->
+
+                </div>
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','VSTS')">
+
+                    <label class="swiper-title">{{'home.visitor-stats.title'|translate}}</label>
+                    <hr>
+                    <div style="margin-top: 10vh">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/visitor/visitor-slider-light.png"
+                             style="height:14vh;display: flex;margin: auto;margin-bottom: 3vh">
+                        <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/visitor/visitor-slider-dark.png"
+                             style="height:14vh;display: flex;margin: auto;margin-bottom: 3vh">
+                        <p class="numbers" style="text-align: center">{{dataPassService.visitorCount}}</p>
+                    </div>
+
+                </div>
+                <div class="slide" *ngIf="screenPermissionService.hasAccessToScreen('HOME','SIGG')">
+
+                    <label class="swiper-title">{{'home.signage-grid.title'|translate}}</label>
+                    <hr>
+                    <div class="row"
+                         style="margin-top: 5vh;margin-left: 0px;margin-right: 0px;">
+                        <div class="col-xs-6" >
+                            <img  *ngIf="!appService.darkTheme" src="./assets/images/home/slider/sk/display-light.png"
+                                 style="width: 8vh;display: flex;margin: 2vh auto auto;">
+                            <img  *ngIf="appService.darkTheme" src="./assets/images/home/slider/sk/display-dark.png"
+                                 style="width: 8vh;display: flex;margin: 2vh auto auto;">
+                            <p class="numbers" style="font-size: 5.5vmin;text-align: center">{{dataPassService.signageModel.inServiceDisplayCount}}</p>
+                        </div>
+                        <div class="col-xs-6" >
+                            <img  *ngIf="!appService.darkTheme" src="./assets/images/home/slider/sk/kiosk-device-light.png"
+                                  style="width: 8vh;display: flex;margin: 2vh auto auto;">
+                            <img  *ngIf="appService.darkTheme" src="./assets/images/home/slider/sk/kiosk-dark.png"
+                                  style="width: 8vh;display: flex;margin: 2vh auto auto;">
+                            <p class="numbers" style="font-size: 5.5vmin;text-align: center">{{dataPassService.signageModel.inServiceKioskCount}}</p>
+                        </div>
+                        <div class="col-xs-6" >
+                            <img  *ngIf="!appService.darkTheme" src="./assets/images/home/slider/sk/display-light-out.png"
+                                  style="width: 8vh;display: flex;margin: 2vh auto auto;">
+                            <img  *ngIf="appService.darkTheme" src="./assets/images/home/slider/sk/display-dark-out.png"
+                                  style="width: 8vh;display: flex;margin: 2vh auto auto;">
+                            <p class="numbers" style="font-size: 5.5vmin;color: #f86149!important;text-align: center">{{dataPassService.signageModel.outOfServiceDisplayCount}}</p>
+                        </div>
+                        <div class="col-xs-6" >
+                            <img  *ngIf="!appService.darkTheme" src="./assets/images/home/slider/sk/kiosk-device-light-out.png"
+                                  style="width: 8vh;display: flex;margin: 2vh auto auto;">
+                            <img  *ngIf="appService.darkTheme" src="./assets/images/home/slider/sk/kiosk-dark-out.png"
+                                  style="width: 8vh;display: flex;margin: 2vh auto auto;">
+                            <p class="numbers" style="font-size: 5.5vmin;color: #f86149!important;text-align: center">{{dataPassService.signageModel.outOfServiceKioskCount}}</p>
+                        </div>
+                    </div>
+                </div>
+            </swiper>
+
+
+        </div>
+        <div class="row" style="    padding: 2vh;margin-left: 0px;margin-right: 0px">
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 home-item" (click)="openApplianceGrid()"
+                 *ngIf="screenPermissionService.hasAccessToScreen('HOME','APLG')">
+                <div class="module-box font-farsi" style="background-color: rgb(51,175,197)!important;">
+                    <!--<img class="img-responsive " *ngIf="appService.darkTheme"-->
+                    <!--src="./assets/images/plug/plug-blue.png" alt="appliance-grid"-->
+                    <!--/>-->
+                    <img class="img-responsive "
+                         src="./assets/images/home/home-screen/plug.png" alt="appliance-grid"
+                    />
+                    <p class="home-title">{{'home.appliance-grid.title' | translate}}</p>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 home-item" (click)="openDeviceStats()"
+                 *ngIf="screenPermissionService.hasAccessToScreen('HOME','DVCS')">
+                <div class="module-box font-farsi" style="background-color: rgb(145,169,15)!important;">
+                    <!--<img class="img-responsive " *ngIf="appService.darkTheme" style="    height: 30px;-->
+                    <!--width: 30px;"-->
+                    <!--src="./assets/images/home/device/devices-orange.png" alt="device-stats"-->
+                    <!--/>-->
+                    <img class="img-responsive "
+                         src="./assets/images/home/home-screen/device-stats.png" alt="device-stats"
+                    />
+                    <p
+                            class="home-title">{{'home.device-stats.title' | translate}}</p>
+                </div>
+            </div>
+
+
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 home-item" (click)="openHvacGrid()"
+                 *ngIf="screenPermissionService.hasAccessToScreen('HOME','HVCG')">
+                <div class="module-box font-farsi" style="background-color: rgb(86,116,119)!important;">
+                    <!--<img class="img-responsive " *ngIf="appService.darkTheme"-->
+                    <!--src="./assets/images/home/hvac/hvac-blue.png" style="    height: 30px;-->
+                    <!--width: 30px;"-->
+                    <!--alt="hvac-grid"-->
+                    <!--/>-->
+                    <img class="img-responsive "
+                         src="./assets/images/home/home-screen/thermostat.png"
+                         alt="hvac-grid"
+                    />
+                    <p class="home-title">{{'home.hvac-grid.title' | translate}}</p>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 home-item" (click)="openLightingGrid()"
+                 *ngIf="screenPermissionService.hasAccessToScreen('HOME','LGHG')">
+                <div class="module-box font-farsi" style="background-color: rgb(215,94,13)!important;">
+                    <!--<img class="img-responsive " *ngIf="appService.darkTheme"-->
+                    <!--src="./assets/images/home/parking.png"-->
+                    <!--alt="lighting-grid"-->
+                    <!--/>-->
+                    <img class="img-responsive "
+                         src="./assets/images/home/home-screen/lighting.png"
+                         alt="lighting-grid"
+                    />
+                    <p class="home-title">{{'home.lighting-grid.title' | translate}}</p>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 home-item" (click)="openOrganizationStats()"
+                 *ngIf="screenPermissionService.hasAccessToScreen('HOME','ORGS')">
+                <div class="module-box font-farsi" style="background-color: rgb(248,97,73)!important;">
+                    <!--<img class="img-responsive " *ngIf="appService.darkTheme" style="height: 30px;width: 30px;"-->
+                    <!--src="./assets/images/organization/organization-orange.png"-->
+                    <!--alt="organization-stats"-->
+                    <!--/>-->
+                    <img class="img-responsive "
+                         src="./assets/images/home/home-screen/org-stats.png"
+                         alt="organization-stats"
+                    />
+                    <p class="home-title">{{'home.organization-stats.title' | translate}}</p>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 home-item" (click)="openParkingStatus()"
+                 *ngIf="screenPermissionService.hasAccessToScreen('HOME','PRKS')">
+                <div class="module-box font-farsi"  style="background-color: rgb(33,186,176)!important;" >
+                    <!--<img class="img-responsive " *ngIf="appService.darkTheme"-->
+                    <!--src="./assets/images/home/vics.png" alt="parking-status"-->
+                    <!--/>-->
+                    <img class="img-responsive "
+                         src="./assets/images/home/home-screen/parking.png" alt="parking-status"
+                    />
+                    <p class="home-title">{{'home.parking-status.title' | translate }}</p>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 home-item" (click)="openSafetyStatus()"
+                 *ngIf="screenPermissionService.hasAccessToScreen('HOME','SFTS')">
+                <div class="module-box font-farsi" style="background-color: rgb(153,102,233)!important;">
+                    <!--<img class="img-responsive " *ngIf="appService.darkTheme"-->
+                    <!--src="./assets/images/home/parking.png"-->
+                    <!--alt="safety-status"-->
+                    <!--/>-->
+                    <img class="img-responsive "
+                         src="./assets/images/home/home-screen/safety.png"
+                         alt="safety-status"
+                    />
+                    <p class="home-title">{{'home.safety-status.title' | translate}}</p>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3 home-item" (click)="openVisitorStats()"
+                 *ngIf="screenPermissionService.hasAccessToScreen('HOME','VSTS')">
+                <div class="module-box font-farsi" style="background-color: rgb(16,123,180)!important;">
+                    <!--<img class="img-responsive " *ngIf="appService.darkTheme"-->
+                    <!--src="./assets/images/home/visitor/visitor-orange.png" alt="visitor-stats" style="    height: 30px;-->
+                    <!--width: 30px;"-->
+                    <!--/>-->
+                    <img class="img-responsive "
+                         src="./assets/images/home/home-screen/visitor.png" alt="visitor-stats"
+                    />
+                    <p class="home-title">{{'home.visitor-stats.title' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

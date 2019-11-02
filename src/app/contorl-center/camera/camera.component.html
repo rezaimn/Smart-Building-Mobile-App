@@ -1,0 +1,28 @@
+<div class="camera-wrap">
+
+        <div  class="row first-cam" >
+            <div class="col-xs-11 col-md-11 col-sm-11 col-lg-11  cam-frame" style="margin-top: 2vh!important;">
+                <img  class="set-cam-icon" src="./assets/images/device-type/Camera-light.png" *ngIf="dataPassService.camera1==null&&!appService.darkTheme">
+                <img  class="set-cam-icon" src="./assets/images/device-type/Camera-dark.png" *ngIf="dataPassService.camera1==null&&appService.darkTheme">
+                <img style="width: 100%;height: 100%" class="camera" #camera src="{{'http://' + dataPassService.camera1.ipaddress }}" name="image"  *ngIf="dataPassService.camera1!=null">
+            </div>
+            <div style="width: 25vw;display: flex;margin: auto auto 2vh;">
+                <button style="width: 25vw" (click)="openSetCam('cam1')" type="button" class="btn btn-primary">
+                    انتخاب دوربین
+                </button>
+            </div>
+        </div>
+        <div class="row  second-cam">
+            <div class=" col-xs-12 col-md-12 col-sm-12 col-lg-12  cam-frame">
+                <img  class="set-cam-icon" src="./assets/images/device-type/Camera-light.png" *ngIf="dataPassService.camera1==null&&!appService.darkTheme">
+                <img  class="set-cam-icon" src="./assets/images/device-type/Camera-dark.png" *ngIf="dataPassService.camera1==null&&appService.darkTheme">
+                <img  style="width: 100%;height: 100%"  class="camera" #camera src="{{'http://' + dataPassService.camera2.ipaddress }}" name="image"  *ngIf="dataPassService.camera2!=null">
+            </div>
+            <div style="width: 25vw;display: flex;margin: auto auto 2vh;">
+                <button style="width: 25vw" (click)="openSetCam('cam2')" type="button" class="btn btn-primary">
+                    انتخاب دوربین
+                </button>
+            </div>
+        </div>
+
+</div>

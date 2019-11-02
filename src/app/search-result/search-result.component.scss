@@ -1,0 +1,59 @@
+search-result{
+  @import "../variables";
+  .search-types-title{
+    font-size: 3.4vmin;
+    text-align: center;
+    color: $inputfill;
+    margin: 0px;
+  }
+  .search-type-items{
+    position: relative;
+
+  }
+
+  .search-types-box a {
+    display: inline-block;
+    color: $inputfill;
+    text-align: center;
+    padding: 3.4vmin;
+    text-decoration: none;
+
+  }
+  .search-types-box {
+    overflow: auto;
+    white-space: nowrap;
+  }
+  .search-types-button{
+
+    font-size: 3.4vmin;
+    text-align: center;
+    color: $inputfill;
+    margin: 0;
+    border: 1px solid $inputfill;
+    border-radius: 5px;
+    width: 60px;
+    padding-bottom: 5px;
+  }
+  .search-filter-img{
+    img{
+      height: 10vw;
+    }
+  }
+
+  .form-control{
+    height: 10vw!important;
+    padding: 1vw!important;
+    width: 100%!important;
+    color: #153956 ;
+    font-size: 3.5vmin!important;
+  }
+  .search-container{
+    width: 100%;
+    margin-bottom: 5vh;
+  }
+
+  .tab-container{
+    top:20vh+$extraTopForIphoneX;
+    bottom: 10vh;
+  }
+}

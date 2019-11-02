@@ -1,0 +1,79 @@
+
+
+app-login{
+  @import '../_variables';
+  .login-wrapper{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+
+    input{
+      box-shadow: none!important;
+      padding-left: 15px;
+      margin: auto auto 1vh;
+      width: 65%;
+      height: 6vh;
+      border: 0px;
+      border-bottom: solid 1px #807e7e;
+      color: #b2b2b2;
+      font-size: 4vmin;
+      background: transparent;
+      text-align: right;
+
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      padding-right: 10px;
+    }
+    button{
+      width: 65%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      height: 10vw;
+      text-align: center;
+      border-radius: 10vw;
+      border: 0px;
+      background: $inputfill;
+      color: #fff;
+      font-size: 4.2vmin;
+      padding-bottom: 1vh;
+
+      margin: 10vw auto 1vh;
+    }
+    p{
+      width: 65%;
+      margin: auto auto 3vh;
+      display: -ms-flexbox;
+      color: $primary-clr;
+      font-size: 3vmin;
+
+      text-align: center;
+    }
+  }
+  .login-logo{
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+    img{
+      height: 16vh;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      margin: 11vh auto;
+    }
+  }
+  .login-bg {
+    background-image: url("../../assets/images/login/login-bakground1.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .forgot-pass{
+    width: 100%;
+    text-align: center;
+    color: $primary-clr!important;
+  }
+
+}

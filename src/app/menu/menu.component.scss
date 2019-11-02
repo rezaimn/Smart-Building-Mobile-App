@@ -1,0 +1,78 @@
+@import "../variables";
+app-menu{
+
+  .navigation {
+    width: 180px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 90%;
+    font-weigth: bold;
+  }
+
+  .navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  navigation li button{
+    padding: 5px 5px 5px 0.5em;
+
+  }
+  navigation li a:link, #navigation li a:visited {
+    display: block;
+    padding: 5px 5px 5px 0.5em;
+    border-left: 12px solid #033CC2;
+    border-right: 1px solid #033CC2;
+    background-color: #5386F2;
+    text-decoration: none;
+  }
+
+  navigation li a:hover {
+    background-color: #033CC2;
+  }
+
+  .fiveup {width: 75%;margin:3%;float: left;
+    color: white;
+    background-color :#f9961e;
+  }
+  .side-menu-items{
+    color: $inputfill;
+    font-weight: 400;
+    padding: 5px 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 4vmin;
+    img{
+      margin-left: 10px;
+      width: 3.5vh;
+    }
+  }
+  .side-menu-items:hover{
+    color: $inputfill;
+  }
+
+  .active-menu-item{
+    color: $primary-clr!important;
+  }
+  .inactive-menu-item{
+    color: $inputfill;
+  }
+  hr{
+    border:1px solid #e0e0e0;
+    width: 85%;
+    float: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .side-menu-body{
+    background: #eee;
+  }
+  ul{
+    li{
+      img{
+        margin-top: 1vh;
+      }
+    }
+  }
+}

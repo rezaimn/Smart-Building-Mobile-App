@@ -1,0 +1,47 @@
+<div style="width: 100%;;margin-top: 1vh;margin-bottom: 2vh">
+
+  <div class="row" style="margin-right: 2vw;margin-left: 2vw;margin-top: 1vh"
+       *ngIf="dataPassService.manageMode">
+    <button type="button" class="btn btn-success" (click)="addStaff()"
+            style="font-size: 3vmin;text-align: center;float: right;">{{'shared.add'|translate}}
+    </button>
+  </div>
+  <div *ngFor="let cardHolder of cardHolders;let i=index" class="search-cards">
+    <div class="row" style="margin-right: 2vw;margin-left: 2vw;margin-top: 1vh">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding: 0px">
+        <p class="card-status" *ngIf="!cardHolder.isProcessing">{{'menu.visitor.card-status'|translate}}</p>
+        <div *ngIf="cardHolder.isProcessing" class=" farsi-float-right "
+             style="padding: 0px;float: right">
+          <img src="./assets/images/processing.svg" style="width: 5vh;margin-top: .5vh;"
+          />
+        </div>
+        <ion-toggle class="toggle-md" style="float: left;margin-top: -.5vh;"
+                    [(ngModel)]="cardHolder.enabled"
+                    [disabled]="cardHolder.isProcessing||cardHolder.cardNumber==''"
+                    (ionChange)="enableCardHolder(i)"
+        >
+        </ion-toggle>
+      </div>
+      <div (click)="editStaff(cardHolder)" class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px">
+        <img *ngIf="!appService.darkTheme&&(cardHolder.picture==''||cardHolder.picture==null)"
+             src="./assets/images/footer/search/user-selected-light.png"
+             style="float: right;height: 7vh;margin-top: -1vh">
+        <img *ngIf="appService.darkTheme&&(cardHolder.picture==''||cardHolder.picture==null)"
+             src="./assets/images/footer/search/user-selected-dark.png"
+             style="float: right;height: 7vh;margin-top: -1vh">
+        <img class="thumbnail" *ngIf="!(cardHolder.picture==''||cardHolder.picture==null)" [src]="cardHolder?.picture"
+             style="float: right;height: 7vh;margin-top: -1vh;border-radius: 7vh;width: 7vh">
+        <p class="visitor-result-name"
+           *ngIf="dataPassService.currentLang=='fa'">{{cardHolder.firstNameMultiLingual.map.fa + ' ' + cardHolder.lastNameMultiLingual.map.fa}}</p>
+        <p class="visitor-result-name"
+           *ngIf="dataPassService.currentLang=='en'">{{cardHolder.firstNameMultiLingual.map.en + ' ' + cardHolder.lastNameMultiLingual.map.en}}</p>
+        <p class="visitor-result-phone">{{cardHolder.mobileNum}}</p>
+      </div>
+
+
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="loadMoreStaffs()" *ngIf="cardHolders.length>0"
+          style="font-size: 3vmin;text-align: center;display: flex;margin: auto;direction: rtl">{{'shared.load-more'|translate}}
+  </button>
+</div>

@@ -1,0 +1,92 @@
+<div>
+    <tabset>
+        <tab [title]="'home.appliance-grid.summary' | translate" [active]="false">
+            <div class="tab-container">
+                <div class="row table-box scrollable-container">
+
+                    <div class="col-xs-6  left-top-curve  table-title table-side">
+                        <p>
+
+                            {{'home.hvac-grid.count'|translate}}</p>
+                    </div>
+                    <div class="col-xs-6 table-2-col-right right-top-curve  table-title table-side">
+                        <p >
+                            {{'home.hvac-grid.status'|translate}}</p>
+                    </div>
+                    <div class="col-xs-6 table-img  table-side">
+                        <p class="en-text-or-number" style="font-size: 6vmin">{{dataPassService?.hvacModel?.hvacStatusCount?.outOfServiceCount}}</p>
+                    </div>
+                    <div class="col-xs-6 table-img table-side table-2-col-right">
+                        <img  src="./assets/images/home/hvac/thermostat-disabled.png">
+
+                    </div>
+                    <div class="col-xs-6 table-img  left-down-curve table-side">
+                        <p class="en-text-or-number">{{dataPassService?.hvacModel?.hvacStatusCount?.inServiceCount}}</p>
+                    </div>
+                    <div class="col-xs-6 table-img right-down-curve table-side table-2-col-right">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/device-type/Thermostat-light.png">
+                        <img *ngIf="appService.darkTheme" src="./assets/images/device-type/Thermostat-dark.png">
+                    </div>
+
+                </div>
+            </div>
+
+        </tab>
+        <tab [title]="'home.appliance-grid.details' | translate" [active]="true">
+            <div class="tab-container">
+                <div class="scrollable-container"  >
+                    <div class="row home-data-box" *ngFor="let floor of dataPassService.hvacModel.floorHvac">
+                        <p class="border-bottom-title" *ngIf="dataPassService.currentLang=='fa'" >{{floor?.hvacList[0]?.location[3]?.faName}}/{{floor?.hvacList[0]?.location[4]?.faName}}</p>
+                        <p class="border-bottom-title" *ngIf="dataPassService.currentLang=='en'">{{floor?.hvacList[0]?.location[3]?.enName}}/{{floor?.hvacList[0]?.location[4]?.enName}}</p>
+                        <div class="col-xs-6 col-md-6 col-lg-4" *ngFor="let hvacG of floor.hvacList" style="margin-top: 4vh">
+                            <div class="details" style="height: 10vh"
+                                 [style.background]="hvacG?.deviceworkingstate=='1'?'#fff':'rgba(255, 138, 132, 0.63)'">
+                                <p class="data-box-title">{{hvacG?.devicename}}</p>
+                                <!--<div class=" col-xs-4">-->
+                                <div class="charge" style="border: 0px">
+
+                                  <p class="battery-level">{{hvacG?.devicevalue}}</p>
+                                  <round-progress  [background]="'#f1f1f1'" clockwise="true"  responsive="true"
+                                                   [current]="hvacG?.devicevalue" [color]="hvacG?.outerStrokeColor"
+                                                   [radius]="22" [stroke]="4" [max]="100" [duration]="2000" >
+                                  </round-progress>
+                                    <!--<circle-progress-->
+                                            <!--[percent]="hvacG?.devicevalue"-->
+                                            <!--[radius]="20"-->
+                                            <!--[backgroundColor]="'#f1f1f1'"-->
+                                            <!--[backgroundStrokeWidth]="0"-->
+                                            <!--[backgroundPadding]="-50"-->
+                                            <!--[space]="2"-->
+                                            <!--[toFixed]="0"-->
+                                            <!--[showUnits]="false"-->
+                                            <!--[maxPercent]="100"-->
+                                            <!--[outerStrokeWidth]="4"-->
+                                            <!--[outerStrokeColor]="hvacG?.outerStrokeColor"-->
+                                            <!--[innerStrokeColor]="hvacG?.innerStrokeColor"-->
+                                            <!--[innerStrokeWidth]="2"-->
+                                            <!--[titleFontSize]="16"-->
+                                            <!--[unitsFontSize]="16"-->
+                                            <!--[animationDuration]="50"-->
+                                            <!--[showSubtitle]="false"-->
+                                    <!--&gt;</circle-progress>-->
+                                </div>
+                                <div class="row data-row">
+                                    <span >{{'home.hvac-grid.set-point'|translate}} :</span>
+                                    <p class="data en-text-or-number">{{hvacG?.setpoint}}</p>
+                                </div>
+                                <div class="row data-row">
+                                    <span>{{'home.hvac-grid.area'|translate}} :</span>
+                                    <p class="data" *ngIf="dataPassService.currentLang=='fa'">{{hvacG?.location[5]?.faName}}</p>
+                                    <p class="data" *ngIf="dataPassService.currentLang=='en'">{{hvacG?.location[5]?.enName}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </tab>
+    </tabset>
+</div>

@@ -1,0 +1,133 @@
+<div id="0" class="menu side-menu-body">
+  <div class="row" style="margin: 0px;width: 100%;display: block!important;">
+    <img src="./assets/images/home/home-screen/logo.png"
+         style="height: 7vh;float: right!important;margin-right: 2vw;margin-top: 2vh;">
+
+  </div>
+  <div>
+    <ul style="list-style: none;padding: 10px;margin-top: 1vh" id="menu-ul">
+      <li (click)="openManageUsers()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='user','inactive-menu-item':selectedMenuItem!='user'}"
+          *ngIf="screenPermissionService.hasAccessToScreen('MENU','STFM')"
+          class="side-menu-items active-menu-item font-farsi" id="manage-users">
+        مدیریت کاربران
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/users-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/users-dark.png">
+      </li>
+      <hr *ngIf="screenPermissionService.hasAccessToScreen('MENU','STFM')">
+      <li (click)="openManageVisitors()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='visitor','inactive-menu-item':selectedMenuItem!='visitor'}"
+          *ngIf="screenPermissionService.hasAccessToScreen('MENU','VISM')"
+          class="side-menu-items font-farsi" id="manage-visitors">
+        مدیریت میهمان
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/visitor-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/visitor-dark.png">
+      </li>
+      <hr *ngIf="screenPermissionService.hasAccessToScreen('MENU','VISM')">
+
+      <!--(click)="openManageDevices()"-->
+      <!--[ngClass]="{'active-menu-item':selectedMenuItem=='device','inactive-menu-item':selectedMenuItem!='device'}"-->
+      <li
+
+        *ngIf="screenPermissionService.hasAccessToScreen('MENU','DVCM')"
+        class="side-menu-items font-farsi" id="manage-devices" style="color: #858585!important;">
+        مدیریت دستگاه
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/device-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/device-dark.png">
+      </li>
+      <hr *ngIf="screenPermissionService.hasAccessToScreen('MENU','DVCM')">
+      <li (click)="openManageAlerts()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='alert','inactive-menu-item':selectedMenuItem!='alert'}"
+          *ngIf="screenPermissionService.hasAccessToScreen('MENU','ALRM')"
+          class="side-menu-items font-farsi" id="manage-alerts">
+        مدیریت اخطار
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/alert-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/alert-dark.png">
+      </li>
+      <hr *ngIf="screenPermissionService.hasAccessToScreen('MENU','ALRM')">
+      <li (click)="openManageScenario()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='scenario','inactive-menu-item':selectedMenuItem!='scenario'}"
+          *ngIf="screenPermissionService.hasAccessToScreen('MENU','SCNM')"
+          class="side-menu-items font-farsi" id="manage-scenario">
+        مدیریت سناریو
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/scenario-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/scenario-dark.png">
+      </li>
+      <hr *ngIf="screenPermissionService.hasAccessToScreen('MENU','SCNM')">
+      <li (click)="openAppSettings()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='app-setting','inactive-menu-item':selectedMenuItem!='app-setting'}"
+          class="side-menu-items font-farsi" id="appSettings">
+        تنظیمات برنامه
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/app-settings-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/app-settings-dark.png">
+      </li>
+      <hr>
+      <li (click)="openLogs()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='log','inactive-menu-item':selectedMenuItem!='log'}"
+          *ngIf="screenPermissionService.hasAccessToScreen('MENU','LOGS')"
+          class="side-menu-items font-farsi" id="logs">
+        رویداد ها
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/log-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/log-dark.png">
+      </li>
+      <hr *ngIf="screenPermissionService.hasAccessToScreen('MENU','LOGS')">
+      <li (click)="openProfile()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='profile','inactive-menu-item':selectedMenuItem!='profile'}"
+          class="side-menu-items font-farsi" id="profile"
+          *ngIf="dataPassService?.loggedInUser?.name!=''||dataPassService?.loggedInUser?.family_name!=''">
+        {{dataPassService?.loggedInUser?.name}} {{dataPassService?.loggedInUser?.family_name}}
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/profile-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/profile-dark.png">
+      </li>
+      <li (click)="openProfile()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='profile','inactive-menu-item':selectedMenuItem!='profile'}"
+          class="side-menu-items font-farsi" id="profile1"
+          *ngIf="dataPassService?.loggedInUser?.name==''&&dataPassService?.loggedInUser?.family_name==''">
+        پروفایل کاربر
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/profile-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/profile-dark.png">
+      </li>
+      <hr>
+      <li (click)="openSubsidiary()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='subsidiary','inactive-menu-item':selectedMenuItem!='subsidiary'}"
+          class="side-menu-items font-farsi" id="subsidiary1"
+          *ngIf="dataPassService.currentLang=='fa'&&screenPermissionService.hasAccessToScreen('MENU','ASUB')&& dataPassService?.selectedSubsidiary!=null"
+          style="">
+        {{dataPassService?.selectedSubsidiary?.name?.map?.fa}}
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/subsidiary-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/subsidiary-dark.png">
+      </li>
+      <li (click)="openSubsidiary()" class="side-menu-items " id="subsidiary2"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='subsidiary','inactive-menu-item':selectedMenuItem!='subsidiary'}"
+          *ngIf="dataPassService.currentLang=='en'&&screenPermissionService.hasAccessToScreen('MENU','ASUB')&& dataPassService?.selectedSubsidiary!=null">
+        {{dataPassService?.selectedSubsidiary?.name?.map?.en}}
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/subsidiary-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/subsidiary-dark.png">
+      </li>
+      <li (click)="openSubsidiary()" class="side-menu-items " id="subsidiary3" style=""
+          [ngClass]="{'active-menu-item':selectedMenuItem=='subsidiary','inactive-menu-item':selectedMenuItem!='subsidiary'}"
+          *ngIf="dataPassService.currentLang=='fa'&&screenPermissionService.hasAccessToScreen('MENU','ASUB')&& dataPassService?.selectedSubsidiary==null">
+        همه شرکتهای تابعه
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/subsidiary-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/subsidiary-dark.png">
+      </li>
+      <hr *ngIf="screenPermissionService.hasAccessToScreen('MENU','ASUB')">
+      <li (click)="openAbout()"
+          [ngClass]="{'active-menu-item':selectedMenuItem=='about','inactive-menu-item':selectedMenuItem!='about'}"
+          class="side-menu-items font-farsi" id="about">
+        درباره ما
+        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/about-light.png">
+        <img *ngIf="appService.darkTheme" src="./assets/images/menu/about-dark.png">
+      </li>
+      <hr>
+      <li (click)="openLogout()" class="side-menu-items font-farsi" id="logout">
+        خروج
+        <img src="./assets/images/menu/exit-light.png">
+      </li>
+
+    </ul>
+  </div>
+
+
+</div>
+

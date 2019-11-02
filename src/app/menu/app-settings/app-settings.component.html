@@ -1,0 +1,248 @@
+<div class="app-settings">
+
+    <div class="tab-container">
+        <div class="scrollable-container">
+            <form style="margin-top: 2vh;margin-bottom: 2vh">
+                <div class="data-box" style="width: 100%">
+                    <div class="form-group col-xs-12 col-sm-12" style="margin-top: 5vh">
+                        <div class="col-xs-12 ">
+                            <p class="form-title">{{'menu.app-settings.theme-setting'|translate}}</p>
+                            <hr>
+                        </div>
+                        <div style="margin-top: 10px;float: right" class="col-xs-12 col-sm-12">
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="radio" id="dark-theme" name="dark-theme"
+                                       (click)="changeTheme(true)" [checked]="darkThemeTemp">
+                                <label for="dark-theme"
+                                >
+                                    {{'menu.app-settings.dark'|translate}}</label>
+                            </div>
+                            <div style="direction: rtl;">
+                                <input class="radio-check" type="radio" id="light-theme" name="light-theme"
+                                       [checked]="!darkThemeTemp"
+                                       (click)="changeTheme(false)">
+                                <label for="light-theme"
+                                >
+                                    {{'menu.app-settings.light'|translate}}</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form style=";margin-top: 6vh;margin-bottom:2vh">
+                <div class="data-box" style="width: 100%">
+                    <div class="form-group col-xs-12 col-sm-12" style="margin-top: 5vh">
+                        <div class="col-xs-12 ">
+                            <p class="form-title">{{'menu.app-settings.lang-setting'|translate}}</p>
+                            <hr>
+                        </div>
+                        <div style="margin-top: 10px;float: right" class="col-xs-12 col-sm-12">
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="radio" id="farsi-lang" name="lang" checked
+                                       (click)="changeLang('fa')"
+                                       [checked]="langTemp=='fa'">
+                                <label for="farsi-lang"
+                                >
+                                    فارسی</label>
+                            </div>
+                            <div style="direction: rtl;">
+                                <input class="radio-check" type="radio" id="english-lang" name="lang"
+                                       [checked]="langTemp=='en'" disabled
+                                >
+                                <!--(click)="changeLang('en')"-->
+                                <label for="english-lang" style="color: #858585!important;font-family: tw-regular"
+                                >
+                                    English</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+          <form style=";margin-top: 6vh;margin-bottom:2vh">
+            <div class="data-box" style="width: 100%">
+              <div class="form-group col-xs-12 col-sm-12" style="margin-top: 5vh">
+                <div class="col-xs-12 ">
+                  <p class="form-title">{{'menu.app-settings.two-factor-verification'|translate}}</p>
+                  <hr>
+                </div>
+                <div style="margin-top: 10px;float: right" class="col-xs-12 col-sm-12">
+                  <div style="direction: rtl;margin-bottom: 10px">
+                    <input class="radio-check" type="checkbox"  id="two-factor" name="two-factor" [(ngModel)]="twoFactor"
+                           (change)="twoFactorUpdate($event)" >
+                    <label for="two-factor"
+                    >
+                      {{'menu.app-settings.two-factor-verification'|translate}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+            <form style="margin-top: 6vh;margin-bottom: 2vh">
+                <div class="data-box">
+                    <div class="submit-box">
+                        <button *ngIf="!alertEditMode" (click)="changeAlertEditMode(true);" type="button"
+                                class="btn btn-primary"
+                        >{{'shared.update'|translate}}
+                        </button>
+                        <button *ngIf="alertEditMode" (click)="changeAlertEditMode(false);" type="button"
+                                class="btn btn-danger"
+                        >{{'shared.cancel'|translate}}
+                        </button>
+                        <button *ngIf="alertEditMode" (click)="saveAlert()" type="button" class="btn btn-success"
+                        >{{'shared.save'|translate}}
+                        </button>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12" style="margin-top: 2vh">
+                        <div class="col-xs-12 ">
+                            <p class="form-title">{{'menu.app-settings.notif-setting'|translate}}</p>
+                            <!--<img src="./assets/images/footer/notif-blue-enactive.png" height="24"-->
+                            <!--style="float: left; margin-top: -27px;margin-right: 5px;">-->
+                            <hr>
+                        </div>
+                        <div style="margin-top: 10px;float: right" class="col-xs-12 col-sm-12">
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="checkbox" id="noti-active"
+                                       [checked]="hasNotif"
+                                       name="noti-active" (change)="deActiveNotif()"
+                                       [disabled]="!alertEditMode"
+                                >
+                                <label for="noti-active"
+                                >
+                                    {{'menu.app-settings.notification'|translate}}
+                                </label>
+                            </div>
+                            <div style="direction: rtl;">
+                                <input class="radio-check" type="radio" id="noti-only-fav" (change)="setNotif(0)"
+                                       [checked]="alertSettings.pushAlert==2"
+                                       name="noti" [disabled]="!hasNotif || !alertEditMode">
+                                <label for="noti-only-fav"
+                                >
+                                    {{'menu.app-settings.fav-devices'|translate}}</label>
+                            </div>
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="radio" id="noti-all" (change)="setNotif(1)"
+                                       [checked]="alertSettings.pushAlert==1"
+                                       name="noti" [disabled]="!hasNotif || !alertEditMode">
+                                <label for="noti-all"
+                                >
+                                    {{'menu.app-settings.all-devices'|translate}}</label>
+                            </div>
+                            <hr>
+                        </div>
+                        <div style="margin-top: 10px;float: right" class="col-xs-12 col-sm-12">
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="checkbox" id="sms-active"
+                                       [checked]="hasSMS" (change)="deActiveSMS()"
+                                       name="sms-active"
+                                       [disabled]="!alertEditMode"
+                                >
+                                <label for="noti-active"
+                                >
+                                    {{'menu.app-settings.sms'|translate}}
+                                </label>
+                            </div>
+                            <div style="direction: rtl;">
+                                <input class="radio-check" type="radio" id="sms-only-fav" (change)="setSMS(0)"
+                                       name="sms"
+                                       [checked]="alertSettings.smsAlert==2" [disabled]="!hasSMS || !alertEditMode">
+                                <label for="noti-only-fav"
+                                >
+                                    {{'menu.app-settings.fav-devices'|translate}}</label>
+                            </div>
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="radio" id="sms-all" (change)="setSMS(1)"
+                                       [checked]="alertSettings.smsAlert==1" name="sms"
+                                       [disabled]="!hasSMS || !alertEditMode">
+                                <label for="noti-all"
+                                >
+                                    {{'menu.app-settings.all-devices'|translate}}</label>
+                            </div>
+                            <hr>
+                        </div>
+                        <div style="margin-top: 10px;float: right" class="col-xs-12 col-sm-12">
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="checkbox" id="email-active"
+                                       [checked]="hasEmail"
+                                       name="email-active" (change)="deActiveEmail()"
+                                       [disabled]="!alertEditMode"
+                                >
+                                <label for="noti-active"
+                                >
+                                    {{'menu.app-settings.email'|translate}}
+                                </label>
+                            </div>
+                            <div style="direction: rtl;">
+                                <input class="radio-check" type="radio" id="email-only-fav" (change)="setEmail(0)"
+                                       [checked]="alertSettings.emailAlert==2" name="email"
+                                       [disabled]="!hasEmail || !alertEditMode">
+                                <label for="noti-only-fav"
+                                >
+                                    {{'menu.app-settings.fav-devices'|translate}}</label>
+                            </div>
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="radio" id="email-all" name="email"
+                                       (change)="setEmail(1)"
+                                       [checked]="alertSettings.emailAlert==1" [disabled]="!hasEmail || !alertEditMode">
+                                <label for="noti-all"
+                                >
+                                    {{'menu.app-settings.all-devices'|translate}}</label>
+                            </div>
+                            <div style="direction: rtl;margin-bottom: 10px">
+                                <input class="radio-check" type="radio" id="single-email"
+                                       [checked]="alertSettings.dailyDigestAlert==0" (change)="setDaily(0)"
+                                       name="single-email"
+                                       [disabled]="!hasEmail || !alertEditMode">
+                                <label for="single-email"
+                                >
+                                    {{'menu.app-settings.each-notif-email'|translate}}</label>
+                            </div>
+                            <div style="direction: rtl;">
+                                <input class="radio-check" type="radio" id="daily-digits"
+                                       [checked]="alertSettings.dailyDigestAlert==1" (change)="setDaily(1)"
+                                       name="single-email"
+                                       [disabled]="!hasEmail || !alertEditMode">
+                                <label for="daily-digits"
+                                >
+                                    {{'menu.app-settings.daily-email'|translate}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <div class="middle-btn-container" style="margin-bottom: 8vh">
+                <button type="button" class="btn btn-primary" (click)="openModal('confirm')"
+                >
+                    تنظیمات پیشفرض
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="confirm" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom w3-card-4">
+        <header class="w3-container ">
+        <span (click)="closeModal('confirm')"
+              class="w3-button w3-display-topright">&times;</span>
+        </header>
+        <div class="w3-container">
+            <p class="farsi-font-im" style="float: none;text-align: center;">{{'shared.confirm'|translate}}</p>
+        </div>
+        <footer class="w3-container ">
+            <div class="modal-btn-container">
+                <button type="button" class="btn btn-danger" (click)="closeModal('confirm')"
+                >
+                    {{'shared.no'|translate}}
+                </button>
+                <button type="button" class="btn btn-success" (click)="closeModal('confirm');defultSettings()"
+                >
+                    {{'shared.yes'|translate}}
+                </button>
+            </div>
+
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,190 @@
+<!--<div class="logos boody ">-->
+<!--<img class="img-responsive2" *ngIf="appService.darkTheme"-->
+<!--src="assets/images/logo.png">-->
+<!--<img class="img-responsive2" *ngIf="!appService.darkTheme"-->
+<!--src="assets/images/logo2.png">-->
+
+
+<!--<h1 class="head-h1"><b>RSB</b></h1>-->
+<!--</div>-->
+
+<div class="footer-icons">
+    <div class="row" style="height: 12vw;padding: 7px;">
+
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding-right: 0px">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div *ngIf="userHasAccessToModule('HOME')">
+                    <img src="./assets/images/footer/home-dark.png"
+                         id="home-orange-enactive"
+                         *ngIf="appService.darkTheme && dataPassService.footerActiveIcon!='home'"
+                         class="footer-icon"
+                         (click)="openHome()"/>
+                    <img src="./assets/images/footer/home-light.png"
+                         id="home-blue-enactive"
+                         *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon!='home'"
+                         class="footer-icon"
+                         (click)="openHome()"/>
+                    <img src="./assets/images/footer/home-selected-dark.png"
+                         id="home-orange-active"
+                         *ngIf="appService.darkTheme && dataPassService.footerActiveIcon=='home'"
+                         class="footer-icon"
+                         (click)="openHome()"/>
+                    <img src="./assets/images/footer/home-selected-light.png"
+                         id="home-blue-active" *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon=='home'"
+                         class="footer-icon"
+                         (click)="openHome()"/>
+                </div>
+                <div *ngIf="!userHasAccessToModule('HOME')">
+                    <img src="./assets/images/footer/home-disabled.png"
+                         id="home-orange-disabled"
+                         class="footer-icon"
+
+                    />
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div *ngIf="userHasAccessToModule('CTRL')">
+                    <img src="./assets/images/footer/control-dark.png"
+                         id="control-orange-enactive"
+                         *ngIf="appService.darkTheme && dataPassService.footerActiveIcon!='control'&&!(dataPassService.panicStatus==true||dataPassService.sosStatus==1)"
+                         class="footer-icon"
+                         (click)="openControl()"/>
+                    <img src="./assets/images/footer/control-light.png"
+                         id="control-blue-enactive"
+                         *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon!='control'&&!(dataPassService.panicStatus==true||dataPassService.sosStatus==1)"
+                         class="footer-icon"
+                         (click)="openControl()"/>
+                    <img src="./assets/images/footer/control-selected-dark.png"
+                         id="control-orange-active"
+                         *ngIf="appService.darkTheme && dataPassService.footerActiveIcon=='control'&&!(dataPassService.panicStatus==true||dataPassService.sosStatus==1)"
+                         class="footer-icon"
+                         (click)="openControl()"/>
+                    <img src="./assets/images/footer/control-selected-light.png"
+                         id="control-blue-active"
+                         *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon=='control'&&!(dataPassService.panicStatus==true||dataPassService.sosStatus==1)"
+                         class="footer-icon"
+                         (click)="openControl()"/>
+                    <img  src="./assets/images/footer/control-center-light.gif"
+                         id="control-blue-active-gif"
+                         *ngIf="dataPassService.panicStatus==true||dataPassService.sosStatus==1&&!appService.darkTheme"
+                         class="footer-icon"
+                         (click)="openControl()"/>
+                    <img  src="./assets/images/footer/control-center-dark.gif"
+                          id="control-orange-active-gif"
+                          *ngIf="dataPassService.panicStatus==true||dataPassService.sosStatus==1&&appService.darkTheme"
+                          class="footer-icon"
+                          (click)="openControl()"/>
+                </div>
+                <div *ngIf="!userHasAccessToModule('CTRL')">
+                    <img src="./assets/images/footer/control-disabled.png"
+                         id="control-disabled"
+                         class="footer-icon"
+                    />
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding: 0px">
+            <div *ngIf="userHasAccessToModule('SRCH')">
+                <img src="./assets/images/footer/search-dark.png"
+                     id="search-orange-enactive"
+                     *ngIf="appService.darkTheme && dataPassService.footerActiveIcon!='search'"
+                     class="footer-icon-middle"
+                     (click)="openSearch()"/>
+                <img src="./assets/images/footer/search-light.png"
+                     id="search-blue-enactive"
+                     *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon!='search'"
+                     class="footer-icon-middle"
+                     (click)="openSearch()"/>
+                <img src="./assets/images/footer/search-selected-dark.png"
+                     id="search-orange-active"
+                     *ngIf="appService.darkTheme && dataPassService.footerActiveIcon=='search'"
+                     class="footer-icon-middle"
+                     (click)="openSearch()"/>
+                <img src="./assets/images/footer/search-selected-light.png"
+                     id="search-blue-active"
+                     *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon=='search'"
+                     class="footer-icon-middle"
+                     (click)="openSearch()"/>
+
+            </div>
+            <div *ngIf="!userHasAccessToModule('SRCH')">
+                <img src="./assets/images/footer/search-disabled.png"
+                     id="search-disabled"
+                     class="footer-icon-middle "
+                />
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding-left: 0px">
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div *ngIf="userHasAccessToModule('CNFG')">
+                    <img src="./assets/images/footer/config-dark.png"
+                         id="config-orange-enactive"
+                         *ngIf="appService.darkTheme && dataPassService.footerActiveIcon!='config'"
+                         class="footer-icon"
+                         (click)="openConfig()"/>
+                    <img src="./assets/images/footer/config-light.png"
+                         id="config-blue-enactive"
+                         *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon!='config'"
+                         class="footer-icon"
+                         (click)="openConfig()"/>
+                    <img src="./assets/images/footer/config-selected-dark.png"
+                         id="config-orange-active"
+                         *ngIf="appService.darkTheme && dataPassService.footerActiveIcon=='config'"
+                         class="footer-icon"
+                         (click)="openConfig()"/>
+                    <img src="./assets/images/footer/config-selected-light.png"
+                         id="config-blue-active"
+                         *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon=='config'"
+                         class="footer-icon"
+                         (click)="openConfig()"/>
+
+                </div>
+                <div *ngIf="!userHasAccessToModule('CNFG')">
+
+                    <img src="./assets/images/footer/config-disabled.png"
+                         id="config-disabled"
+                         class="footer-icon"
+                    />
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div *ngIf="userHasAccessToModule('NTFC')">
+                    <p class="notif-count" (click)="openNotif()" *ngIf="dataPassService.notificationsCount>0">
+                        {{dataPassService.notificationsCount}}</p>
+                    <img src="./assets/images/footer/notification-dark.png"
+                         id="notif-orange-enactive"
+                         *ngIf="appService.darkTheme && dataPassService.footerActiveIcon!='notif'"
+                         class="footer-icon"
+                         (click)="openNotif()"/>
+                    <img src="./assets/images/footer/notification-light.png"
+                         id="notif-blue-enactive"
+                         *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon!='notif'"
+                         class="footer-icon"
+                         (click)="openNotif()"/>
+                    <img src="./assets/images/footer/notification-selected-dark.png"
+                         id="notif-orange-active"
+                         *ngIf="appService.darkTheme && dataPassService.footerActiveIcon=='notif'"
+                         class="footer-icon"
+                         (click)="openNotif()"/>
+                    <img src="./assets/images/footer/notification-selected-light.png"
+                         id="notif-blue-active"
+                         *ngIf="!appService.darkTheme && dataPassService.footerActiveIcon=='notif'"
+                         class="footer-icon"
+                         (click)="openNotif()"/>
+                </div>
+                <div *ngIf="!userHasAccessToModule('NTFC')">
+                    <img src="./assets/images/footer/notification-disabled.png"
+                         id="notif-disabled"
+                         class="footer-icon"
+                    />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

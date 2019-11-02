@@ -1,0 +1,16 @@
+
+
+device-stats{
+
+  @import "../../variables";
+  .device-details-img{
+    img{
+      height: 8vh;
+    }
+    p{
+      text-align: center;
+      margin-top: 1vh;
+      color: $inputfill;
+    }
+  }
+}

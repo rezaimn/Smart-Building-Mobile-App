@@ -1,0 +1,90 @@
+<div>
+    <app-menu id="side-menu-id" class="side-menu" [@slideInOut]="menuState">
+    </app-menu>
+    <div class="custom-container" id="body-layout" style="  transition-timing-function: ease-in-out;    width: 100%;
+    transition: 0.5s; background: #eee;">
+        <div class="header-mobile" *ngIf="dataPassService.isLoggedIn"
+             [ngClass]="dataPassService.loaderStack.length!=0 ? 'blur' : ''">
+            <input type="checkbox" id="menu-toggle"/>
+            <label for="menu-toggle">
+                <img src="./assets/images/menubar-orange.png" id="menu-icon" *ngIf="appService.darkTheme"
+                     class="menu-toggle-move1" style="position: absolute;top:1.2vw;right:1vw;height: 9vw"
+                     (click)="toggleMenu()"/>
+                <img src="./assets/images/menubar-blue.png" id="menu-icon2" *ngIf="!appService.darkTheme"
+                     class="menu-toggle-move1" style="position: absolute;top:1.2vw;right:1vw;height: 9vw"
+                     (click)="toggleMenu()"/>
+            </label>
+            <div class="subsidiary-title" *ngIf="!dataPassService.searchMode">
+                <p class="sub-title"
+                   *ngIf="dataPassService.currentLang=='fa'&& dataPassService?.selectedSubsidiary!=null">
+                    {{dataPassService?.selectedSubsidiary?.name?.map?.fa}}</p>
+                <p class="sub-title"
+                   *ngIf="dataPassService.currentLang=='en'&& dataPassService?.selectedSubsidiary!=null">
+                    {{dataPassService?.selectedSubsidiary?.name?.map?.en}}</p>
+                <p class="sub-title"
+                   *ngIf="dataPassService?.selectedSubsidiary==null">{{'menu.app-settings.all-sub'|translate}}</p>
+                <p class="version-code">V:2.0.1</p>
+            </div>
+            <div *ngIf="stackService.stackLenght()>1" style="position: absolute;top: .8vw;left: 1.2vw;">
+                <label>
+                    <img [src]="dataPassService.leadIcon+'-dark.png'"
+                         *ngIf="appService.darkTheme "
+                         style="height: 8vw"/>
+                    <img [src]="dataPassService.leadIcon+'-light.png'"
+                         *ngIf="!appService.darkTheme "
+                         style="height:8vw"/>
+                </label>
+                <label>
+                    <img src="./assets/images/back-dark.png"
+                         *ngIf="appService.darkTheme "
+                         style="height: 7vw;margin-right: 1vw;margin-left: 1vw"
+                         (click)="backTo()"/>
+                    <img src="./assets/images/back-light.png"
+                         *ngIf="!appService.darkTheme "
+                         style="height:7vw"
+                         (click)="backTo()"/>
+                </label>
+            </div>
+            <div *ngIf="(dataPassService.searchMode)&&(screenPermissionService.hasAccessToScreen('SRCH','SRCS')||
+                screenPermissionService.hasAccessToScreen('SRCH','SRCD')||
+                screenPermissionService.hasAccessToScreen('SRCH','SRCV'))">
+                    <span>
+                    <input type="text" placeholder="جستجو ..." class="search-input form-control" name="search-text" [style.width]="stackService.stackLenght()>1?'66%':'85%'"
+                           [(ngModel)]="dataPassService.searchText">
+                    <img *ngIf="!appService.darkTheme" src="./assets/images/header/search-light.png"
+                         class="search-image" (click)="searchResult()">
+                    <img *ngIf="appService.darkTheme" src="./assets/images/header/search-light.png"
+                         class="search-image"
+                         (click)="searchResult()">
+                </span>
+            </div>
+        </div>
+        <div class="wrapper-custom"
+             [ngClass]="dataPassService.loaderStack.length!=0 ? 'blur' : ''">
+            <div>
+                <div class="disabled-mode" *ngIf="dataPassService.menuIsActive" (click)="closeSideMenu()"></div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <br/>
+
+    </div>
+    <footer-menu style="" class="footer-fix" [ngClass]="dataPassService.loaderStack.length!=0 ? 'blur' : ''"
+                 *ngIf="dataPassService.isLoggedIn"></footer-menu>
+
+</div>
+<div class="loader-container" *ngIf="dataPassService.loaderStack.length!=0">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+    <div class="loader-text-container">
+        <p class="loader-text">در حال دریافت اطلاعات ...</p>
+        <!--<p class="loader-text" style="height: 4vh;padding-top: 0vh;">این عملیات ممکن است کمی زمانبر باشد</p>-->
+        <!--<p class="loader-text" style="height: 3vh;padding-top: 0vh;">لطفا صبور باشید...</p>-->
+    </div>
+</div>
+

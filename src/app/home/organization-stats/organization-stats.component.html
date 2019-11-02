@@ -1,0 +1,163 @@
+<div class="org-details">
+    <tabset>
+        <tab [title]="'home.organization-stats.space-summary' | translate">
+            <div class="tab-container">
+                <div class="row table-box scrollable-container">
+                    <div class="col-xs-6  table-title table-side left-top-curve">
+                        <p>
+                            {{'home.organization-stats.count'|translate}}</p>
+                    </div>
+                    <div class="col-xs-6  table-title table-side table-2-col-right right-top-curve">
+                        <p>
+                            {{'home.organization-stats.spaces'|translate}}</p>
+                    </div>
+                    <div class="col-xs-6 table-side  table-text ">
+                        <p class="en-text-or-number">
+                            {{dataPassService?.subsidiaryList?.length}}</p>
+                    </div>
+                    <div class="col-xs-6  table-side table-2-col-right table-text">
+                        <p>شرکت تابعه</p>
+                    </div>
+                    <div class="col-xs-6 table-side  table-text ">
+                        <p class="en-text-or-number">
+                            {{dataPassService?.campusList?.length}}</p>
+                    </div>
+                    <div class="col-xs-6  table-side table-2-col-right table-text">
+                        <p>مجتمع</p>
+                    </div>
+                    <div class="col-xs-6  table-side  table-text">
+                        <p class="en-text-or-number">
+                            {{dataPassService?.buildingList?.length}}</p>
+                    </div>
+                    <div class="col-xs-6  table-side table-2-col-right table-text">
+                        <p>ساختمان</p>
+                    </div>
+                    <div class="col-xs-6 table-side  table-text">
+                        <p class="en-text-or-number">
+                            {{dataPassService?.floorList?.length}}</p>
+                    </div>
+                    <div class="col-xs-6 table-side table-2-col-right table-text">
+                        <p>طبقه</p>
+                    </div>
+                    <div class="col-xs-6  table-side  table-text">
+                        <p class="en-text-or-number">
+                            {{dataPassService?.areaList?.length}}</p>
+                    </div>
+                    <div class="col-xs-6  table-side table-2-col-right table-text">
+
+                        <p>ناحیه</p>
+
+                    </div>
+                    <div class="col-xs-6 table-side  table-text left-down-curve ">
+                        <p class="en-text-or-number">
+                            {{dataPassService?.nodeList?.length}}</p>
+                    </div>
+                    <div class="col-xs-6  table-side table-2-col-right table-text right-down-curve">
+
+                        <p>محل نصب دستگاه</p>
+                    </div>
+                </div>
+            </div>
+
+        </tab>
+        <tab [title]="'home.organization-stats.space-details' | translate">
+            <div class="tab-container">
+                <div class="scrollable-container">
+                    <div class="row home-data-box" *ngFor="let floor of dataPassService?.organizationModel?.areaByFloor"
+                    >
+                        <p class="border-bottom-title " *ngIf="dataPassService.currentLang=='fa'">
+                            {{floor?.floor?.location[1]?.faName}}/
+                            {{floor?.floor?.location[4]?.faName}}
+                        </p>
+                        <p class="border-bottom-title " *ngIf="dataPassService.currentLang=='en'">
+                            {{floor?.floor?.location[1]?.enName}}/
+                            {{floor?.floor?.location[4]?.enName}}
+                        </p>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 " *ngFor="let area of floor.areaList">
+                            <div class="details" style="height: 16vh;padding: 0px"  >
+                                <p class="data-box-title" >{{area?.type?.faName}} </p>
+                                <img *ngIf="!appService.darkTheme" style="height: 8vh;" [src]="'./assets/images/home/areas/'+area.type.enName+'-light.png'">
+                                <img *ngIf="appService.darkTheme" style="height: 8vh;" [src]="'./assets/images/home/areas/'+area.type.enName+'-dark.png'">
+                                <p class="en-text-or-number area-count"  >{{area?.count}}</p>
+                                <!--<p class="staff-name">مالی/چک</p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </tab>
+        <tab [title]="'home.organization-stats.staff-summary' | translate">
+            <div class="tab-container">
+                <div class="row table-box scrollable-container" >
+                    <div class="col-xs-3  table-title table-side left-top-curve"  >
+                        <p  >
+                            {{'home.organization-stats.staff-count'|translate}}</p>
+                    </div>
+                    <div class="col-xs-9  table-title table-side table-2-col-right right-top-curve"  >
+                        <p >
+                            {{'home.organization-stats.floor'|translate}}</p>
+                    </div>
+                    <div *ngFor="let floor of dataPassService?.organizationModel?.staffByFloor">
+                        <div class="col-xs-3   table-text  ">
+                            <p class="en-text-or-number" >
+                                {{floor.staffList.length}}</p>
+                        </div>
+                        <div class="col-xs-9  table-text table-2-col-right  ">
+                            <p *ngIf="dataPassService.currentLang=='fa'"  >
+                                {{floor?.floor?.location[1]?.faName}}/
+                                {{floor?.floor?.location[4]?.faName}}
+                            </p>
+                            <p *ngIf="dataPassService.currentLang=='en'"  >
+                                {{floor?.floor?.location[1]?.enName}}/
+                                {{floor?.floor?.location[4]?.enName}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </tab>
+        <tab [title]="'home.organization-stats.staff-details' | translate">
+            <div class="tab-container">
+                <div class="scrollable-container">
+                    <div class="row home-data-box" *ngFor="let floor of dataPassService?.organizationModel?.staffByFloor"
+                    >
+                        <p class="border-bottom-title " *ngIf="dataPassService.currentLang=='fa'">
+                            {{floor?.floor?.location[1]?.faName}}/
+                            {{floor?.floor?.location[4]?.faName}}
+                        </p>
+                        <p class="border-bottom-title " *ngIf="dataPassService.currentLang=='en'">
+                            {{floor?.floor?.location[1]?.enName}}/
+                            {{floor?.floor?.location[4]?.enName}}
+                        </p>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 details" *ngFor="let staff of floor.staffList">
+                            <div class="data-row"  >
+                                <p class="data-box-title">{{staff?.firstNameMultiLingual?.map?.fa}}
+                                    {{staff?.lastNameMultiLingual?.map?.fa}}</p>
+                                <div class="col-xs-7" style="padding: 0px">
+                                    <p class="data">Email: {{staff?.email}}</p>
+                                    <p class="data">Phone: {{staff?.mobileNum}}</p>
+                                    <p class="data">Employee Id: {{staff?.employments[0]?.employeeId}}</p>
+                                </div>
+                                <div class="col-xs-5" style="padding: 0px">
+                                    <img class="img-thumbnail" [src]="staff?.picture"  >
+                                </div>
+
+
+
+                                <!--<p class="staff-name">مالی/چک</p>-->
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </tab>
+    </tabset>
+</div>

@@ -1,0 +1,478 @@
+<div>
+    <div class="tab-container">
+        <div class="scrollable-container">
+            <form>
+                <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                    <div class="data-box">
+                        <div class="submit-box">
+                            <button *ngIf="!staffEditMode&&!staffAddMode" (click)="changeStaffEditMode(true)"
+                                    type="button"
+                                    class="btn btn-primary"
+                            >{{'shared.update'|translate}}
+                            </button>
+                            <button *ngIf="staffEditMode||staffAddMode" (click)="changeStaffEditMode(false)"
+                                    type="button"
+                                    class="btn btn-danger"
+                            >{{'shared.cancel'|translate}}
+                            </button>
+                            <button *ngIf="staffEditMode||staffAddMode" (click)="addUpdateStaff()" type="button"
+                                    class="btn btn-success"
+                            >{{'shared.save'|translate}}
+                            </button>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12" style="margin-top: -3vh">
+                            <p style="text-align: center;font-size: 4vmin;">اطلاعات شخصی</p>
+                            <hr>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12">
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="firstName" class="farsi-font-im"
+                                >نام</label>
+                                <input placeholder="نام" id="firstName" type="text" name="firstName"
+                                       style="direction: rtl!important;" class="form-control"
+                                       [(ngModel)]="personalInfo.firstNameMultiLingual.map.fa"
+                                       [disabled]="!staffEditMode&&!staffAddMode"
+                                       required #firstName="ngModel">
+                                <div class="error-message-display">
+                                    <div [hidden]="firstName.valid || firstName.untouched">
+                                        <div *ngIf="firstName.errors && firstName.errors.required">
+                                            {{'validate-message.first-name-required'|translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="lastName" class="farsi-font-im">نام
+                                    خانوادگی</label>
+                                <input style="direction: rtl!important;" id="lastName"
+                                       placeholder="نام خانوادگی" type="text" name="faLastName" class="form-control"
+                                       [(ngModel)]="personalInfo.lastNameMultiLingual.map.fa"
+                                       [disabled]="!staffEditMode&&!staffAddMode"
+                                       required #lastName="ngModel">
+                                <div class="error-message-display">
+                                    <div [hidden]="lastName.valid || lastName.untouched">
+                                        <div *ngIf="lastName.errors && lastName.errors.required">
+                                            {{'validate-message.last-name-required'|translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="mobileNo" class="farsi-font-im">شماره
+                                    تلفن</label>
+                                <input style="direction: ltr!important;font-family: tw-regular" id="mobileNo"
+                                       type="text" class="form-control" placeholder="0924212431" #mobileNO="ngModel"
+                                       name="mobileNO"
+                                       [(ngModel)]="personalInfo.mobileNum" [disabled]="!staffEditMode&&!staffAddMode"
+                                       required pattern="^[0-9]+$" tabindex="9" minlength="10" maxlength="11"
+                                />
+                                <div class="error-message-display">
+                                    <div [hidden]="mobileNO.valid || mobileNO.untouched">
+                                        <div *ngIf="mobileNO.errors && mobileNO.errors.required">
+                                            {{'validate-message.phone-required' | translate}}
+                                        </div>
+                                    </div>
+                                    <div [hidden]="mobileNO.valid || mobileNO.untouched">
+                                        <div *ngIf="mobileNO.errors && mobileNO.errors.pattern">
+                                            {{'validate-message.phone-pattern-required'|translate}}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="email" class="farsi-font-im">پست
+                                    الکترونیکی</label>
+                                <input style="direction: ltr!important;font-family:tw-regular " type="email"
+                                       name="email"
+                                       id="email"
+                                       class="form-control"
+                                       placeholder="test@test.com"
+                                       [(ngModel)]="personalInfo.email" [disabled]="!staffEditMode&&!staffAddMode"
+                                       maxlength="50"
+                                       #email="ngModel"
+                                       required
+                                       pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$"
+                                       tabindex="10"/>
+                                <div class="error-message-display">
+                                    <div [hidden]="email.valid || email.untouched">
+                                        <div *ngIf="email.errors && email.errors.required">
+                                            {{'validate-message.email-required'|translate}}
+                                        </div>
+                                    </div>
+                                    <div [hidden]="email.valid || email.untouched">
+                                        <div *ngIf="email.errors && email.errors.pattern">
+                                            {{'validate-message.email-pattern-required'|translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="subsidiary" class="farsi-font-im">شرکت
+                                    های تابعه</label>
+                                <select class=" form-control" id="subsidiary" name="selectedSubsidiary"
+                                        #selectedSubsidiary="ngModel"
+                                        [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                        [(ngModel)]="personalInfo.subsidyId" [disabled]="!staffEditMode&&!staffAddMode"
+                                        required>
+                                    <option *ngFor="let subsidiary of subsidiaries;" [ngValue]="subsidiary.id">
+                                        <p *ngIf="appService.currentLang=='en'">{{subsidiary.name.map.en}}</p>
+                                        <p *ngIf="appService.currentLang=='fa'" style="direction: rtl">
+                                            {{subsidiary.name.map.fa}}</p>
+                                    </option>
+                                </select>
+                                <div class="error-message-display">
+                                    <div [hidden]="selectedSubsidiary.valid || selectedSubsidiary.untouched">
+                                        <div *ngIf="selectedSubsidiary.errors && selectedSubsidiary.errors.required">
+                                            {{'validate-message.subsidiary-required' | translate}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-12">
+                                <hr style="margin-bottom: 1vh">
+                                <p style="
+    text-align: center;
+    font-size: 3.8vmin">اطلاعات پرسنلی</p>
+                                <hr style="">
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="employeeId" class="farsi-font-im">شماره
+                                    پرسنلی</label>
+                                <input id="employeeId" placeholder="EE342523" type="text" name="employeeId"
+                                       style="font-family: tw-regular;direction: ltr"
+                                       class="form-control"
+                                       [(ngModel)]="employmentDetails.employeeId"
+                                       [disabled]="!staffEditMode&&!staffAddMode"
+                                       minlength="6" maxlength="10" #employeeId="ngModel" required
+                                />
+                                <div class="error-message-display">
+                                    <div [hidden]="employeeId.valid || employeeId.untouched">
+                                        <div *ngIf="employeeId.errors && employeeId.errors.required">
+                                            {{'validate-message.employee-id-required' | translate}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="department" class="farsi-font-im"
+                                >دپارتمان</label>
+                                <select class=" form-control" id="department" name="selectedDepartment"
+                                        [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                        [(ngModel)]="preparePolicy.departmentId"
+                                        [disabled]="!staffEditMode&&!staffAddMode"
+                                        aria-placeholder="select department" #departmentM="ngModel" required
+                                        (ngModelChange)="updateSubDepartments()">
+                                    <option *ngFor="let department of departments;" [ngValue]="department.id">
+                                        <p *ngIf="appService.currentLang=='en'">
+                                            {{department.deptnameMultiLingual.map.en}}</p>
+                                        <p *ngIf="appService.currentLang=='fa'" style="direction: rtl">
+                                            {{department.deptnameMultiLingual.map.fa}}</p>
+                                    </option>
+                                </select>
+                                <div class="error-message-display">
+                                    <div [hidden]="departmentM.valid || departmentM.untouched">
+                                        <div *ngIf="departmentM.errors && departmentM.errors.required">
+                                            {{'validate-message.department-required' | translate}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="sub-department" class="farsi-font-im"
+                                >بخش</label>
+                                <select class=" form-control" id="sub-department" name="selectedSubDepartment"
+                                        [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                        [(ngModel)]="preparePolicy.subDepartmentId"
+                                        [disabled]="!staffEditMode&&!staffAddMode"
+                                        aria-placeholder="select sub department" #subDepartment="ngModel" required
+                                >
+
+                                    <option *ngFor="let department of subdepartments;"
+                                            [ngValue]="department.id">
+                                        <p *ngIf="appService.currentLang=='en'">
+                                            {{department.deptnameMultiLingual.map.en}}</p>
+                                        <p *ngIf="appService.currentLang=='fa'" style="direction: rtl">
+                                            {{department.deptnameMultiLingual.map.fa}}</p>
+                                    </option>
+                                </select>
+                                <div class="error-message-display">
+                                    <div [hidden]="subDepartment.valid || subDepartment.untouched">
+                                        <div *ngIf="subDepartment.errors && subDepartment.errors.required">
+                                            {{'validate-message.sub-department-required' | translate}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="designation" class="farsi-font-im"
+                                >سمت</label>
+                                <select class=" form-control" id="designation" name="selectedDesignation"
+                                        [(ngModel)]="preparePolicy.designationId" #designationN="ngModel" required
+                                        aria-placeholder="select designation" [disabled]="!staffEditMode&&!staffAddMode"
+                                >
+
+                                    <option *ngFor="let designation of designations;"
+                                            [ngValue]="designation.id">{{designation.name}}
+                                    </option>
+                                </select>
+                                <div class="error-message-display">
+                                    <div [hidden]="designationN.valid || designationN.untouched">
+                                        <div *ngIf="designationN.errors && designationN.errors.required">
+                                            {{'validate-message.designation-required' | translate}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="supervisor" class="farsi-font-im"
+                                >سرپرست</label>
+                                <select class=" form-control" tabindex="3" id="supervisor" name="superviserId"
+                                        [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                        [(ngModel)]="employmentDetails.lineSupervisorId" required #superVisor="ngModel"
+                                        [disabled]="!staffEditMode&&!staffAddMode"
+                                        aria-placeholder="select line supervisor id">
+                                    <option *ngFor="let staff of staffs;" [ngValue]="staff.id">
+                                        <p *ngIf="appService.currentLang=='en'">{{staff.firstNameMultiLingual.map.en}}
+                                            {{
+                                            staff.lastNameMultiLingual.map.en }}</p>
+                                        <p *ngIf="appService.currentLang=='fa'">{{staff.firstNameMultiLingual.map.fa}}
+                                            {{
+                                            staff.lastNameMultiLingual.map.fa }}</p>
+                                    </option>
+                                </select>
+                                <div class="error-message-display">
+                                    <div [hidden]="superVisor.valid || superVisor.untouched">
+                                        <div *ngIf="superVisor.errors && superVisor.errors.required">
+                                            {{'validate-message.line-supervisor-required' | translate}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label for="manager" class="farsi-font-im"
+                                >مدیر</label>
+                                <select class=" form-control" id="manager" tabindex="4" name="managerId" required
+                                        #lineManager="ngModel"
+                                        [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                        [(ngModel)]="employmentDetails.lineMgrId"
+                                        [disabled]="!staffEditMode&&!staffAddMode"
+                                        aria-placeholder="select line manager">
+                                    <option *ngFor="let staff of staffs;" [ngValue]="staff.id">
+                                        <p *ngIf="appService.currentLang=='en'">{{staff.firstNameMultiLingual.map.en}}
+                                            {{
+                                            staff.lastNameMultiLingual.map.en }}</p>
+                                        <p *ngIf="appService.currentLang=='fa'">{{staff.firstNameMultiLingual.map.fa}}
+                                            {{
+                                            staff.lastNameMultiLingual.map.fa }}</p>
+                                    </option>
+                                </select>
+                                <div class="error-message-display">
+                                    <div [hidden]="lineManager.valid || lineManager.untouched">
+                                        <div *ngIf="lineManager.errors && lineManager.errors.required">
+                                            {{'validate-message.line-manager-required' | translate}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <!--<button  type="button" class="btn btn-danger"-->
+            <!--style="width: 200px;font-family: Yekan;font-size: 16px;text-align: center;display: flex;margin: auto auto 30px;padding-left: 84px;">{{'shared.delete'|translate}}-->
+            <!--</button>-->
+            <form>
+                <div class="data-box" *ngIf="!staffAddMode">
+                    <div class="submit-box">
+                        <button *ngIf="!cardEditMode&&!cardAddMode" (click)="changeCardEditMode(true)" type="button"
+                                class="btn btn-primary"
+                        >{{'shared.update'|translate}}
+                        </button>
+                        <button *ngIf="cardEditMode||cardAddMode" (click)="changeCardEditMode(false)" type="button"
+                                class="btn btn-danger"
+                        >{{'shared.cancel'|translate}}
+                        </button>
+                        <button *ngIf="cardEditMode||cardAddMode" (click)="addUpdateCardHolder()" type="button"
+                                class="btn btn-success"
+                        >{{'shared.save'|translate}}
+                        </button>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12" style="margin-top: -3vh;">
+                        <p style="
+    text-align: center;
+    font-size: 4vmin;">اطلاعات کارت</p>
+                        <hr>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12">
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="card-number" class="farsi-font-im"
+                            >شماره کارت</label>
+                            <input type="text" name="card-number" [disabled]="!cardEditMode&&!cardAddMode"
+                                   class="form-control farsi-font-im" [(ngModel)]="prepareCardHolder.cardNumber"
+                                   id="card-number"
+                                   required
+                                   #cardNumber="ngModel"
+                                   aria-describedby="name"
+                                   placeholder="456436346" style="direction: ltr;font-family: tw-regular">
+                            <div class="error-message-display">
+                                <div [hidden]="cardNumber.valid || cardNumber.untouched">
+                                    <div *ngIf="cardNumber.errors && cardNumber.errors.required">
+                                        {{'validate-message.card-number-required' | translate}}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="work-group" class="farsi-font-im"
+                            >کارگروه</label>
+                            <select class=" form-control" id="work-group" name="work-group" #selectedWG="ngModel"
+                                    [disabled]="!cardEditMode&&!cardAddMode"
+                                    [(ngModel)]="workGroupId"
+                                    [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                    required>
+                                <option *ngFor="let workGroup of workGroups" [ngValue]="workGroup.id">
+                                    <p *ngIf="dataPassService.currentLang=='en'">{{workGroup?.name?.map?.en}}</p>
+                                    <p *ngIf="dataPassService.currentLang=='fa'">{{workGroup?.name?.map?.fa}}</p>
+                                </option>
+                            </select>
+                            <div class="error-message-display">
+                                <div [hidden]="selectedWG.valid || selectedWG.untouched">
+                                    <div *ngIf="selectedWG.errors && selectedWG.errors.required">
+                                        {{'validate-message.work-group-required' | translate}}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="contract-start-date" class="farsi-font-im">تاریخ
+                                شروع قرارداد</label>
+                            <input type="date" class="form-control " name="contract-start-date"
+                                   [disabled]="!cardEditMode&&!cardAddMode" [(ngModel)]="pickedCFromDate"
+                                   id="contract-start-date"
+                                   placeholder="2018-12-12" style="font-family: tw-regular;direction: ltr">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="contract-end-date" class="farsi-font-im">تاریخ
+                                پایان قرارداد</label>
+                            <input type="date" class="form-control " name="contract-end-date"
+                                   [disabled]="!cardEditMode&&!cardAddMode" [(ngModel)]="pickedCToDate"
+                                   id="contract-end-date"
+                                   placeholder="2018-12-12" style="font-family: tw-regular;direction: ltr">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="access-level" class="farsi-font-im"
+                            >سطح دسترسی</label>
+                            <select class=" form-control" id="access-level" name="access-level" #selectedAL="ngModel"
+                                    [disabled]="!cardEditMode&&!cardAddMode"
+                                    [(ngModel)]="accessLevelId"
+                                    [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                    required>
+                                <option *ngFor="let accessL of accessLevels;" [ngValue]="accessL.id">
+                                    <p *ngIf="dataPassService.currentLang=='en'">{{accessL?.name?.map?.en}}</p>
+                                    <p *ngIf="dataPassService.currentLang=='fa'">{{accessL?.name?.map?.fa}}</p>
+                                </option>
+                            </select>
+                            <div class="error-message-display">
+                                <div [hidden]="selectedAL.valid || selectedAL.untouched">
+                                    <div *ngIf="selectedAL.errors && selectedAL.errors.required">
+                                        {{'validate-message.access-level-required' | translate}}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="start-date" class="farsi-font-im">تاریخ
+                                شروع</label>
+                            <input type="date" name="start-date" [disabled]="!cardEditMode&&!cardAddMode"
+                                   [(ngModel)]="pickedFromDate" class="form-control " id="start-date"
+                                   placeholder="2018-12-12"
+                                   style="font-family: tw-regular;direction: ltr">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="end-date" class="farsi-font-im">تاریخ
+                                پایان</label>
+                            <input type="date" name="end-date" [disabled]="!cardEditMode&&!cardAddMode"
+                                   [(ngModel)]="pickedToDate"
+                                   class="form-control " id="end-date" placeholder="2018-12-12"
+                                   style="font-family: tw-regular;direction: ltr">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="time-schedule" class="farsi-font-im"
+                            >زمانبندی</label>
+                            <select class=" form-control" id="time-schedule" name="time-schedule" #selectedTS="ngModel"
+                                    [disabled]="!cardEditMode&&!cardAddMode"
+                                    [(ngModel)]="timeScheduleId"
+                                    [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                    required>
+                                <option *ngFor="let timeS of timeSchedules;" [ngValue]="timeS.id">
+                                    <p *ngIf="dataPassService.currentLang=='en'">{{timeS?.name?.map?.en}}</p>
+                                    <p *ngIf="dataPassService.currentLang=='fa'&& timeS?.name?.map?.fa!=''">
+                                        {{timeS?.name?.map?.fa}}</p>
+                                    <p *ngIf="dataPassService.currentLang=='fa'&& timeS?.name?.map?.fa==''">
+                                        {{timeS?.name?.map?.en}}</p>
+                                </option>
+                            </select>
+                            <div class="error-message-display">
+                                <div [hidden]="selectedTS.valid || selectedTS.untouched">
+                                    <div *ngIf="selectedTS.errors && selectedTS.errors.required">
+                                        {{'validate-message.time-schedule-required' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="middle-btn-container">
+                <button type="button" class="btn btn-danger"
+                        (click)="openModal('delete')">
+                    {{'shared.delete'|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="delete" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom w3-card-4">
+            <header class="w3-container ">
+        <span (click)="closeModal('delete')"
+              class="w3-button w3-display-topright">&times;</span>
+            </header>
+            <div class="w3-container">
+                <p class="farsi-font-im" style="float: none;text-align: center; ">
+                    {{'shared.confirm'|translate}}</p>
+            </div>
+            <footer class="w3-container ">
+                <div class="modal-btn-container">
+                    <button type="button" class="btn btn-danger" (click)="closeModal('delete')"
+                    >
+                        {{'shared.no'|translate}}
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="closeModal('delete');deleteStaff()"
+                    >
+                        {{'shared.yes'|translate}}
+                    </button>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+
+</div>

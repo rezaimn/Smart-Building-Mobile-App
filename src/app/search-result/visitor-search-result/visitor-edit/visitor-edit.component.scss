@@ -1,0 +1,28 @@
+visitor-edit{
+  @import "../../../variables";
+  @import "../../search-result.component";
+
+
+  .form-control{
+    height: 10vw !important;
+    padding: 1vw;
+    width: 100% !important;
+    color: #153956;
+    border-radius: 1vh!important;
+    font-size: 3.5vmin !important;
+    padding-left: 2vw!important;
+    padding-right: 2vw!important;
+  }
+  .data-box{
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  hr{
+    margin-bottom: 0px;
+    margin-top: 10px;
+    border: solid 1px #222;
+  }
+  .tab-container{
+    top:12vh+$extraTopForIphoneX;
+  }
+}

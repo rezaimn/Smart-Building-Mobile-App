@@ -1,0 +1,113 @@
+<div>
+    <div class="tab-container">
+        <div class="scrollable-container">
+    <form>
+        <div class="row" style="margin-left: 0px;margin-right: 0px;">
+            <div class="data-box">
+                <div class="submit-box">
+                    <!--<button *ngIf="!editMode&&!addMode" (click)="changeEditMode(true);" type="button" class="btn btn-primary"-->
+                    <!--style="width: 80px;font-family: Yekan;font-size: 13px;" >{{'shared.update'|translate}}-->
+                    <!--</button>-->
+                    <button *ngIf="editMode||addMode" (click)="changeEditMode(false);" type="button"
+                            class="btn btn-danger"
+                    >{{'shared.cancel'|translate}}
+                    </button>
+                    <button *ngIf="editMode||addMode" (click)="addUpdateDevice()" type="button" class="btn btn-success"
+                    >{{'shared.save'|translate}}
+                    </button>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12" style="margin-top: 2vh">
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="type" class="farsi-font-im"
+                        >{{'menu.device.device-type'|translate}}</label>
+                        <select style="font-family: tw-regular!important" class=" form-control" id="type" name="devicetype"
+                                #deviceType="ngModel" [(ngModel)]="prepareDevice.type_id" [disabled]="!addMode"
+                                [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                (ngModelChange)="getSubDevice($event)" required>
+                            <option style="font-family: tw-regular!important;" *ngFor="let deviceType of deviceList;"
+                                    [ngValue]="deviceType.id">
+                                {{deviceType.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="sub-type" class="farsi-font-im"
+                        >{{'menu.device.sub-device-type'|translate}}</label>
+                        <select style="font-family: tw-regular!important" class=" form-control" id="sub-type" name="subdevicetype"
+                                #deviceType="ngModel" [(ngModel)]="prepareDevice.sub_type_id" [disabled]="!addMode"
+                                [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                (ngModelChange)="getBrand($event)" required>
+                            <option style="font-family: tw-regular!important" *ngFor="let subDeviceType of subDeviceList;"
+                                    [ngValue]="subDeviceType.id">
+                                {{subDeviceType.subDeviceName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="brand" class="farsi-font-im"
+                        >{{'menu.device.brand'|translate}}</label>
+                        <select style="font-family: tw-regular!important" class=" form-control" id="brand" name="brand"
+                                #brandList1="ngModel" [(ngModel)]="prepareDevice.brand_id" [disabled]="!addMode"
+                                [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                (ngModelChange)="getModel($event)" required>
+                            <option style="font-family: tw-regular!important" *ngFor="let brand of brandList;"
+                                    [ngValue]="brand.id">{{brand.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="model" class="farsi-font-im"
+                        >{{'menu.device.model'|translate}}</label>
+                        <select style="font-family: tw-regular!important" class=" form-control" id="model" name="model"
+                                #modelList1="ngModel" [(ngModel)]="prepareDevice.modelId" [disabled]="!addMode"
+                                [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                aria-placeholder="model" required>
+                            <option style="font-family: tw-regular!important" *ngFor="let model of modelList;"
+                                    [ngValue]="model.id">{{model.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="serial" class="farsi-font-im"
+                        >{{'menu.device.serial'|translate}}</label>
+                        <input style="font-family: tw-regular!important" name="serial" [(ngModel)]="prepareDevice.serialNum"
+                               type="text" class="form-control farsi-font-im"
+                               id="serial" [disabled]="!addMode"
+                               [placeholder]="'menu.device.serial'|translate">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+        </div>
+    </div>
+    <!--<div class="middle-btn-container">-->
+        <!--<button type="button" class="btn btn-danger" (click)="openModal('delete')" *ngIf="!addMode"-->
+        <!--&gt;{{'shared.delete'|translate}}-->
+        <!--</button>-->
+    <!--</div>-->
+
+    <div id="delete" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom w3-card-4">
+            <header class="w3-container ">
+        <span (click)="closeModal('delete')"
+              class="w3-button w3-display-topright">&times;</span>
+            </header>
+            <div class="w3-container">
+                <p class="farsi-font-im" style="float: none;text-align: center; ">{{'shared.confirm'|translate}}</p>
+            </div>
+            <footer class="w3-container ">
+                <div class="modal-btn-container">
+                    <button type="button" class="btn btn-danger" (click)="closeModal('delete')"
+                    >{{'shared.no'|translate}}
+                    </button>
+                    <button type="button" class="btn btn-success"
+                            (click)="deleteDevice(prepareDevice.deviceId);closeModal('delete');"
+                    >{{'shared.yes'|translate}}
+                    </button>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="siren-wraper" style="margin-top: 2vh">
+
+    <div class="scrolling-wrapper">
+
+        <div class="card" *ngFor="let campus of dataPassService.campusList;let i=index"
+             (click)="setCampusIndex(i,campus)"
+             [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+               [class.selected-Item]="selectedCampusIndex === i">{{campus?.location[2].faName}} </p>
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+               [class.selected-Item]="selectedCampusIndex === i">{{campus?.location[2].enName}} </p>
+        </div>
+    </div>
+
+    <div class="scrolling-wrapper">
+        <div class="card" *ngFor="let building of buildingList;let i=index"
+             (click)="setBuildingIndex(i,building)"
+             [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+               [class.selected-Item]="selectedBuildingIndex === i">
+                {{building?.location[3]?.faName}} </p>
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+               [class.selected-Item]="selectedBuildingIndex === i">
+                {{building?.location[3]?.enName}} </p>
+        </div>
+    </div>
+
+    <div class="scrolling-wrapper">
+        <div class="card" *ngFor="let floor of floorList;let i=index"
+             (click)="setFloorIndex(i,floor)"
+             [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+               [class.selected-Item]="selectedFloorIndex === i">
+                {{floor?.location[4]?.faName}} </p>
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+               [class.selected-Item]="selectedFloorIndex === i">
+                {{floor?.location[4]?.enName}} </p>
+        </div>
+
+    </div>
+
+    <div class="tab-container">
+        <div class="scrollable-container">
+            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  control-action3">
+                <div *ngFor="let hvac of hvacList;let i=index">
+                    <div class="row control-rows" *ngIf="hvac.devicetype=='SPD'">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right control-icon icon-right">
+                            <img *ngIf="!appService.darkTheme" src="./assets/images/control/plug-light.png"
+                            />
+                            <img *ngIf="appService.darkTheme" src="./assets/images/control/plug-dark.png"
+                            />
+                        </div>
+                      <div class=" control-rows-text-container col-lg-5 col-md-5 col-sm-5 col-xs-5 farsi-float-right ">
+                        <p class="control-font farsi-float-right"
+                           style=" font-family: tw-regular!important;">{{hvac.devicename}}</p>
+                      </div>
+                      <div *ngIf="hvac.isProcessing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right "
+                           style="padding: 0px">
+                        <img src="./assets/images/processing.svg" style="width: 5vh;margin-top: .5vh;"
+                        />
+                      </div>
+                      <div style="height: 5vh" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <ion-toggle class="toggle-md"
+                                    [disabled]="hvac.devicestatus==null||hvac.devicestatus!='1'||hvac.isProcessing"
+                                    [(ngModel)]="hvac.on"
+                        >
+                        </ion-toggle>
+                        <div class="toggle-cover"    (click)="openModal('plug',i)">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="plug" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom w3-card-4">
+        <header class="w3-container ">
+        <span (click)="closeModal('plug')"
+              class="w3-button w3-display-topright">&times;</span>
+        </header>
+        <div class="w3-container">
+            <p class="farsi-font-im" style="float: none;text-align: center;">
+                {{'shared.confirm'|translate}}</p>
+        </div>
+        <footer class="w3-container ">
+            <div class="modal-btn-container">
+                <button type="button" class="btn btn-danger" (click)="closeModal('plug')"
+                >
+                    {{'shared.no'|translate}}
+                </button>
+                <button type="button" class="btn btn-success" (click)="closeModal('plug');togglePlug()"
+                >
+                    {{'shared.yes'|translate}}
+                </button>
+            </div>
+
+        </footer>
+    </div>
+</div>
+
+
+
+
+

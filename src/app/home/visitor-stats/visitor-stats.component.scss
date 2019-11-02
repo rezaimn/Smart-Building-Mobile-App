@@ -1,0 +1,28 @@
+
+visitor-stats{
+  @import "../../variables";
+  .home-data-box{
+    .border-bottom-title{
+      font-family: tw-regular;
+      width: 100%;
+      margin-bottom: 1vh!important;
+    }
+    span{
+      font-size: 4.5vmin;
+      direction: rtl;
+      float: right;
+      color: $primary-clr!important;
+    }
+    p{
+      font-size: 5vmin;
+      font-family: tw-regular;
+      float: right;
+      margin-right: 3vw;
+      color: $inputfill;
+    }
+    div{
+      margin-right: 6vw!important;
+
+    }
+  }
+}

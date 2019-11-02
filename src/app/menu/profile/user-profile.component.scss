@@ -1,0 +1,38 @@
+logs{
+  @import "../../variables";
+  .profile-wrapper{
+    height: 650px;
+    max-width: 100%;
+  }
+
+  .edit-prof{
+    button{
+      width: 100px;
+      font-size: 16px;
+      padding: 5px 10px 10px;
+      margin-left: 36%;
+      margin-top: 10%;
+    }
+  }
+
+  .profile-pic{
+    max-width: 100%;
+    img{
+      position: relative!important;
+      left: 33%!important;
+      padding-top: 45px!important;
+    }
+  }
+
+  .form-control{
+    height: 10vw !important;
+    padding: 1vw;
+    width: 100% !important;
+    color: #153956;
+    border-radius: 1vh!important;
+    font-size: 3.2vmin !important;
+    padding-left: 2vw!important;
+    padding-right: 2vw!important;
+  }
+
+}

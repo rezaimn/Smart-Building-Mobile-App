@@ -1,0 +1,78 @@
+<div>
+    <tabset>
+        <tab [title]="'menu.log.user-log' | translate">
+            <div class="tab-container">
+
+                <div class="notify-wraper scrollable-container">
+                    <div class="row notify-row1" style="margin-bottom: 4vh">
+                        <div class="notify-box" style="display: table" *ngFor="let staffL of staffLogList;let i=index">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 side-notify notify-float-right"
+                                 style="padding-right: 0px;padding-left: 4vw">
+                                <p class="notify-font"> {{staffL.dateTime}}</p>
+
+                            </div>
+                            <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8 main-content-notify notify-float-right">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 neg-margin">
+                                    <!--<img class="notify-icon" src="./assets/images/notification/hvac.png" />-->
+                                    <p class="notify-device-name">{{staffL.username}}</p>
+                                </div>
+
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 neg-margin2">
+                                    <p class="notify-farsi-4" *ngIf="staffL.operation=='READ'"
+                                       style="word-break: break-word;">{{staffL.operation}} From
+                                        {{staffL.tableName}}</p>
+                                    <p class="notify-farsi-4" *ngIf="staffL.operation=='WRITE'"
+                                       style="word-break: break-word;">{{staffL.operation}} To {{staffL.tableName}}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" (click)="loadMoreStaffLog()"
+                            style="font-size: 3.4vmin;text-align: center;display: flex;direction: rtl;    margin: auto auto 4vh;">
+                        {{'shared.load-more'|translate}}
+                    </button>
+                </div>
+            </div>
+        </tab>
+        <tab [title]="'menu.log.device-log' | translate">
+
+                <div class="scrolling-wrapper " style="margin-top: -4vh">
+
+                    <div class="card" *ngFor="let deviceT of deviceTypeList;let i=index"
+                         (click)="setDeviceIndex(i,deviceT)">
+                        <p class="config-filter-p" style="font-family: tw-regular;"
+                           [class.selected-Item]="selectedDeviceTypeIndex === i">{{deviceT?.name}} </p>
+                    </div>
+                </div>
+            <div class="tab-container tab-container2" style=";bottom: 10vh">
+                <div class="notify-wraper scrollable-container">
+                    <div class="row notify-row1" style="margin-bottom: 20px">
+                        <div class="notify-box" *ngFor="let deviceL of deviceLogList;let i=index">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 side-notify notify-float-right"
+                                 style="padding-right: 10px;padding-left: 10px">
+                                <p class="notify-font">{{deviceL.date}}</p>
+                                <p class="notify-font">{{deviceL.time}}</p>
+                            </div>
+                            <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8 main-content-notify-2 notify-float-right">
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 neg-margin">
+                                    <!--<img class="notify-icon" src="./assets/images/notification/hvac.png" />-->
+                                    <p class="notify-device-name">{{deviceL.id}}</p>
+                                </div>
+
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 neg-margin2">
+                                    <p class="notify-farsi">{{deviceL.name}}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" (click)="loadMoreDeviceLog()"
+                            style="font-size: 12px;text-align: center;display: flex;margin: auto;direction: rtl">
+                        {{'shared.load-more'|translate}}
+                    </button>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>

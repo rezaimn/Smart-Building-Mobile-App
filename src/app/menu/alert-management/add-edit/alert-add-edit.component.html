@@ -1,0 +1,175 @@
+<div>
+    <div class="tab-container">
+        <div class="scrollable-container">
+            <form>
+
+                <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                    <div class="data-box" style="margin-bottom: 4vh">
+                        <div class="submit-box" style="z-index: 10000">
+                            <button *ngIf="!editMode" (click)="changeEditMode(true)" type="button"
+                                    class="btn btn-primary"
+                            >ویرایش
+                            </button>
+                            <button *ngIf="editMode" (click)="changeEditMode(false)" type="button"
+                                    class="btn btn-danger"
+                            >لغو
+                            </button>
+                            <button *ngIf="editMode" (click)="saveAlertManage()" type="button" class="btn btn-success"
+                            >ذخیره
+                            </button>
+                        </div>
+                        <div class="siren-wraper" style="    width: 86vw;
+    margin-top: 6vh;">
+
+                            <div class="scrolling-wrapper" style="margin-left: 2vw;margin-right: 2vw">
+                                <div class="card" *ngFor="let floor of floorDropdownList;let i=index"
+                                     (click)="getAllAreas(floor.id);setFloorIndex(i,floor)"
+                                     [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+                                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+                                       [class.selected-Item]="selectedFloorIndex === i">
+                                        {{floor?.location[4].faName}} </p>
+                                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+                                       [class.selected-Item]="selectedFloorIndex === i">
+                                        {{floor?.location[4].enName}} </p>
+                                </div>
+                            </div>
+
+                            <div class="scrolling-wrapper" style="margin-left: 2vw;margin-right: 2vw">
+                                <div class="card" *ngFor="let area of areaDropdownList;let i=index"
+                                     (click)="setAreaIndex(i,area)"
+                                     [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+                                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+                                       [class.selected-Item]="selectedAreaIndex === i">
+                                        {{area?.name?.map?.fa}} </p>
+                                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+                                       [class.selected-Item]="selectedAreaIndex === i">
+                                        {{area?.name?.map?.en}} </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr style="margin-right: 2vw;margin-left: 2vw">
+
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="listName" class="farsi-font-im"
+                            > نام لیست</label>
+                            <input type="text" class="form-control farsi-font-im" [disabled]="!editMode" id="listName"
+                                   name="listName" [(ngModel)]="prepareAlert.name"
+                                   placeholder="نام لیست">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="deviceType" class="farsi-font-im">نوع دستگاه
+                            </label>
+                            <select class=" form-control" id="deviceType" name="selectedDeviceType"
+                                    #selectedDeviceType="ngModel" (change)="getDeviceByAreaNDeviceType()"
+                                    [(ngModel)]="prepareAlert.devicetypeid" [disabled]="!editMode"
+                                    style="font-family: tw-regular"
+                                    required>
+                                <option disabled value="-1" style="">انتخاب نوع دستگاه</option>
+                                <option *ngFor="let deviceType of deviceTypeList;" [ngValue]="deviceType.id">
+                                    <p *ngIf="appService.currentLang=='en'">{{deviceType?.name}}</p>
+                                    <p *ngIf="appService.currentLang=='fa'">
+                                        {{deviceType?.name}}</p>
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="device" class="farsi-font-im">نوع دستگاه
+                            </label>
+                            <select class=" form-control" id="device" name="selectedDevice"
+                                    #selectedDeviceType="ngModel" style="font-family: tw-regular"
+                                    [(ngModel)]="prepareAlert.deviceid" [disabled]="!editMode"
+                                    required>
+                                <option disabled value="-1" style="">انتخاب دستگاه</option>
+                                <option *ngFor="let device of deviceList;" [ngValue]="device.id">
+                                    <p *ngIf="appService.currentLang=='en'">{{device?.name}}</p>
+                                    <p *ngIf="appService.currentLang=='fa'">
+                                        {{device?.name}}</p>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6"  style="padding: 0px">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="float: right">
+                                <label for="supervisor" class="farsi-font-im"
+                                >لیست پرسنل</label>
+                                <select class=" form-control" tabindex="3" id="supervisor" name="superviserId"
+                                        style=" float: right;font-family: tw-regular"
+                                        [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                        [disabled]="!editMode" [(ngModel)]="selectedStaffId"
+                                        aria-placeholder="select line supervisor id">
+                                    <option disabled value="-1" style="">انتخاب پرسنل</option>
+                                    <option *ngFor="let staff of staffs;" [ngValue]="staff.id"
+                                            (click)="setSelectedStaffId(staff.id)">
+                                        <p *ngIf="appService.currentLang=='en'">
+                                            {{staff?.firstNameMultiLingual?.map?.en}} {{
+                                            staff?.lastNameMultiLingual?.map?.en }}</p>
+                                        <p *ngIf="appService.currentLang=='fa'">
+                                            {{staff?.firstNameMultiLingual?.map?.fa}} {{
+                                            staff?.lastNameMultiLingual?.map?.fa }}</p>
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <img src="./assets/images/add.png"
+                                     style="float: left;height: 5vh;margin-top: 3.6vh;"
+                                     (click)="addToSelectedStaffList()">
+                            </div>
+                        </div>
+                        <div style="padding: 2vh">
+                            <div class="col-xs-12 col-sm-6 selected-device" style="">
+                                <div class=" col-xm-6 delete-select" *ngFor="let staffA of selectedStaffList"
+                                     style="float: right;padding: 2vw;width: 50% ">
+
+                                    <p *ngIf="appService.currentLang=='en'" class="device-name">
+                                        {{staffA?.firstNameMultiLingual?.map?.en}} {{
+                                        staffA?.lastNameMultiLingual?.map?.en }}</p>
+                                    <p *ngIf="appService.currentLang=='fa'" class="device-name">
+                                        {{staffA?.firstNameMultiLingual?.map?.fa}} {{
+                                        staffA?.lastNameMultiLingual?.map?.fa }}</p>
+                                    <img src="./assets/images/min.png" style="height: 5vh;position: absolute"
+                                         (click)="deleteFromSelectedStaffList(staffA.staffid)">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+            <div class="middle-btn-container">
+                <button type="button" class="btn btn-danger" *ngIf="!addMode" style="margin-top: 2vh"
+                        (click)="openModal('delete')">
+                    {{'shared.delete'|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom w3-card-4">
+            <header class="w3-container ">
+        <span (click)="closeModal('delete')"
+              class="w3-button w3-display-topright">&times;</span>
+            </header>
+            <div class="w3-container">
+                <p class="farsi-font-im" style="float: none;text-align: center; ">
+                    {{'shared.confirm'|translate}}</p>
+            </div>
+            <footer class="w3-container ">
+                <div class="modal-btn-container">
+                    <button type="button" class="btn btn-danger" (click)="closeModal('delete')"
+                    >
+                        {{'shared.no'|translate}}
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="closeModal('delete');deleteAlert()"
+                    >
+                        {{'shared.yes'|translate}}
+                    </button>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+</div>

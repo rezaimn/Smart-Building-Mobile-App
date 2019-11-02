@@ -1,0 +1,111 @@
+<div>
+    <tabset>
+        <tab [title]="'home.appliance-grid.summary' | translate" [active]="false">
+            <div class="tab-container">
+                <div class="row table-box scrollable-container">
+                    <div class="col-xs-8  left-top-curve  table-title table-side ">
+                        <p>
+                            {{'home.safety-status.device-status'|translate}}</p>
+                    </div>
+                    <div class="col-xs-4  table-2-col-right right-top-curve  table-title table-side">
+                        <p>
+                            {{'home.safety-status.device-type'|translate}}</p>
+                    </div>
+                    <div class="col-xs-8" style="height: 8vh">
+                        <div class="col-xs-4" style="border: 0px!important;">
+                            <img src="./assets/images/home/slider/safety/device-out-of-service.png"
+                                 style="height: 3vh">
+                        </div>
+                        <div class="col-xs-4" style="border: 0px!important;">
+                            <img src="./assets/images/home/slider/safety/battery-low.png" style="height: 3vh">
+                        </div>
+                        <div class="col-xs-4" style="border: 0px!important;">
+                            <img src="./assets/images/home/slider/safety/device.png" style="height: 3vh">
+                        </div>
+                    </div>
+                    <div class="col-xs-4" style="height: 8vh"></div>
+                    <div *ngFor="let type of dataPassService.safetyDeviceModel.deviceStatusByType">
+                        <div class="col-xs-8  table-img table-side">
+                            <div class="col-xs-4" style="border: 0px!important;">
+                                <p class="en-text-or-number">{{type.statusCount.outOfServiceCount}}</p>
+                            </div>
+                            <div class="col-xs-4" style="border: 0px!important;">
+                                <p class="en-text-or-number">{{type.statusCount.batteryLowCount}}</p>
+                            </div>
+                            <div class="col-xs-4" style="border: 0px!important;">
+                                <p class="en-text-or-number">{{type.statusCount.triggeredCount}}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 table-img table-2-col-right table-side">
+                            <img *ngIf="!appService.darkTheme"
+                                 [src]="'./assets/images/device-type/short/'+type.typeName+'-light.png'">
+                            <img *ngIf="appService.darkTheme"
+                                 [src]="'./assets/images/device-type/short/'+type.typeName+'-dark.png'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </tab>
+
+        <tab [title]="'home.appliance-grid.details' | translate" [active]="true">
+            <div class="tab-container">
+                <div class="scrollable-container">
+                    <div class="row home-data-box"  *ngFor="let floor of dataPassService.safetyDeviceModel.floorSafetyStatus">
+                        <p class="border-bottom-title" *ngIf="dataPassService.currentLang=='fa'" >{{floor?.safetyDeviceList[0]?.location[3].faName}}/
+                            {{floor?.safetyDeviceList[0]?.location[4].faName}}/
+                            {{floor?.safetyDeviceList[0]?.location[5].faName}}</p>
+                        <p class="border-bottom-title" *ngIf="dataPassService.currentLang=='en'" >{{floor?.safetyDeviceList[0]?.location[3].enName}}/
+                            {{floor?.safetyDeviceList[0]?.location[4].enName}}/
+                            {{floor?.safetyDeviceList[0]?.location[5].enName}}</p>
+                        <div class="col-xs-6 col-md-4 col-lg-3" *ngFor="let safetyStatus of floor?.safetyDeviceList" style="margin-bottom: 1vh" >
+                            <div class="safety-details" style="height: 12vh; border: solid .8vw #0fa205;" [ngClass]="{'triggered':safetyStatus.deviceworkingstate!=0,'out-of-service':safetyStatus.devicestatus!='1' }"
+                            >
+                                <div class="charge">
+                                  <p class="battery-level">{{safetyStatus?.batterystate}}%</p>
+                                  <round-progress  [background]="'#f1f1f1'" clockwise="true"  responsive="true"
+                                                  [current]="safetyStatus?.batterystate" [color]="safetyStatus?.batteryColor?.outerStrokeColor"
+                                                  [radius]="22" [stroke]="4" [max]="100" [duration]="1200" >
+                                  </round-progress>
+                                    <!--<circle-progress-->
+                                            <!--[percent]="safetyStatus?.batterystate"-->
+                                            <!--[radius]="24"-->
+                                            <!--[backgroundColor]="'#f1f1f1'"-->
+                                            <!--[backgroundStrokeWidth]="0"-->
+                                            <!--[backgroundPadding]="-50"-->
+                                            <!--[space]="2"-->
+                                            <!--[toFixed]="0"-->
+                                            <!--[maxPercent]="100"-->
+                                            <!--[outerStrokeWidth]="6"-->
+                                            <!--[outerStrokeColor]="safetyStatus?.batteryColor?.outerStrokeColor"-->
+                                            <!--[innerStrokeColor]="safetyStatus?.batteryColor?.innerStrokeColor"-->
+                                            <!--[innerStrokeWidth]="2"-->
+                                            <!--[titleFontSize]="16"-->
+                                            <!--[unitsFontSize]="16"-->
+                                            <!--[animationDuration]="50"-->
+                                            <!--[showSubtitle]="false"-->
+                                    <!--&gt;</circle-progress>-->
+                                </div>
+                                <div class="row data-row">
+                                    <div class="row ">
+                                        <p class="data"> {{safetyStatus?.devicename}}</p>
+                                    </div>
+                                    <div class="safety-img">
+                                        <img *ngIf="!appService.darkTheme"
+                                             [src]="'./assets/images/device-type/short/'+safetyStatus?.devicetype+'-light.png'">
+                                        <img *ngIf="appService.darkTheme"
+                                             [src]="'./assets/images/device-type/short/'+safetyStatus?.devicetype+'-dark.png'">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </tab>
+    </tabset>
+</div>

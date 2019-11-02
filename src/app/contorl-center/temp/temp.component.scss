@@ -1,0 +1,162 @@
+
+temp{
+  @import "../control.component";
+  @import "../../variables";
+  .actual-temp{
+    color: #f86149 !important;
+    font-size: 4vmin;
+    text-align: right;
+    font-family: tw-regular!important;
+    strong{
+      color:$inputfill;
+      font-size: 4vmin;
+      margin-left: 1vw;
+    }
+  }
+  .control-rows{
+    padding-top: .6vh;
+    padding-bottom: .6vh;
+    margin-top: .8vh;
+    margin-right: 0vw;
+    margin-left: 0vw;
+    border-radius: 1vh;
+    box-shadow: 0 1px 3px #b7b7b7;
+    background-color: #ffffff;
+
+  }
+  .control-disc{
+    font-size: 3vmin !important;
+    margin-top: 1vh;
+    direction: rtl;
+    text-align: right;
+    float: right;
+    width: 100%;
+    padding-right: 2vw!important;
+  }
+  .data-card{
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    background: #fff;
+    border-radius: 2vh;
+    margin: 1vh 0px;
+    box-shadow: 0 1px 3px #b7b7b7;
+    padding-right:3vw ;
+  }
+  .tab-container{
+    left: 0;
+    right: 0;
+    top: 25vh;
+  }
+  .control-wraper {
+    margin-top: 0;
+    padding-top: 15px;
+    overflow: hidden;
+  }
+
+  .control-icon {
+    padding: 0px;
+    img {
+      height: 5vh;
+      width: 5vh;
+      display: flex;
+      margin: auto;
+    }
+
+  }
+
+  .control-align {
+    margin-top: .5vh;
+    img {
+      height: 4vh;
+      display: flex;
+      margin: auto;
+    }
+  }
+
+  .control-font {
+    font-size: 4vmin;
+
+    color: $inputfill;
+  }
+
+  .control-font-temp {
+    font-size: 4vmin;
+    color: $inputfill;
+  }
+
+  .control-font-en {
+    font-size: 4vmin;
+    color: $inputfill;
+  }
+
+  .control-icon {
+
+  }
+
+  .control-align {
+
+    position: relative;
+
+  }
+
+  .control-line {
+    padding: 0;
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background: #c4c4c4;
+    margin: 0px .6vh;
+  }
+
+  .control-line-last {
+    margin: 0px;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    border: 0;
+    height: 1px;
+    background: #c4c4c4;
+  }
+
+  .control-action1 {
+    margin-bottom: 5vh;
+  }
+
+  .control-action2 {
+
+    margin-bottom: 5vh;
+
+  }
+
+  .control-action3 {
+
+  }
+
+
+
+  .farsi-float-right {
+    float: right !important;
+  }
+
+  .farsi-float-left {
+    float: left !important;
+  }
+
+  .farsi-font {
+
+  }
+
+  .farsi-direction {
+    direction: rtl !important;
+  }
+
+  .farsi-relative {
+    right: 0;
+    left: auto;
+  }
+
+  .control-disc {
+    position: relative !important;
+
+  }
+}

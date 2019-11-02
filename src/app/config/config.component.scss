@@ -1,0 +1,78 @@
+@import "../variables";
+@import "../common";
+config{
+
+  .config-wrapper {
+
+    padding: 2vw 2vw 2vw 2vw;
+    overflow: hidden;
+
+
+    .selected-Item {
+      color: #fff;
+      background-color: $inputfill;
+    }
+
+    .config-fav {
+
+      margin-top: 1vh;
+      width: 2vh;
+      height: 2vh;
+      margin-left: 2vw;
+      padding: 2vw;
+      p {
+        margin: 0;
+      }
+      img {
+        margin: 0;
+      }
+    }
+
+    .config-list {
+
+      width: 100%;
+    }
+
+    .config-first-child {
+      margin-left: 5vw;
+
+    }
+    .config-last-child {
+      margin-right: 5vw;
+    }
+
+    .config-list-content {
+      border-radius: 1vh;
+      margin: 1vw 4vw 2vw 4vw;
+      padding: 1vw 3vw 2vw 5vw;
+      box-shadow: 0 1px 3px #b7b7b7;
+      label {
+
+        font-size: 3vmin;
+        color: $inputfill;
+        float: right;
+        direction: rtl;
+        width: 100%;
+      }
+      span {
+
+        font-size: 3.4vmin;
+        color: #f9961e!important;
+        float: right;
+        direction: rtl;
+        padding: 2vw 0px 1vw 0px;
+
+      }
+      .detail-address {
+
+      }
+    }
+
+  }
+  .tab-container{
+    left: 0;
+    right: 0;
+    top: 25vh+$extraTopForIphoneX;
+  }
+
+}

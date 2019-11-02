@@ -1,0 +1,139 @@
+@import "../../app/variables";
+.light {
+  html {
+    background: #fff!important;
+  }
+  body {
+    background: #eee!important;
+  }
+  .login-titles {
+    color: $inputfill !important;
+  }
+  .side-menu {
+    background: white !important;
+  }
+  .header-mobile {
+    background: #fff !important;
+    box-shadow: 0 4px 5px -5px #aaa;
+  }
+  .footer-fix {
+    background: #fff !important;
+    box-shadow: 0 -4px 5px -5px #aaa;
+  }
+  border-color: $inputfill !important;
+  background-color: white !important;
+  p.home-title {
+    color: #fff !important;
+  }
+  .app-version {
+    color: $inputfill !important;
+  }
+  .module-box {
+    background-color: rgba(249, 150, 30, 0) !important;
+    border-color: $inputfill !important;
+  }
+  .footer-copyright {
+    border: 2px solid $inputfill !important;
+  }
+  .footer-label {
+    color: #f9961e !important;
+  }
+
+  .sub-h1 {
+    color: $inputfill !important;
+  }
+  .boody {
+    background-color: #fff !important;
+  }
+  hr {
+    color: #f9961e !important;
+    border-top: 1px solid $inputfill;
+  }
+  .side-menu-items {
+    color: $inputfill !important;
+  }
+  .side-menu-items:hover {
+    color: $inputfill !important;
+    background-color: #f9961e !important;
+
+  }
+  .active-menu-item {
+    color: $inputfill !important;
+    background-color: #f9961e !important;
+  }
+  .menu {
+    background-color: #fff !important;
+  }
+  .col-md-17 {
+    background-color: #f9961e !important;
+    border-color: $inputfill !important;
+    h1 {
+      b {
+        color: $inputfill !important;
+      }
+    }
+    span {
+      color: $inputfill !important;
+    }
+  }
+  .floors-circle-ems {
+    background-color: #f9961e !important;
+    border: solid 5px $inputfill !important;
+  }
+  .floors-circle-ems {
+    span {
+      color: $inputfill !important;
+    }
+  }
+  .parking-area {
+    border: 1px solid $inputfill !important;
+    background-color: #fff !important;
+  }
+  .parking-guide {
+    p {
+      color: $inputfill !important;
+    }
+  }
+  .parkings {
+    border: 1px solid $inputfill !important;
+  }
+  .parkings-side {
+    border: 1px solid $inputfill !important;
+  }
+  .parkings-container {
+    p {
+      color: $inputfill !important;
+    }
+  }
+  .designation-right {
+    color: $inputfill !important;
+  }
+  .video {
+    border: solid 3px $inputfill !important;
+
+  }
+
+  .small-video {
+    border: solid 2px $inputfill !important;
+
+  }
+  .video-title {
+
+    color: $inputfill !important;
+
+  }
+  .video-title-border {
+    border: 2px solid $inputfill !important;
+    border-top: 0px !important;
+    background-color: #f9961e !important;
+
+  }
+  .form-button-cancel {
+    background-color: $inputfill !important;
+    color: white !important;
+  }
+  .ems-title {
+    color: $inputfill !important;
+  }
+}
+

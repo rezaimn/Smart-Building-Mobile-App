@@ -1,0 +1,61 @@
+alert-management{
+  @import "../../variables";
+  .device-result-name{
+    float: right;
+    margin-top: -2vh;
+    margin-bottom: 2vh!important;
+    font-size: 5vmin;
+    margin-right: 1vw;
+    color: $primary-clr!important;
+    direction: rtl;
+    font-family: tw-regular;
+    text-align: right;
+  }
+  .device-type{
+    float: right;
+    font-size: 4vmin;
+    color: $primary-clr!important;
+    direction: rtl!important;
+    font-family: tw-regular;
+    text-align: right;
+    margin-bottom: 1vh;
+  }
+
+  hr{
+    margin: 5px;
+    border: solid 1px #ddd;
+  }
+  .device-result-type{
+    width: 100%;
+    float: right;
+    text-align: right;
+    font-size: 3.2vmin;
+    color: $inputfill;
+    direction: rtl!important;
+    font-family: tw-regular;
+    margin-bottom: 1vh;
+  }
+  .device-result-location{
+    margin-top: .4vh;
+    margin-right: 1vw;
+    font-size: 3vmin;
+    color: $inputfill;
+  }
+  .tab-container{
+    top:16vh+$extraTopForIphoneX;
+  }
+  .search-cards{
+    margin: 1vh 0vh;
+  }
+  .tab-container {
+    position: fixed;
+    left: 4vw;
+    bottom: 8vh;
+    right: 4vw;
+    overflow-y: scroll;
+    .scrollable-container {
+      display: block;
+      min-height: 100%;
+    }
+  }
+}

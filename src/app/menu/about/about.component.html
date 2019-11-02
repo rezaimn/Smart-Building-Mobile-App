@@ -1,0 +1,17 @@
+<div class="about"  >
+    <div class="container" style=";padding: 5vw" >
+        <img src="./assets/images/mitologo.png" class=" top-img" >
+        <img  *ngIf="!appService.darkTheme" src="./assets/images/mito-blue.png" class=" mito-img">
+        <img  *ngIf="appService.darkTheme" src="./assets/images/mito-orange.png" class=" mito-img">
+        <div class="row about-data" style="margin-right: 0px;margin-left: 0px;">
+            <p style="font-family: tw-regular">V:2.0.1</p>
+        </div>
+
+        <p class="site" >www.mitoconnect.com</p>
+        <p class="email">Info@mitoconnect.com</p>
+        <p class="phone">02188101618</p>
+        <img style="margin-top:5vh" *ngIf="!appService.darkTheme" src="./assets/images/powered-by-blue.png" class=" about-power-img">
+        <img style="margin-top:5vh" *ngIf="appService.darkTheme" src="./assets/images/powered-by-orange.png" class=" about-power-img">
+        <p class="copy-right">Copyright © 2018 Mitoconnect Technologies . All Rights Reserved</p>
+    </div>
+</div>

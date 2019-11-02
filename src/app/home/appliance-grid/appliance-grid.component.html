@@ -1,0 +1,79 @@
+<div>
+    <tabset>
+        <tab [title]="'home.appliance-grid.summary' | translate" >
+            <div class="tab-container">
+                <div class="row table-box scrollable-container" >
+
+                    <div class="col-xs-4 table-side table-img left-top-curve"  >
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/appliance/unplugged-light.png"  >
+                        <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/appliance/unplugged-dark.png"  >
+                    </div>
+                    <div class="col-xs-4 table-middle table-img" >
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/home/slider/appliance/plugged-light.png"  >
+                        <img *ngIf="appService.darkTheme" src="./assets/images/home/slider/appliance/plugged-dark.png"  >
+                    </div>
+                    <div class="col-xs-4 table-side table-img right-top-curve">
+                        <p>
+                            {{'home.appliance-grid.type'|translate}}
+                        </p>
+                    </div>
+                    <div *ngFor="let applianceByTypeT of dataPassService?.applianceModel?.applianceByType">
+                        <div class="col-xs-4  left-down-curve table-text" >
+                            <p class="en-text-or-number" style="color: #afcc11!important;">{{applianceByTypeT?.applianceStatusCount?.unPluggedCount}}</p>
+                        </div>
+                        <div class="col-xs-4 table-side table-text  table-middle"  >
+                            <p class="en-text-or-number"  style="color: #f86149!important;">{{applianceByTypeT?.applianceStatusCount?.pluggedCount}}</p>
+                        </div>
+
+                        <div class="col-xs-4 table-side table-text right-down-curve">
+                            <p>{{applianceByTypeT?.faName}}</p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </tab>
+        <tab [title]="'home.appliance-grid.details' | translate" >
+            <div class="tab-container">
+                <div class="scrollable-container">
+                    <div class="row home-data-box" *ngFor="let ABFloor of dataPassService?.applianceModel?.applianceListByFloor">
+                        <p class="border-bottom-title">{{ABFloor?.applianceList[0]?.location[3]?.faName}}/{{ABFloor?.applianceList[0]?.location[4]?.faName}}</p>
+                        <div class="col-xs-6 col-md-6 col-lg-4" *ngFor="let appG of ABFloor.applianceList">
+                            <div class="details">
+                                <p class="data-box-title">{{appG.devicename}}</p>
+                                <!--<div class=" col-xs-4">-->
+                                <div class="charge">
+                                    <img  *ngIf="appG.deviceworkingstate=='1' && !appService.darkTheme" src="./assets/images/home/slider/appliance/plugged-light.png">
+                                    <img *ngIf="appG.deviceworkingstate=='1' && appService.darkTheme" src="./assets/images/home/slider/appliance/plugged-dark.png">
+                                    <img *ngIf="appG.deviceworkingstate!='1' && !appService.darkTheme" src="./assets/images/home/slider/appliance/unplugged-light.png">
+                                    <img *ngIf="appG.deviceworkingstate!='1' && appService.darkTheme" src="./assets/images/home/slider/appliance/unplugged-dark.png">
+                                </div>
+
+                                <div class="row data-row">
+                                    <span>{{'home.appliance-grid.type'|translate}} :</span>
+                                    <p class="data">
+                                        {{appG?.appliancemap?.map?.fa}}
+                                    </p>
+                                </div>
+                                <div class="row data-row">
+                                    <span >{{'home.appliance-grid.area-name'|translate}} :</span>
+                                    <p class="data" *ngIf="dataPassService.currentLang=='fa'" >
+                                        {{appG?.location[5]?.faName}}
+                                    </p>
+                                    <p class="data" *ngIf="dataPassService.currentLang=='en'" >
+                                        {{appG?.location[5]?.enName}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </tab>
+    </tabset>
+</div>

@@ -1,0 +1,314 @@
+@import "../../app/variables";
+
+.dark {
+  ion-app{
+    background:$dark-background !important;
+  }
+  background:$dark-background !important;
+  background: $dark-background !important;
+  html {
+    background: $dark-background !important;
+  }
+  body {
+    background: $dark-background !important;
+  }
+  .tab-content{
+    background: $dark-background !important;
+  }
+  p {
+    color: #dbdbdb !important;
+  }
+  label {
+    color: #dbdbdb !important;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #dbdbdb !important;
+  }
+  span {
+    color: #dbdbdb !important;
+  }
+  .custom-container {
+    background: $dark-background !important;
+    box-shadow: none!important;
+  }
+  .footer-fix {
+    background: #303135 !important;
+  }
+  .header-mobile {
+    background: #303135 !important;
+
+  }
+  .dashboard-inner {
+    .status-bar {
+      background: #303135 !important;
+      box-shadow: none!important;
+    }
+    .module-box {
+      box-shadow: none !important;
+      box-shadow: none!important;
+    }
+    .slide {
+      background: #363636 !important;
+      box-shadow: none!important;
+      overflow: hidden;
+    }
+    hr {
+      border-color: $dark-background !important;
+    }
+  }
+  .side-menu {
+    background: $dark-background !important;
+    border-left: solid 2px #333 !important;
+    .side-menu-body {
+      ul {
+        background: $dark-background !important;
+      }
+    }
+  }
+  .side-menu-body {
+    background: $dark-background !important;
+    hr {
+      border: 1px solid #3f3e3e !important;
+    }
+  }
+  .side-menu-items {
+    color: #dbdbdb !important;
+    box-shadow: none!important;
+
+  }
+  .inactive-menu-item {
+    color: #dbdbdb !important;
+    box-shadow: none!important;
+  }
+  .active-menu-item{
+    color: $primary-clr !important;
+  }
+  .submit-box {
+    background: transparent!important;
+    box-shadow: none!important;
+  }
+  .data-box {
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #ddd !important;
+    background-color: #555 !important;
+    border-bottom-color: transparent !important;
+    box-shadow: none!important;
+  }
+  .nav-tabs > li > a {
+    color: #ddd !important;
+    background: #333 !important;
+    opacity: 1 !important;
+    box-shadow: none!important;
+  }
+  .tab-set {
+    background: #201f24 !important;
+    box-shadow: none!important;
+  }
+  .notify-box {
+    background: #333 !important;
+    box-shadow: none!important;
+  }
+  .control-action3 {
+    background: $dark-background !important;
+    box-shadow: none!important;
+  }
+  .control-action2 {
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  .control-action1 {
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  .footer-icon-middle {
+    border: solid .8vh #201f24 !important;
+    background-color: #201f24 !important;
+    box-shadow: none!important;
+  }
+  .config-filter-p{
+    background: $inputfill!important;
+    color: #ddd!important;
+    box-shadow:none!important;
+  }
+  .selected-Item{
+    background-color: #fff!important;
+    color: $inputfill!important;
+    box-shadow: none!important;
+  }
+  .actual-temp{
+    strong{
+      color: #f5f5f5!important;
+    }
+  }
+  .control-line-last,.control-line{
+    background: #5e5e5e!important;
+    box-shadow: none!important;
+  }
+  .cam-frame{
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  .subsidiary-item{
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  .selected-subsidiary{
+    background: #fff!important;
+    color: $inputfill!important;
+  }
+
+  .data-card{
+
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  .card-container{
+    background: #201f24 !important;
+  }
+  .btn-primary{
+    background-color:#123b6b !important
+  }
+  .btn-success{
+    background-color: #217128 !important;
+  }
+  .btn-danger{
+    background-color: #922f2d !important;
+  }
+  .control-rows{
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  .config-list-content{
+    box-shadow: none!important;
+  }
+  .search-cards{
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  .w3-modal-content{
+    background: #363636 !important;
+    box-shadow: none!important;
+  }
+  option{
+    color: $inputfill!important;
+  }
+  select{
+    color: $inputfill!important;
+  }
+  .parking{
+    border: .5vw dotted #fff!important;
+  }
+  .table-box{
+    div {
+      background: #363636 !important;
+      border-bottom: solid .5vh $dark-background!important;
+    }
+    .table-middle {
+      background: #363636 !important;
+      border-left: solid .5vh $dark-background!important;
+      border-right: solid .5vh $dark-background!important;
+      border-bottom: solid .5vh $dark-background!important;
+    }
+    .table-2-col-right {
+      border-left: solid .5vh $dark-background!important;
+    }
+  }
+  .border-bottom-title{
+    border-bottom: solid .4vh $dark-background!important;
+
+  }
+  .home-data-box {
+    background: #363636 !important;
+    box-shadow: none!important;
+    .table-2-col-right {
+      border-left: solid .5vh $dark-background!important;
+    }
+  }
+  .charge{
+    background: #fff!important;
+  }
+  .details{
+    background: #363636!important;
+    border: solid .5vw #fff!important;
+    .data{
+      color: #fff!important;
+    }
+  }
+  .safety-details{
+    background: #363636!important;
+    .data{
+      color: #fff!important;
+    }
+  }
+  .data-box-title{
+    background: $primary-clr!important;
+    color: #fff!important;
+
+  }
+  .about{
+      .container {
+        box-shadow:none!important;
+        background: #363636 !important;
+
+    }
+    .about-data {
+      p {
+        color: #fff!important;
+      }
+    }
+    .email{
+      color: #fff!important;
+    }
+    .site{
+      color: #fff!important;
+    }
+    .copy-right{
+      color: $primary-clr!important;
+    }
+  }
+  .parking-count-back{
+    background: #31708f!important;
+  }
+  .delete-select {
+    .device-name {
+      border: .5vw solid #fff!important;
+      color: #fff!important;
+    }
+  }
+  .search-container{
+    background: $dark-background !important;
+  }
+  .set-camera-list{
+    p{
+      color: $inputfill!important;
+    }
+  }
+  .line-chart{
+    canvas{
+      background: #222!important;
+    }
+  }
+  .version-code{
+    color: $primary-clr!important;
+  }
+  .loader-text{
+    color: $primary-clr!important;
+  }
+
+    hr {
+      border-color: $dark-background !important;
+    }
+.hvac-temp-set{
+  ion-item{
+    background: #363636 !important;
+  }
+  ion-label{
+    color: $primary-clr!important;
+  }
+}
+
+}
+

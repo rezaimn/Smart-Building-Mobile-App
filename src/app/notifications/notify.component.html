@@ -1,0 +1,44 @@
+<div class="notify-wraper">
+    <div class="row notify-row1" style="margin-bottom: 3vh">
+        <div class="data-box" style="width: 93vw;" *ngIf="dataPassService.notificationsStack.length==0">
+            <h1 style=" ;padding: 2vh;font-size: 4vmin;direction: rtl"> در حال حاضر هیچ اعلانی وجود ندارد.
+            </h1>
+        </div>
+        <div class="tab-container">
+            <div class="scrollable-container">
+                <div class="notify-box " *ngFor="let notif of dataPassService.notificationsStack;let i=index"
+                     (click)="selectedNotif(i)"
+                     [ngStyle]="setHeight(i)">
+                    <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 side-notify notify-float-right"
+                         style="padding-right: 2vw;padding-left: 2vw">
+                        <p class="circle" [class.gray-color]="!notif.hasNotSeen">{{notif?.events?.length}}</p>
+                        <p class="notify-font" style="text-align: center">{{notif?.date}}</p>
+
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8 main-content-notify notify-float-right"
+                         [ngStyle]="setHeight(i)">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 neg-margin">
+                            <!--<img class="notify-icon" src="./assets/images/notification/hvac.png" />-->
+                            <p class="notify-device-name" *ngIf="notif.device!=null">{{notif?.device?.name}}</p>
+                            <p class="notify-device-name" *ngIf="notif.device==null" style="color: #f86149">SOS</p>
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 neg-margin2" *ngIf="notif.device!=null">
+                            <p class="notify-farsi">{{notif?.device?.campus?.name?.map?.fa}}/</p>
+                            <p class="notify-farsi">{{notif?.device?.building?.name?.map?.fa}}/</p>
+                            <p class="notify-farsi">{{notif?.device?.floor?.name?.map?.fa}}</p>
+                        </div>
+                        <div class="row neg-margin3" *ngFor="let event of notif.events" [ngStyle]="visibilityStatus(i)"
+                             style="margin-top: 1vha">
+                            <p class="notify-farsi"
+                               style="font-family: tw-regular!important;font-size: 4vmin;margin-right: 2vw;margin-left: 2vw;color:#f9961e!important;">
+                                {{event?.time}}</p>
+                            <p class="notify-farsi" style="font-family: tw-regular;font-size: 4vmin">
+                                {{event?.message}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

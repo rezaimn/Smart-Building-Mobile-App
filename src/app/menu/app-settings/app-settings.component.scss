@@ -1,0 +1,32 @@
+app-settings{
+  @import "../../variables";
+  .form-title{
+    color: #5e5e5e;
+    font-size: 2.8vh;
+    text-align: center;
+    margin-top: -3vh;
+
+  }
+  hr{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 100%;
+    border: solid 1px #ddd;
+  }
+
+
+  .radio-check{
+    height: 2vh;
+    width: 2vh;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-top: 2vh;
+  }
+  .data-box{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .tab-container{
+    top:12+$extraTopForIphoneX;
+  }
+}

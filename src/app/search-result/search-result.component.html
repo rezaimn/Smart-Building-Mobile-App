@@ -1,0 +1,92 @@
+<div class="search-container">
+    <div style="margin-bottom: 5vh">
+        <div class="search-types-box">
+            <div style="margin: auto;display: flex;width: 67vw">
+
+                <div class="search-filter-img">
+                    <a *ngIf="!dataPassService.manageMode&&
+                (screenPermissionService.hasAccessToScreen('SRCH','SRCS')||
+                screenPermissionService.hasAccessToScreen('SRCH','SRCD')||
+                screenPermissionService.hasAccessToScreen('SRCH','SRCV'))">
+                        <img src="./assets/images/footer/search/all-selected-light.png"
+                             (click)="clearSearchfilter()"
+                             *ngIf="dataPassService.selectedfilterType == 'all'&&!appService.darkTheme">
+                        <img src="./assets/images/footer/search/all-light.png"
+                             (click)="clearSearchfilter()"
+                             *ngIf="dataPassService.selectedfilterType != 'all'&&!appService.darkTheme">
+                        <img src="./assets/images/footer/search/all-selected-dark.png"
+                             (click)="clearSearchfilter()"
+                             *ngIf="dataPassService.selectedfilterType == 'all'&&appService.darkTheme">
+                        <img src="./assets/images/footer/search/all-dark.png"
+                             (click)="clearSearchfilter()"
+                             *ngIf="dataPassService.selectedfilterType != 'all'&&appService.darkTheme">
+                        <p class="search-types-title">همه</p></a>
+                </div>
+                <div class="search-filter-img ">
+                    <a *ngIf="!dataPassService.manageMode&&screenPermissionService.hasAccessToScreen('SRCH','SRCS')">
+                        <img src="./assets/images/footer/search/user-selected-light.png"
+                             (click)="userSearchResult()"
+                             *ngIf="dataPassService.selectedfilterType == 'user'&&!appService.darkTheme">
+                        <img src="./assets/images/footer/search/user-light.png"
+                             (click)="userSearchResult()"
+                             *ngIf="dataPassService.selectedfilterType != 'user'&&!appService.darkTheme">
+                        <img src="./assets/images/footer/search/user-selected-dark.png"
+                             (click)="userSearchResult()"
+                             *ngIf="dataPassService.selectedfilterType == 'user'&&appService.darkTheme">
+                        <img src="./assets/images/footer/search/user-dark.png"
+                             (click)="userSearchResult()"
+                             *ngIf="dataPassService.selectedfilterType != 'user'&&appService.darkTheme">
+                        <p class="search-types-title">کاربر</p></a>
+                </div>
+                <div class="search-filter-img ">
+                    <a *ngIf="!dataPassService.manageMode&&screenPermissionService.hasAccessToScreen('SRCH','SRCV')">
+                        <img src="./assets/images/footer/search/visitor-selected-light.png"
+                             *ngIf="dataPassService.selectedfilterType == 'visitor'&&!appService.darkTheme"
+                             (click)="visitorSearchResult()">
+                        <img src="./assets/images/footer/search/visitor-light.png"
+                             *ngIf="dataPassService.selectedfilterType != 'visitor'&&!appService.darkTheme"
+                             (click)="visitorSearchResult()">
+                        <img src="./assets/images/footer/search/visitor-selected-dark.png"
+                             *ngIf="dataPassService.selectedfilterType == 'visitor'&&appService.darkTheme"
+                             (click)="visitorSearchResult()">
+                        <img src="./assets/images/footer/search/visitor-dark.png"
+                             *ngIf="dataPassService.selectedfilterType != 'visitor'&&appService.darkTheme"
+                             (click)="visitorSearchResult()">
+                        <p class="search-types-title">میهمان</p></a>
+                </div>
+                <div class="search-filter-img">
+                    <a *ngIf="!dataPassService.manageMode&&screenPermissionService.hasAccessToScreen('SRCH','SRCD')">
+                        <img src="./assets/images/footer/search/device-selected-light.png"
+                             *ngIf="dataPassService.selectedfilterType == 'device'&&!appService.darkTheme"
+                             (click)="deviceSearchResult()">
+                        <img src="./assets/images/footer/search/device-light.png"
+                             *ngIf="dataPassService.selectedfilterType != 'device'&&!appService.darkTheme"
+                             (click)="deviceSearchResult()">
+                        <img src="./assets/images/footer/search/device-selected-dark.png"
+                             *ngIf="dataPassService.selectedfilterType == 'device'&&appService.darkTheme"
+                             (click)="deviceSearchResult()">
+                        <img src="./assets/images/footer/search/device-dark.png"
+                             *ngIf="dataPassService.selectedfilterType != 'device'&&appService.darkTheme"
+                             (click)="deviceSearchResult()">
+                        <p class="search-types-title">دستگاه</p></a>
+                </div>
+            </div>
+        </div>
+        <div class="tab-container" [style.top]="dataPassService.manageMode?'12vh':'22vh'">
+            <div class="scrollable-container">
+                <user-search-result
+                        *ngIf="(dataPassService.selectedfilterType == 'user'||dataPassService.selectedfilterType == 'all') &&
+                 (screenPermissionService.hasAccessToScreen('SRCH','SRCS')||screenPermissionService.hasAccessToScreen('MENU','STFM'))">
+                </user-search-result>
+                <visitor-search-result
+                        *ngIf="(dataPassService.selectedfilterType == 'visitor'||dataPassService.selectedfilterType == 'all')&&
+                (screenPermissionService.hasAccessToScreen('SRCH','SRCV')||screenPermissionService.hasAccessToScreen('MENU','VISM'))">
+                </visitor-search-result>
+                <device-search-result
+                        *ngIf="(dataPassService.selectedfilterType == 'device'||dataPassService.selectedfilterType == 'all')&&
+                (screenPermissionService.hasAccessToScreen('SRCH','SRCD')||screenPermissionService.hasAccessToScreen('MENU','DVCM'))">
+                </device-search-result>
+            </div>
+        </div>
+    </div>
+</div>

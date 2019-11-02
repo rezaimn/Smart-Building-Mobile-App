@@ -1,0 +1,36 @@
+<div style="width: 100%;margin-top: 1vh;margin-bottom: 2vh">
+  <div class="row" style="margin-right: 3vw;margin-left: 3vw;margin-top: 1vh"
+       *ngIf="dataPassService.manageMode">
+    <button type="button" class="btn btn-success" (click)="editVisitor()"
+            style="font-size: 3vmin;text-align: center;float: right;">{{'shared.add'|translate}}
+    </button>
+  </div>
+  <div *ngFor="let visitor of visitors;let i=index" class="search-cards">
+    <div class="row" style="margin-right: 3vw;margin-left: 3vw;margin-top: 1vh">
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding: 0px">
+        <p *ngIf="!visitor.cardholder.isProcessing" class="card-status">{{'menu.visitor.card-status'|translate}}</p>
+        <div *ngIf="visitor.cardholder.isProcessing" class=" farsi-float-right "
+             style="padding: 0px;float: right">
+          <img src="./assets/images/processing.svg" style="width: 5vh;margin-top: .5vh;"
+          />
+        </div>
+        <ion-toggle class="toggle-md" style="float: left;margin-top: -.5vh;"
+                    [(ngModel)]="visitor.cardholder.enabled"
+                    [disabled]="visitor.cardholder.isProcessing||visitor.cardholder.cardNumber==''"
+                    (ionChange)="enableCardHolder(i)"
+        >
+        </ion-toggle>
+      </div>
+      <div (click)="editVisitor(visitor)" class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding: 0px">
+        <img *ngIf="!appService.darkTheme" src="./assets/images/footer/search/visitor-selected-light.png"
+             style="float: right;height: 7vh;margin-top: -1vh">
+        <img *ngIf="appService.darkTheme" src="./assets/images/footer/search/visitor-selected-dark.png"
+             style="float: right;height: 7vh;margin-top: -1vh">
+        <p class="visitor-result-name">{{visitor.cardholder.firstName + ' ' + visitor.cardholder.lastName}}</p>
+        <p class="visitor-result-phone">{{visitor.cardholder.mobileNum}}</p>
+        <p class="visitor-result-department">{{visitor.cardholder.cardNumber}}</p>
+      </div>
+    </div>
+  </div>
+</div>

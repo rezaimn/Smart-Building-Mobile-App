@@ -1,0 +1,43 @@
+<div style="width: 100%;margin-top: 2vh;margin-bottom: 2vh">
+    <div class="row" style="margin-right: 2vw;margin-left: 2vw;">
+
+        <button type="button" class="btn btn-success" (click)="editAlert(null)"
+                style="font-size: 3vmin;text-align: center;float: right;">{{'shared.add'|translate}}
+        </button>
+    </div>
+    <hr>
+    <div class="tab-container">
+        <div class="scrollable-container">
+            <div *ngFor="let alert of alertList;let i=index" class="search-cards">
+                <p class="device-result-name">{{alert.name}}</p>
+                <div class="row" style="margin-right: 2vw;margin-left: 2vw;margin-top: 1vh" (click)="editAlert(alert)">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="device-result-type"
+                             *ngFor="let staff of alert.stafflist"
+                             style="float: right;direction: rtl;margin-right: 10px">
+                            <p *ngIf="appService.currentLang=='fa'" style="font-family: Yekan">
+                                {{staff.firstNameMultiLingual.map.fa}} / {{staff.lastNameMultiLingual.map.fa}}</p>
+                            <p *ngIf="appService.currentLang=='en'" style="font-family: tw-regular">
+                                {{staff.firstNameMultiLingual.map.en}} / {{staff.lastNameMultiLingual.map.en}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="device-result-type" style="font-size: 6vmin">{{alert.deviceName}}</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/alert-light.png"
+                             style="float: right;height: 7vh;margin-top: -1vh">
+                        <img *ngIf="appService.darkTheme" src="./assets/images/menu/alert-dark.png"
+                             style="float: right;height: 7vh;margin-top: -1vh">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

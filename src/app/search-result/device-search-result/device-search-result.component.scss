@@ -1,0 +1,32 @@
+device-search-result{
+  @import "../../variables";
+  @import "../search-result.component";
+  .device-result-name{
+    float: right;
+    margin-top: -3.5vw;
+    font-size: 4vmin;
+    margin-right: 2vw;
+    color: $primary-clr!important;
+    font-family: tw-regular;
+  }
+  hr{
+    margin: 1vw;
+    border: solid 1px #ddd;
+  }
+  .device-result-type{
+    position: absolute;
+    margin-top: 1vh;
+    font-size: 3.2vmin;
+    right: 13vh;
+    color: $inputfill;
+    font-family: tw-regular;
+  }
+  .device-result-location{
+    position: absolute;
+    margin-top: 3vh;
+    font-size: 3.2vmin;
+    right: 13vh;
+    color: $inputfill;
+    font-family: tw-regular;
+  }
+}

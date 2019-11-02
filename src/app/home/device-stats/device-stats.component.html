@@ -1,0 +1,62 @@
+<div>
+    <tabset>
+        <tab [title]="'home.appliance-grid.summary' | translate" class="" >
+            <div class=" tab-container">
+                <div class="row table-box scrollable-container" >
+
+                    <div class="col-xs-4  left-top-curve table-side table-title" >
+                        <p>
+                            {{'home.device-stats.count'|translate}}</p>
+                    </div>
+                    <div class="col-xs-8  table-2-col-right right-top-curve table-side table-title" >
+                        <p>{{'home.device-stats.floor'|translate}}</p>
+                    </div>
+                    <div *ngFor="let floor of dataPassService?.deviceStatsModel?.deviceStatsByFloor">
+                        <div class="col-xs-4 table-text table-side">
+                            <p class="en-text-or-number">{{floor.count}}</p>
+                        </div>
+                        <div class="col-xs-8 table-text table-side table-2-col-right">
+                            <p *ngIf="dataPassService.currentLang=='fa'">
+                                {{floor?.locationByNames[1]?.faName}}/
+                                {{floor?.locationByNames[4]?.faName}}
+                            </p>
+                            <p *ngIf="dataPassService.currentLang=='en'">
+                                {{floor?.locationByNames[1]?.enName}}/
+                                {{floor?.locationByNames[4]?.enName}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </tab>
+        <tab [title]="'home.appliance-grid.details' | translate"  >
+            <div class="tab-container">
+                <div class="scrollable-container">
+                    <div class="row home-data-box" *ngFor="let floor of dataPassService.deviceStatsModel.deviceStatsByFloor">
+                        <p class="border-bottom-title " *ngIf="dataPassService.currentLang=='fa'">
+                            {{floor?.locationByNames[1]?.faName}}/
+                            {{floor?.locationByNames[4]?.faName}}
+                        </p>
+                        <p class="border-bottom-title " *ngIf="dataPassService.currentLang=='en'">
+                            {{floor?.locationByNames[1]?.enName}}/
+                            {{floor?.locationByNames[4]?.enName}}
+                        </p>
+                        <div *ngFor="let deviceType of floor?.deviceCountSt">
+                            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-4 ">
+                                <div class="device-details-img">
+                                    <img *ngIf="!appService.darkTheme" [src]="'./assets/images/device-type/'+deviceType?.deviceType+'-light.png'">
+                                    <img *ngIf="appService.darkTheme" [src]="'./assets/images/device-type/'+deviceType?.deviceType+'-dark.png'">
+                                    <p class="en-text-or-number" style="font-size: 5vmin">{{deviceType?.count}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </tab>
+    </tabset>
+</div>

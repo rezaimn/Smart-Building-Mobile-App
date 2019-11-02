@@ -1,0 +1,20 @@
+<div class="set-config-wrapper">
+
+    <div class="set-config-list" style="width: 100%;">
+        <h3>{{'menu.subsidiary.select-subsidiary'|translate}}</h3>
+        <div class="tab-container">
+            <div class="scrollable-container">
+                <p class="subsidiary-item" *ngFor="let subsidiary of subsidiaries;let i=index"
+                   [class.selected-subsidiary]="selectedId === subsidiary.id"
+                   (click)="setId(subsidiary,subsidiary.id)">{{subsidiary.name.map.fa}}</p>
+                <p class="subsidiary-item" *ngIf="dataPassService.selectedSubsidiary==null"
+                   [class.selected-subsidiary]="selectedId === 0"
+                   (click)="setId(null,0)">{{'menu.app-settings.all-sub'|translate}}</p>
+                <div class="submit  " (click)="getBack()">
+                    <button class="btn btn-success ">{{'shared.select'|translate}}</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

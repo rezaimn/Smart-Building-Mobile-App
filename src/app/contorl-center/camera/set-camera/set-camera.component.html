@@ -1,0 +1,56 @@
+<div class="siren-wraper" style="margin-top: 2vh"  >
+    <div class="scrolling-wrapper">
+        <div class="card" *ngFor="let campus of dataPassService.campusList;let i=index"
+             (click)="setCampusIndex(i,campus)"
+             [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+               [class.selected-Item]="selectedCampusIndex === i">{{campus?.location[2].faName}} </p>
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+               [class.selected-Item]="selectedCampusIndex === i">{{campus?.location[2].enName}} </p>
+        </div>
+    </div>
+    <div class="scrolling-wrapper">
+        <div class="card" *ngFor="let building of buildingList;let i=index"
+             (click)="setBuildingIndex(i,building)"
+             [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+               [class.selected-Item]="selectedBuildingIndex === i">
+                {{building?.location[3]?.faName}} </p>
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+               [class.selected-Item]="selectedBuildingIndex === i">
+                {{building?.location[3]?.enName}} </p>
+        </div>
+    </div>
+    <div class="scrolling-wrapper">
+        <div class="card" *ngFor="let floor of floorList;let i=index"
+             (click)="setFloorIndex(i,floor)"
+             [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+               [class.selected-Item]="selectedFloorIndex === i">
+                {{floor?.location[4]?.faName}} </p>
+            <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+               [class.selected-Item]="selectedFloorIndex === i">
+                {{floor?.location[4]?.enName}} </p>
+        </div>
+    </div>
+
+    <div class="set-config-wrapper ">
+        <div class="set-camera-list">
+            <h3>{{'control-center.select-camera'|translate}}</h3>
+            <div class="tab-container">
+                <div class="scrollable-container">
+                    <p class="row" *ngFor="let camera of cameraList;let i=index"
+                       [class.selected-subsidiary]="selectedCAMIndex === i"
+                       (click)="setIndex(camera,i)">{{camera.name}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

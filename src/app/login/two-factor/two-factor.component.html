@@ -1,0 +1,42 @@
+<div class="login-wrapper login-bg reset-pass">
+    <div class="login-logo row">
+        <img src="./assets/images/login/login-icon.png">
+    </div>
+    <br>
+    <div class="row" style="width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;">
+        <form  style="width: 100%" >
+          <!--<span   >تایید کلمه عبور :</span>-->
+            <div class="col-lg-12"  >
+                <span  style="width: 100%;display: block;text-align: center;margin-bottom: 2vh" >  کد تایید از طریق پیامک برای شما ارسال شد.</span>
+                <input class="form-control"
+                       type="password"
+                       placeholder="OTP"
+                       [(ngModel)]="OTPData"
+                       #OTPField="ngModel"
+                       required
+                       minlength="4"
+                       maxlength="4"
+
+                       name="OTPField"/>
+                <div class="error-message-display">
+                    <div [hidden]="OTPField.valid || OTPField.untouched">
+                        <div *ngIf="OTPField.errors && (OTPField.errors.minlength||OTPField.errors.maxlength)">
+                            کد تایید باید 4 رقم باشد
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <button class="login-btn" (click)="submitPassword(OTPData)">{{'login.submit'|translate}}</button>
+                </div>
+            </div>
+            <!--<div class="col-lg-12">-->
+            <!--<p class="forgot-pass">{{'login.forget-password'|translate }}</p>-->
+            <!--</div>-->
+        </form>
+    </div>
+
+</div>

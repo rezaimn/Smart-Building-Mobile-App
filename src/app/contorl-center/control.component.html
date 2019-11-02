@@ -1,0 +1,189 @@
+<div class="control-wraper" style="margin-top: 8vh">
+    <div class="row">
+        <div class="control-container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 farsi-float-right control-action1" style="    background: transparent!important;">
+                <div class="row control-rows"  (click)="openCam()" *ngIf="screenPermissionService.hasAccessToScreen('CTRL','CAMF')" >
+                    <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2  farsi-float-right control-icon icon-right">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/control/camera-light.png"
+                             />
+                        <img *ngIf="appService.darkTheme" src="./assets/images/control/camera-dark.png"
+                             />
+                    </div>
+                    <div  class="col-lg-8 col-md-8 col-sm-8 col-xs-8 farsi-float-right farsi-float-right control-rows-text-container ">
+                        <p  class=" farsi-float-right control-font" >{{'control-center.view-camera' | translate}}</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-left control-align">
+                        <img src="./assets/images/control/arrow.png" />
+                    </div>
+                </div>
+                <!--<hr class="control-line" />-->
+                <div class="row control-rows"  (click)="openTemp()" *ngIf="screenPermissionService.hasAccessToScreen('CTRL','TRMS')">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right control-icon icon-right">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/control/thermostat-light.png"
+                            />
+                        <img *ngIf="appService.darkTheme" src="./assets/images/control/thermostat-dark.png"
+                           />
+                    </div>
+                    <div   class="col-lg-8 col-md-8 col-sm-8 col-xs-8 farsi-float-right control-rows-text-container">
+                        <p   class="control-font farsi-float-right">{{'control-center.thermostat-temperature' | translate}}</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-align">
+                        <img  src="./assets/images/control/arrow.png" />
+                    </div>
+                </div>
+            </div>
+            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  control-action2" style="    background: transparent!important;" >
+                <div class="row control-rows"    (click)="openSiren()" *ngIf="screenPermissionService.hasAccessToScreen('CTRL','SRNS')">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right control-icon icon-right">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/control/siren-light.png"
+                              />
+                        <img *ngIf="appService.darkTheme" src="./assets/images/control/siren-dark.png"
+                             />
+                    </div>
+                    <div  class="col-lg-8 col-md-8 col-sm-8 col-xs-8 farsi-float-right control-rows-text-container">
+                        <p   class="control-font farsi-float-right">{{'control-center.siren' | translate}}</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-align">
+                        <img src="./assets/images/control/arrow.png" />
+                    </div>
+                </div>
+                <!--<hr class="control-line"  />-->
+                <div class="row control-rows"   (click)="openLight()" *ngIf="screenPermissionService.hasAccessToScreen('CTRL','SRNS')">
+                    <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right control-icon icon-right">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/control/lighting-light.png"
+                             />
+                        <img *ngIf="appService.darkTheme" src="./assets/images/control/lighting-dark.png"
+                             />
+                    </div>
+                    <div   class="col-lg-8 col-md-8 col-sm-8 col-xs-8 farsi-float-right control-rows-text-container">
+                        <p    class="control-font farsi-float-right" >{{'control-center.light' | translate}}</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  control-align">
+                        <img  src="./assets/images/control/arrow.png" />
+                    </div>
+                </div>
+                <!--<hr class="control-line" />-->
+                <div class="row control-rows"  (click)="openPlug()" *ngIf="screenPermissionService.hasAccessToScreen('CTRL','PLGS')">
+                    <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right control-icon icon-right">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/control/plug-light.png"
+                         />
+                        <img *ngIf="appService.darkTheme" src="./assets/images/control/plug-dark.png"
+                           />
+                    </div>
+                    <div  class="col-lg-8 col-md-8 col-sm-8 col-xs-8 farsi-float-right control-rows-text-container">
+                        <p  class="control-font farsi-float-right" >{{'control-center.plug' | translate}}</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-align">
+                        <img  src="./assets/images/control/arrow.png" />
+                    </div>
+                </div>
+
+            </div>
+            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  control-action3" style="padding-bottom: 1vh;    background: transparent!important;">
+                <div class="row control-rows"   *ngIf="screenPermissionService.hasAccessToScreen('CTRL','PNCS')">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right control-icon icon-right">
+
+                    </div>
+                    <div   class="col-lg-5 col-md-5 col-sm-5 col-xs-5 farsi-float-right control-rows-text-container">
+                        <p   class="control-font farsi-float-right" >{{'control-center.panic' | translate}}</p>
+                    </div>
+                  <div *ngIf="panicIsProcessing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right "
+                       style="padding: 0px">
+                    <img src="./assets/images/processing.svg" style="width: 5vh;margin-top: .5vh;"
+                    />
+                  </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="height: 5vh;margin-top: .8vh">
+                      <ion-toggle class="toggle-md"
+                                  [(ngModel)]="localPanicState"
+                                  [disabled]="panicIsProcessing"
+                      >
+                      </ion-toggle>
+                      <div class="toggle-cover"    (click)="openModal('panic')">
+                      </div>
+                        <!--<label class="switch">-->
+                            <!--<input type="checkbox" [checked]="dataPassService.panicStatus==true">-->
+                            <!--<span class="slider round" (click)="openModal('panic')" [class.enabled]="dataPassService.panicStatus==true"></span>-->
+                        <!--</label>-->
+                    </div>
+                </div>
+                <!--<hr class="control-line-last" />-->
+                <div class="row control-rows"   *ngIf="screenPermissionService.hasAccessToScreen('CTRL','SOSS')">
+                    <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right control-icon icon-right">
+                    </div>
+                    <div  class="col-lg-5 col-md-5 col-sm-5 col-xs-5 farsi-float-right control-rows-text-container">
+                        <p  class="control-font-en farsi-float-right" style="font-family: tw-regular!important;font-size: 2.6vh; ">S.O.S</p>
+                    </div>
+                  <div *ngIf="SOSIsProcessing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right "
+                       style="padding: 0px">
+                    <img src="./assets/images/processing.svg" style="width: 5vh;margin-top: .5vh;"
+                    />
+                  </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="height: 5vh;margin-top: .8vh">
+                      <ion-toggle class="toggle-md"
+                                  [(ngModel)]="localSOSState"
+                      >
+                      </ion-toggle>
+                      <div class="toggle-cover"    (click)="openModal('sos')">
+                      </div>
+                        <!--<label class="switch">-->
+                            <!--<input type="checkbox" [checked]="dataPassService.sosStatus==true">-->
+                            <!--<span class="slider round" (click)="openModal('sos')" [class.enabled]="dataPassService.sosStatus==true"></span>-->
+                        <!--</label>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="panic" class="w3-modal" >
+    <div class="w3-modal-content w3-animate-zoom w3-card-4" >
+        <header class="w3-container " >
+        <span (click)="closeModal('panic')"
+              class="w3-button w3-display-topright">&times;</span>
+        </header>
+        <form style="margin-left: 5vw;margin-right: 5vw;margin-top: 5vh;">
+            <label for="listName" class="farsi-font-im" style="font-size: 4vmin"
+            >کلمه عبور: </label>
+            <input type="password" class="form-control farsi-font-im" style="direction: ltr"
+                   id="listName" name="listName" [(ngModel)]="sirenPassword"
+                   placeholder="کلمه عبور">
+            <div class="w3-container">
+                <p class="farsi-font-im" style="float: none;text-align: center;">{{'shared.confirm'|translate}}</p>
+            </div>
+        </form>
+
+        <footer class="w3-container ">
+            <div class="modal-btn-container">
+                <button  type="button" class="btn btn-danger" (click)="closeModal('panic')"
+                       >{{'shared.no'|translate}}
+                </button>
+                <button type="button" class="btn btn-success" (click)="closeModal('panic');triggerPanic(!localPanicState)"
+                        >{{'shared.yes'|translate}}
+                </button>
+            </div>
+
+        </footer>
+    </div>
+</div>
+<div id="sos" class="w3-modal" >
+    <div class="w3-modal-content w3-animate-zoom w3-card-4" >
+        <header class="w3-container " >
+        <span (click)="closeModal('sos')"
+              class="w3-button w3-display-topright">&times;</span>
+        </header>
+        <div class="w3-container">
+            <p class="farsi-font-im" style="float: none;text-align: center;">{{'shared.confirm'|translate}}</p>
+        </div>
+        <footer class="w3-container ">
+            <div class="modal-btn-container">
+                <button  type="button" class="btn btn-danger" (click)="closeModal('sos')"
+                         >{{'shared.no'|translate}}
+                </button>
+                <button type="button" class="btn btn-success" (click)="closeModal('sos');toggleSOS()"
+                         >{{'shared.yes'|translate}}
+                </button>
+            </div>
+
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="config-wrapper">
+    <div class="row">
+        <div class="siren-wraper">
+            <div class="scrolling-wrapper">
+
+                <div class="card" *ngFor="let campus of dataPassService.campusList;let i=index"
+                     (click)="setCampusIndex(i,campus)"
+                     [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+                       [class.selected-Item]="selectedCampusIndex === i">{{campus?.location[2].faName}} </p>
+                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+                       [class.selected-Item]="selectedCampusIndex === i">{{campus?.location[2].enName}} </p>
+                </div>
+            </div>
+
+            <div class="scrolling-wrapper">
+                <div class="card" *ngFor="let building of buildingList;let i=index"
+                     (click)="setBuildingIndex(i,building)"
+                     [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+                       [class.selected-Item]="selectedBuildingIndex === i">
+                        {{building?.location[3]?.faName}} </p>
+                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+                       [class.selected-Item]="selectedBuildingIndex === i">
+                        {{building?.location[3]?.enName}} </p>
+                </div>
+            </div>
+
+            <div class="scrolling-wrapper">
+                <div class="card" *ngFor="let floor of floorList;let i=index"
+                     (click)="setFloorIndex(i,floor)"
+                     [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+                       [class.selected-Item]="selectedFloorIndex === i">
+                        {{floor?.location[4]?.faName}} </p>
+                    <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+                       [class.selected-Item]="selectedFloorIndex === i">
+                        {{floor?.location[4]?.enName}} </p>
+                </div>
+
+            </div>
+            <div class="tab-container">
+                <div class="scrollable-container">
+                    <div class="config-list" style="margin-bottom: 5vh">
+                        <div class="config-list-content" *ngFor="let point of manageDeviceList;let i=index"
+                             [style.background]="point.devices==null&&!appService.darkTheme?'#ccc':point.devices!=null&&!appService.darkTheme?'#fff':point.devices==null&&appService.darkTheme?'#43332d':'#303135' "
+                             style="  ">
+                            <div class="row" (click)="openList(point)">
+
+
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6"
+                                     style="float: right; padding-top: 4px">
+                                    <label style="font-size: 3vmin"> نوع دستگاه</label>
+                                    <span style="font-family: tw-regular!important;"> {{point?.deviceType}} </span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6"
+                                     style="float: right; padding-top: 4px">
+                                    <label style="font-size: 3vmin">نام دستگاه</label>
+                                    <span style="font-family: tw-regular!important;" *ngIf="point?.devices!=null">{{point?.devices[0]?.deviceName}}</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 ">
+                                    <div class="config-fav-icon"
+                                         *ngIf="point.isFavorite == false && point.devices!=null">
+                                        <img style="width: 2vh" (click)="setAsFavorits(point.devices[0].deviceId,i)"
+                                             src="./assets/images/config/fav-grey.png">
+                                    </div>
+
+                                    <div class="config-fav-icon" *ngIf="point.isFavorite == true&& point.devices!=null">
+                                        <img style="width: 2vh"
+                                             src="./assets/images/config/favorite.png"
+                                             (click)="setAsFavorits(point.devices[0].deviceId,i)">
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10 "
+                                     style="float: right; height: 3vh; margin-top: 1vh" (click)="openList(point)">
+                                    <label style=""> ناحیه دستگاه : {{getAreaName(point.areaId)}}</label>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

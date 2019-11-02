@@ -1,0 +1,100 @@
+user-search-result{
+  @import "../../variables";
+  @import "../search-result.component";
+  .toggle-md.toggle-checked .toggle-icon{
+    background-color: #4fdb30!important;
+  }
+  .toggle-icon{
+    background-color: #ec3208!important;
+  }
+  .toggle-md.toggle-checked .toggle-inner{
+    background-color: #e0e0e0;
+  }
+  .toggle-md {
+    position: relative;
+    width: 36px;
+    height: 14px;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    contain: strict;
+    padding: 12px;
+    float: right;
+  }
+  .visitor-result-name{
+    float: right;
+    margin-top: -4vw;
+    font-size: 3.6vmin;
+    margin-right: 2vw;
+    color: $primary-clr!important;
+  }
+  hr{
+    margin: 1vw;
+    border: solid 1px #ddd;
+  }
+  .visitor-result-phone{
+    position: absolute;
+    margin-top: 3vh;
+    font-size: 3.2vmin;
+    right: 20vw;
+    color: $inputfill;
+  }
+  .visitor-result-department{
+    position: absolute;
+    margin-top: 3vh;
+    font-size: 3vmin;
+    right: 8vw;
+    color: $inputfill;
+  }
+
+
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 5vh;
+    bottom: 0;
+    background-color: #f86149;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+
+  .enabled {
+    background-color: #afcc10;
+  }
+  .disabled{
+    background-color: #888;
+  }
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  .enabled:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20);
+    left: auto;
+    right: 0pt;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .card-status{
+    font-size: 3.2vmin;
+    color: $inputfill;
+    margin-left: 2vw;
+    position: absolute;
+    left: 10vh;
+    margin-top: 1vh;
+  }
+  .search-cards{
+    padding-bottom: 0px;
+  }
+  .thumbnail{
+    margin-bottom: 1vh;
+  }
+}

@@ -1,0 +1,41 @@
+<div class="set-config-wrapper">
+    <div class="set-config-list">
+        <h3 >انتخاب حالت ترموستات</h3>
+        <p class="subsidiary-item" [class.selected-subsidiary]="dataPassService.selectedHvac.mode ===0" (click)="setIndex(0)" >Auto</p>
+        <p class="subsidiary-item" [class.selected-subsidiary]="dataPassService.selectedHvac.mode ===1" (click)="setIndex(1)">Comfort</p>
+        <p class="subsidiary-item" [class.selected-subsidiary]="dataPassService.selectedHvac.mode ===2" (click)="setIndex(2)">Pre Comfort</p>
+        <p class="subsidiary-item" [class.selected-subsidiary]="dataPassService.selectedHvac.mode ===3" (click)="setIndex(3)">Economy</p>
+        <p  class="subsidiary-item" [class.selected-subsidiary]="dataPassService.selectedHvac.mode ===4" (click)="setIndex(4)">Protect</p>
+    </div>
+  <img src="./assets/images/processing.svg" style="width: 5vh;margin-top: .5vh;"
+  />
+</div>
+<div id="hvac-mode" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom w3-card-4">
+        <header class="w3-container ">
+        <span (click)="closeModal('hvac-mode')"
+              class="w3-button w3-display-topright">&times;</span>
+        </header>
+        <div class="w3-container">
+            <p class="farsi-font-im" style="float: none;text-align: center; ">
+                {{'shared.confirm'|translate}}</p>
+        </div>
+        <footer class="w3-container ">
+            <div class="modal-btn-container">
+                <button type="button" class="btn btn-danger" (click)="closeModal('hvac-mode')"
+                   >
+                    {{'shared.no'|translate}}
+                </button>
+                <button type="button" class="btn btn-success" (click)="closeModal('hvac-mode');setHvacMode()"
+                   >
+                    {{'shared.yes'|translate}}
+                </button>
+            </div>
+
+        </footer>
+    </div>
+</div>
+
+
+
+

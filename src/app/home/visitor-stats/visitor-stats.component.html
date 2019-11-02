@@ -1,0 +1,54 @@
+<div>
+    <tabset>
+        <tab [title]="'home.appliance-grid.summary' | translate">
+            <div class="row table-box scrollable-container"  >
+
+                <div class="col-xs-6  left-top-curve table-side table-title" >
+                    <p  >
+                        {{'home.visitor-stats.count'|translate}}</p>
+                </div>
+                <div class="col-xs-6  table-2-col-right right-top-curve table-side table-title"  >
+                    <p  >
+                        {{'home.visitor-stats.work-group'|translate}}</p>
+                </div>
+                <div  *ngFor="let VForW of dataPassService?.visitorModel?.visitorByWorkGroup">
+                    <div class="col-xs-6  table-text table-side">
+                        <p style="font-size: 5vmin;font-family: tw-regular" >{{VForW?.count}}</p>
+                    </div>
+                    <div class="col-xs-6  table-text table-side table-2-col-right">
+                        <!--<p *ngIf="appService.currentLang=='fa'" style="font-family: Yekan">{{VForW.nameFa}}</p>-->
+                        <p  style="font-family: tw-regular;font-size: 4vmin">{{VForW?.nameEn}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </tab>
+        <tab [title]="'home.appliance-grid.details' | translate">
+            <div class="tab-container">
+                <div class="scrollable-container" style="margin-bottom: 6vh">
+                    <div class="home-data-box row" style="margin-top: 4vh"
+                         *ngFor="let visitor of dataPassService?.visitorModel?.visitorList"
+                         [style.background]="visitor.cardholder.enabled?'#fff':'#9c9c9c'">
+                        <p class="border-bottom-title" style="font-family: tw-regular">{{visitor?.cardholder?.firstName+' '+visitor?.cardholder?.lastName}}</p>
+                        <div class="row" style="margin: 0px" >
+                            <span>{{'home.visitor-stats.card'|translate}} :</span>
+                            <p style="font-family: tw-regular">{{visitor?.cardholder?.cardNumber}}</p>
+                        </div>
+                        <div class="row" style="margin: 0px" >
+                    <span
+                    >{{'home.visitor-stats.mobile'|translate}} :</span>
+                            <p  >{{visitor?.cardholder?.mobileNum}}</p>
+                        </div>
+                        <div class="row" style="margin: 0px" >
+                    <span
+                    >{{'home.visitor-stats.purpose'|translate}} :</span>
+                            <p  >{{visitor?.purpose}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </tab>
+    </tabset>
+</div>

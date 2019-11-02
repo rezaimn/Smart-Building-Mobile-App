@@ -1,0 +1,31 @@
+<div class="login-wrapper login-bg" >
+    <div class="login-logo row">
+        <img src="./assets/images/login/login-icon.png" >
+    </div>
+    <br>
+    <div class="row"  style="
+    margin-left: 0px;
+    margin-right: 0px;">
+        <form style="width: 100%" >
+            <div class="col-lg-12" style="  height: 60px;width: 100%">
+                <input  class="form-control" [style.font-family]="loginData.username==''?'Yekan':'tw-regular'" [placeholder]="'login.username'|translate" [(ngModel)]="loginData.username" name="userName"/>
+            </div>
+            <div class="col-lg-12" style="margin-bottom: 7vw">
+                <input class="form-control" type="password" [placeholder]="'login.password'|translate" [(ngModel)]="loginData.password"
+                       name="passWord"/>
+            </div>
+          <div class="col-lg-12" style="display: flex;margin: auto;width: 65%">
+            <div style="float: right;width: 100%;">
+              <input style="float: right;height: 16px;width: 16px;display: block;text-align: right;margin: 1vh;" type="checkbox" [(ngModel)]="rememberMe" (ngModelChange)="loginService.setRememberMe(rememberMe)" name="rememberPass">
+              <span style="float: right">مرا بخاطر بسپار </span>
+            </div>
+          </div>
+            <div class="col-lg-12">
+                <button class="login-btn" (click)="loginService.loginUser(loginData)">{{'login.login'|translate}}</button>
+            </div>
+            <div class="col-lg-12" style="margin-top: 2vh">
+                <p class="forgot-pass" (click)="loginService.resetPassword(loginData)">{{'login.forget-password'|translate }}</p>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+
+app-reset-password{
+  @import '../../_variables';
+  .login-wrapper {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+
+    input {
+      padding-left: 15px;
+      margin: auto auto 1vh;
+      width: 65%;
+      height: 6vh;
+      border: 0px;
+      border-bottom: solid 1px #807e7e;
+      color: #b2b2b2;
+      font-size: 4vmin;
+      background: transparent;
+      text-align: right;
+
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      padding-right: 10px;
+    }
+    button {
+      width: 65%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      height: 10vw;
+      text-align: center;
+      border-radius: 10vw;
+      border: 0px;
+      background: $inputfill;
+      color: #fff;
+      font-size: 4.2vmin;
+      padding-bottom: 1vh;
+
+      margin: 4vw auto 1vh;
+    }
+    p {
+      width: 65%;
+      margin: auto auto 3vh;
+      display: -ms-flexbox;
+      color: $primary-clr;
+      font-size: 3vmin;
+
+      text-align: center;
+    }
+  }
+
+  .login-logo {
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+    img {
+      height: 16vh;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      margin: 11vh auto 6vh;
+    }
+  }
+
+  .login-bg {
+    background: black;
+  }
+
+  .reset-pass{
+    span{
+      direction: rtl;
+      float: right;
+      font-size: 3.6vmin;
+      width: 65%;
+      display: flex;
+      margin: auto;
+
+    }
+    input{
+      direction: rtl;
+      font-family: Yekan;
+      font-size: 3.4vmin;
+      box-shadow: none!important;
+    }
+  }
+  .error-message-display{
+    direction: rtl;
+    float: none;
+    div{
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+}

@@ -1,0 +1,117 @@
+
+list-config{
+  @import "../../variables";
+  .list-wrapper{
+    max-width: 100%;
+    height: initial;
+
+    margin-top: 46px;
+  }
+
+
+  .list-container{
+
+    height: initial;
+    margin: 50px 30px 0 30px;
+    border: 2px solid #fff;
+    label{
+      float: right;
+
+      color: $inputfill;
+    }
+    input{
+      float: right;
+      direction: rtl;
+
+      border: 1px solid $primary-clr;
+      background-color: #fff;
+      width: 294px;
+      padding-right: 15px;
+      margin-bottom: 20px;
+    }
+  }
+  .submit{
+    button{
+
+      width: 200px;
+      margin-top: 5px;
+      margin-left: 20%;
+    }
+  }
+  .last-update{
+    position: relative;
+    margin-top: 20px;
+
+    p{
+      font-size: 11px;
+      color: $primary-clr;
+      padding: 10px;
+      border: 1px solid $inputfill;
+      text-align: center;
+      margin: 60px 30px 0 30px;
+
+    }
+
+  }
+  .form-title{
+    color: #5e5e5e;
+
+    font-size: 17px;
+
+    text-align: center;
+
+
+  }
+  hr{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 100%;
+  }
+
+
+  .user-result-name{
+    float: right;
+    margin-top: -10px;
+
+    font-size: 18px;
+    margin-right: 10px;
+    color: $primary-clr;
+  }
+  hr{
+    margin: 5px;
+    border: solid 1px #ddd;
+  }
+  .user-result-phone{
+    position: absolute;
+    margin-top: 12px;
+    font-size: 14px;
+    right: 65px;
+    color:$inputfill;
+  }
+  .user-result-department{
+    position: absolute;
+    margin-top: 27px;
+    font-size: 12px;
+    right: 65px;
+
+    color: $inputfill;
+  }
+  .form-group{
+    margin-bottom: 5px;
+  }
+  .data-box{
+    border: solid 1px $inputfill;
+    padding: 5px;
+    margin: 40px 20px;
+  }
+  .submit-box{
+    position: relative;
+    right: -6px;
+    float: right;
+    top: -28px;
+    background: transparent;
+  }
+  input{
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,172 @@
+<div>
+    <div class="tab-container">
+        <div class="scrollable-container">
+            <form>
+                <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                    <div class="data-box">
+                        <div class="submit-box">
+                            <button *ngIf="!editMode&&!addMode" (click)="changeEditMode(true);" type="button"
+                                    class="btn btn-primary"
+                            >{{'shared.update'|translate}}
+                            </button>
+                            <button *ngIf="editMode||addMode" (click)="changeEditMode(false);" type="button"
+                                    class="btn btn-danger"
+                            >{{'shared.cancel'|translate}}
+                            </button>
+                            <button *ngIf="editMode||addMode" (click)="addUpdateVisitor()" type="button"
+                                    class="btn btn-success"
+                            >{{'shared.save'|translate}}
+                            </button>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12" style="margin-top: -3vh;">
+                            <p style="
+    text-align: center;
+    font-size: 4vmin;">اطلاعات میهمان</p>
+                            <hr>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="firstName" class="farsi-font-im"
+                            >{{'menu.visitor.first-name'|translate}}</label>
+                            <input style="direction: rtl" type="text" class="form-control " id="firstName"
+                                   aria-describedby="name" [disabled]="!editMode&&!addMode"
+                                   [placeholder]="'menu.visitor.first-name'|translate" name="first-name"
+                                   [(ngModel)]="prepareVisitor.cardholder.firstName"
+                                   required #firstName="ngModel">
+                            <div class="error-message-display">
+                                <div [hidden]="firstName.valid || firstName.untouched">
+                                    <div *ngIf="firstName.errors && firstName.errors.required">
+                                        {{'validate-message.first-name-required'|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="lastName" class="farsi-font-im">{{'menu.visitor.last-name'|translate}}</label>
+                            <input style="direction: rtl" type="text" class="form-control " id="lastName"
+                                   [disabled]="!editMode&&!addMode"
+                                   [placeholder]="'menu.visitor.last-name'|translate" name="last-name"
+                                   [(ngModel)]="prepareVisitor.cardholder.lastName"
+                                   required #lastName="ngModel">
+                            <div class="error-message-display">
+                                <div [hidden]="lastName.valid || lastName.untouched">
+                                    <div *ngIf="lastName.errors && lastName.errors.required">
+                                        {{'validate-message.last-name-required'|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="mobileNo" class="farsi-font-im">{{'menu.visitor.phone'|translate}}</label>
+                            <input type="text" class="form-control " id="mobileNo" [disabled]="!editMode&&!addMode"
+                                   placeholder="0924212431" #mobileNO="ngModel"
+                                   pattern="^[0-9]+$" name="mobileNO" required maxlength="11" minlength="10"
+                                   [(ngModel)]="prepareVisitor.cardholder.mobileNum">
+                            <div class="error-message-display">
+                                <div [hidden]="mobileNO.valid || mobileNO.untouched">
+                                    <div *ngIf="mobileNO.errors && mobileNO.errors.required">
+                                        {{'validate-message.phone-required' | translate}}
+                                    </div>
+                                </div>
+                                <div [hidden]="mobileNO.valid || mobileNO.untouched">
+                                    <div *ngIf="mobileNO.errors && mobileNO.errors.pattern">
+                                        {{'validate-message.phone-pattern-required'|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="error-message-display">
+                                <div [hidden]="mobileNO.valid || mobileNO.untouched">
+                                    <div *ngIf="mobileNO.errors && mobileNO.errors.minlength && !mobileNO.errors.maxlength">
+                                        {{'validate-message.min-length10'|translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="card-number" class="farsi-font-im"
+                            >{{'menu.visitor.card-number'|translate}}</label>
+                            <input type="text" class="form-control " id="card-number" aria-describedby="name"
+                                   [placeholder]="'menu.visitor.card-number'|translate" [disabled]="!editMode&&!addMode"
+                                   #cardNO="ngModel" name="cardNO"
+                                   required minlength="4" maxlength="20"
+                                   [(ngModel)]="prepareVisitor.cardholder.cardNumber">
+                            <div class="error-message-display">
+                                <div [hidden]="cardNO.valid || cardNO.untouched">
+                                    <div *ngIf="cardNO.errors && cardNO.errors.required">
+                                        {{'validate-message.card-number-required' | translate}}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="work-group" class="farsi-font-im"
+                            >{{'menu.visitor.work-group'|translate}}</label>
+                            <select class=" form-control" id="work-group" name="selectedDepartment"
+                                    #selectedWG="ngModel"
+                                    [disabled]="!editMode&&!addMode"
+                                    [(ngModel)]="workGroupId"
+                                    [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'"
+                                    required>
+                                <option *ngFor="let workGroup of workGroups;" [ngValue]="workGroup.id">
+                                    <p *ngIf="dataPassService.currentLang=='en'">{{workGroup?.name?.map?.en}}</p>
+                                    <p *ngIf="dataPassService.currentLang=='fa'">{{workGroup?.name?.map?.fa}}</p>
+                                </option>
+                            </select>
+                            <div class="error-message-display">
+                                <div [hidden]="selectedWG.valid || selectedWG.untouched">
+                                    <div *ngIf="selectedWG.errors && selectedWG.errors.required">
+                                        {{'validate-message.work-group-required' | translate}}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label for="purpose" class="farsi-font-im"
+                            >{{'menu.visitor.purpose'|translate}}</label>
+                            <input style="direction: rtl" type="text" class="form-control " id="purpose"
+                                   aria-describedby="name"
+                                   name="purpose" [disabled]="!editMode&&!addMode"
+                                   [placeholder]="'menu.visitor.purpose'|translate"
+                                   [(ngModel)]="prepareVisitor.purpose">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="middle-btn-container">
+                <button type="button" class="btn btn-danger" *ngIf="!addMode"
+
+                        (click)="openModal('delete')">
+                    {{'shared.delete'|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="delete" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom w3-card-4">
+            <header class="w3-container ">
+        <span (click)="closeModal('delete')"
+              class="w3-button w3-display-topright">&times;</span>
+            </header>
+            <div class="w3-container">
+                <p class="farsi-font-im" style="float: none;text-align: center; ">
+                    {{'shared.confirm'|translate}}</p>
+            </div>
+            <footer class="w3-container ">
+                <div class="modal-btn-container">
+                    <button type="button" class="btn btn-danger" (click)="closeModal('delete')"
+                    >
+                        {{'shared.no'|translate}}
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="closeModal('delete');deleteVisitorAccess()"
+                    >
+                        {{'shared.yes'|translate}}
+                    </button>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+
+</div>
+

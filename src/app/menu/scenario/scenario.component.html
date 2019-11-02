@@ -1,0 +1,57 @@
+<div style="width: 100%;margin-top: 2vh;margin-bottom: 2vh">
+    <div class="row" style="margin-right: 2vw;margin-left: 2vw;">
+
+        <button type="button" class="btn btn-success" (click)="editScenario(null)"
+                style="font-size: 3vmin;text-align: center;float: right;">{{'shared.add'|translate}}
+        </button>
+    </div>
+    <hr>
+    <div class="tab-container">
+        <div class="scrollable-container">
+            <div *ngFor="let scenario of scenarioList;let i=index" class="search-cards">
+              <p class="device-result-name">{{scenario.name}}</p>
+                <div class="row" style="margin-right: 2vw;margin-left: 2vw;margin-top: 1vh"
+                     (click)="editScenario(scenario)">
+
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin-top: 2vh">
+                        <p class="device-type" style="font-family: Yekan;font-size: 3.2vmin;direction: rtl">دستگاه های
+                            خروجی: </p>
+                        <p class="device-result-type"
+                           *ngFor="let output of scenario.destinationdevices"
+                           style="float: right;direction: rtl;margin-right: 10px">
+                            {{output.destinationdevicetypename}}/
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"style="margin-top: 2vh" >
+                        <p class="device-type" style="font-family: Yekan;font-size: 3.2vmin;direction: rtl">دستگاه
+                            ورودی: </p>
+                        <p class="device-result-type">{{scenario.sourcedevicetypename}} </p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <img *ngIf="!appService.darkTheme" src="./assets/images/menu/scenario-light.png"
+                             style="float: right;height: 7vh;margin-top: -1vh">
+                        <img *ngIf="appService.darkTheme" src="./assets/images/menu/scenario-dark.png"
+                             style="float: right;height: 7vh;margin-top: -1vh">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="middle-btn-container" style="margin-top: 3vh;margin-bottom: 5vh">-->
+    <!--<button type="button" class="btn btn-primary" (click)="loadMoreDevice()">-->
+    <!--{{'shared.load-more'|translate}}-->
+    <!--</button>-->
+    <!--</div>-->
+</div>
+
+
+
+
+
+
+
+
+
+

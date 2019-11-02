@@ -1,0 +1,121 @@
+<div class="siren-wraper" style="margin-top: 2vh">
+
+
+  <div class="scrolling-wrapper">
+
+    <div class="card" *ngFor="let campus of dataPassService.campusList;let i=index"
+         (click)="setCampusIndex(i,campus)"
+         [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+      <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+         [class.selected-Item]="selectedCampusIndex === i">{{campus?.location[2].faName}} </p>
+      <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+         [class.selected-Item]="selectedCampusIndex === i">{{campus?.location[2].enName}} </p>
+    </div>
+  </div>
+
+  <div class="scrolling-wrapper">
+    <div class="card" *ngFor="let building of buildingList;let i=index"
+         (click)="setBuildingIndex(i,building)"
+         [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+      <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+         [class.selected-Item]="selectedBuildingIndex === i">
+        {{building?.location[3]?.faName}} </p>
+      <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+         [class.selected-Item]="selectedBuildingIndex === i">
+        {{building?.location[3]?.enName}} </p>
+    </div>
+  </div>
+
+  <div class="scrolling-wrapper">
+    <div class="card" *ngFor="let floor of floorList;let i=index"
+         (click)="setFloorIndex(i,floor)"
+         [style.font-family]="dataPassService.currentLang=='fa'?'Yekan':'tw-regular'">
+      <p class="config-filter-p" *ngIf="dataPassService.currentLang=='fa'"
+         [class.selected-Item]="selectedFloorIndex === i">
+        {{floor?.location[4]?.faName}} </p>
+      <p class="config-filter-p" *ngIf="dataPassService.currentLang=='en'"
+         [class.selected-Item]="selectedFloorIndex === i">
+        {{floor?.location[4]?.enName}} </p>
+    </div>
+
+  </div>
+  <div class="tab-container">
+    <div class="scrollable-container">
+      <div style="margin-bottom: 4vh">
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  control-action3 card-container">
+          <div *ngFor="let hvac of hvacList;let i=index" class="hvac-temp-set">
+
+            <div class="row data-card"
+                 *ngIf="hvac.devicetype=='TRM'">
+              <p class="control-font-temp "
+                 style=" font-size: 4vmin;font-family: tw-regular!important;text-align: right">{{hvac.devicename}}</p>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="margin-top: 1vh;padding: 0px 0px 0px 2vw;">
+
+                <p class="control-disc">
+                  {{'control-center.hvac-mode.' + hvac?.mode | translate}}
+                  <img *ngIf="hvac?.mode!=0"  style="height: 2.5vh;float: left" src="./assets/images/control/arrow.png"
+                        (click)="openHmode(hvac)"/>
+
+                </p>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding: 0px">
+                <ion-range [disabled]="hvac.deviceworkingstate!='1'||hvac.setpoint<10"
+                           (ionChange)="myOnFinish(hvac.setpoint,i)" style="padding: 0px;"
+                           min="10"  step="1" max="40" [pin]="true" [debounce]="800"
+                           [(ngModel)]="hvac.setpoint" color="danger">
+                  <ion-label range-left style="color: #222222;margin: 0px;padding-right: 3vw" >10</ion-label>
+                  <ion-label range-right style="color: #222222;margin: 0px;padding-left: 3vw">40</ion-label>
+                </ion-range>
+                <p class="control-font-temp "
+                   style=" font-size: 5vmin;font-family: tw-regular!important;text-align: center;color: #f86149!important;">{{hvac.setpoint}}</p>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right "
+                   style="padding-right: 2vh;margin-top: 2vh;padding-left: 0px">
+                <p class="control-font-temp  actual-temp">{{hvac.devicevalue}}<strong>ºC</strong></p>
+              </div>
+              <!---->
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--<hr class="control-line" />-->
+      <!--<div class="row" (click)="openHmode()">-->
+      <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 farsi-float-right control-icon icon-right">-->
+      <!--<img style="width: 24px; position: relative; top: -4px; " src="./assets/images/control/hvac-mode.png" />-->
+      <!--</div>-->
+
+      <!--<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 farsi-float-right ">-->
+      <!--<p class="control-font farsi-float-right" style="font-family: Helvetica">{{'control-center.room-temperature' | translate}}</p>-->
+      <!--</div>-->
+      <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 farsi-float-right"><p class="control-disc">{{'control-center.hvac-mode.'+dataPassService.hvacMode | translate}}</p></div>-->
+      <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 control-align"><img style="width: 17px;" src="./assets/images/control/arrow.png" /></div>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+<div id="temp" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom w3-card-4">
+    <header class="w3-container ">
+        <span (click)="closeModal('temp')"
+              class="w3-button w3-display-topright">&times;</span>
+    </header>
+    <div class="w3-container">
+      <p class="farsi-font-im" style="float: none;text-align: center;">
+        {{'shared.confirm'|translate}}</p>
+    </div>
+    <footer class="w3-container ">
+      <div class="modal-btn-container">
+        <button type="button" class="btn btn-danger" (click)="closeModal('temp')"
+        >
+          {{'shared.no'|translate}}
+        </button>
+        <button type="button" class="btn btn-success" (click)="closeModal('temp');setTemper()"
+        >
+          {{'shared.yes'|translate}}
+        </button>
+      </div>
+
+    </footer>
+  </div>
+</div>

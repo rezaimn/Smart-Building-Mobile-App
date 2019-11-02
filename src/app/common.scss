@@ -1,0 +1,373 @@
+@import "../assets/css/ST";
+@import "../assets/css/styles.css";
+.config-filter-p {
+  float: right;
+  direction: rtl;
+  background: #fff;
+  -webkit-box-shadow: 0px 0px 15px -3px #aaa;
+  box-shadow: 0px 0px 15px -3px #aaa;
+  font-size: 3.2vmin;
+  color: $inputfill;
+  padding: .5vh 2vw 1vh 2vw;
+  border-radius: 1vh;
+  margin: .3vh 1vw 2vw;
+  -webkit-transition: 120ms ease-in-out 20ms;
+  transition: 120ms ease-in-out 20ms;
+}
+
+.selected-Item {
+  color: #fff;
+  background-color: $inputfill;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding-right: 4vw;
+  padding-left: 4vw;
+  .card {
+    display: inline-block;
+  }
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: $inputfill;
+  background-color: #eee;
+  border: 1px solid #eee;
+  border-bottom-color: transparent;
+}
+
+.nav-tabs > li > a {
+  color: $inputfill;
+  background: #eee;
+  opacity: 1;
+  font-size: 3.2vmin;
+  z-index: 1000;
+}
+
+.nav-tabs > li {
+  z-index: 1000;
+}
+
+.tab-set {
+  background: #eee;
+}
+
+.nav-tabs {
+  margin-bottom: 0px !important;
+}
+
+.switch {
+  margin-top: 1vh;
+  position: relative;
+  display: inline-block;
+  width: 8vw;
+  height: 3vh;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 2.4vh;
+  width: 2.4vh;
+  left: .33vh;
+  bottom: .33vh;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.switch input {
+  display: none;
+}
+
+.btn {
+  font-size: 3.2vmin !important;
+}
+
+.middle-btn-container {
+  display: flex;
+  width: 24vw;
+  margin: auto auto 8vh;
+  button {
+    width: 24vh;
+    font-size: 3.6vmin;
+    text-align: center;
+  }
+}
+
+.form-group {
+  margin-bottom: 2vw;
+  label {
+    font-size: 3vmin !important;
+    font-weight: unset !important;
+  }
+}
+
+.submit-box {
+  position: relative;
+  right: 0vw;
+  float: right;
+  top: -3.4vh;
+  background: transparent;
+}
+
+.data-box {
+  display: table;
+  padding-bottom: 3vh;
+  background: #fff;
+  margin: 4vh;
+  border-radius: 2vw;
+  box-shadow: 0 1px 3px #b7b7b7;
+}
+
+.app-settings {
+  label {
+    font-size: 4vmin !important;
+    font-weight: unset !important;
+  }
+}
+
+.w3-modal {
+  .w3-modal-content {
+    margin-right: 7vw !important;
+    margin-left: 7vw !important;
+  }
+  .w3-container {
+    p {
+      float: none;
+      text-align: center;
+      font-size: 3.6vmin;
+      margin-top: 3vh;
+    }
+  }
+  button {
+    width: 30vw;
+    font-size: 3.4vmin;
+    margin-right: 10vw;
+    margin-left: 10vw;
+  }
+  .modal-btn-container {
+    margin: auto;
+    display: flex;
+    width: 75vw;
+  }
+  .w3-button {
+    font-size: 4vmin;
+    margin-top: 0vh;
+    height: 5vh;
+  }
+  footer {
+    padding: 5vw;
+  }
+}
+
+.search-cards {
+  border-radius: 1vh;
+  box-shadow: 0 1px 3px #b7b7b7;
+  background: #fff;
+  margin: 1vh 0vh;
+  padding: 2vh 1vh;
+}
+
+option {
+  font-size: 3.4vmin !important;
+}
+
+.table-box {
+  margin-bottom: 5vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  border-radius: 2vh;
+  .table-title {
+    p {
+      color: $primary-clr !important;
+      font-size: 4vmin !important;
+      height: 6vh;
+    }
+
+  }
+
+  img {
+    height: 10vh;
+    margin-top: 2vh;
+  }
+  p {
+    margin-top: 2vh;
+    font-size: 3.6vmin;
+    text-align: center;
+    color: $inputfill;
+
+  }
+  .en-text-or-number {
+    font-size: 5vmin !important;
+  }
+  .table-img {
+    height: 14vh;
+    p {
+      margin-top: 5vh;
+    }
+  }
+  .table-text {
+    height: 8vh;
+  }
+  div {
+    background: #fff;
+    border-bottom: solid .5vh #eee;
+  }
+  .table-middle {
+    background: #fff;
+    border-left: solid .5vh #eee;
+    border-right: solid .5vh #eee;
+    border-bottom: solid .5vh #eee;
+  }
+  .left-top-curve {
+    border-top-left-radius: 2vh;
+  }
+  .right-top-curve {
+    border-top-right-radius: 2vh;
+  }
+  .left-down-curve {
+    border-bottom-left-radius: 2vh;
+  }
+  .right-down-curve {
+    border-bottom-right-radius: 2vh;
+  }
+  .table-2-col-right {
+    border-left: solid .5vh #eee;
+  }
+}
+
+.border-bottom-title {
+  border-bottom: solid .4vh #eee;
+  text-align: center;
+  font-size: 4vmin;
+  color: $primary-clr !important;
+  padding: 1vh;
+  margin-bottom: 4vh !important;
+}
+
+.en-text-or-number {
+  font-family: tw-regular !important;
+}
+
+.home-data-box {
+  display: block;
+  padding-bottom: 3vh;
+  background: #fff;
+  margin: 2vh 0px;
+  border-radius: 2vw;
+  box-shadow: 0 1px 3px #b7b7b7;
+  .table-2-col-right {
+    border-left: solid .5vh #eee;
+  }
+}
+
+.charge {
+  background: #fff;
+  position: absolute;
+  top: -1vh;
+  left: 1vw;
+  height: 8vh;
+  width: 8vh;
+  border-radius: 50%;
+  img {
+    height: 5vh;
+    margin-top: 1vh;
+  }
+  padding-top: .28vh !important;
+}
+
+.details {
+  height: 14vh;
+  border: solid .5vw $inputfill;
+  margin-top: 3vh;
+  margin-bottom: 4vh;
+  margin: 3vw;
+  span {
+    font-size: 3.2vmin;
+    float: right;
+    margin-right: 6vw;
+  }
+  .data {
+    font-size: 3.2vmin;
+    color: $inputfill;
+    float: right;
+    margin-right: 1vw;
+  }
+  .data-row {
+    direction: rtl;
+  }
+
+}
+
+.data-box-title {
+  background: $inputfill;
+  padding-right: 4vw;
+  color: white;
+  border-radius: 2vh 0px 0px 2vh;
+  position: relative;
+  top: -2vh;
+  font-size: 3.4vmin;
+  right: -.4vw;
+  text-align: right;
+  margin-bottom: 0px;
+  padding-bottom: .4vh;
+  width: 100%;
+}
+
+.parking-seven-segment {
+  font-size: 7vmin;
+  font-family: '7-segment';
+  text-align: center;
+}
+
+:focus {
+  outline-color: transparent !important;
+}
+
+  .tab-container {
+    position: fixed;
+    top: 16vh+$extraTopForIphoneX;
+    left: 4vw;
+    bottom: 8vh;
+    right: 4vw;
+    overflow-y: scroll;
+    .scrollable-container {
+      display: block;
+      min-height: 100%;
+    }
+  }
+
+
+.org-details {
+  .tab-content {
+    .tab-container {
+      top: 20vh;
+    }
+  }
+}
+
+.table-box {
+  margin-top: 2vh;
+}
+
+.line-chart{
+   p{
+     color: $primary-clr;
+   }
+  label{
+    color: $primary-clr;
+  }
+  span{
+    color: $primary-clr;
+  }
+}
+body{
+
+}

@@ -1,0 +1,157 @@
+notify{
+  @import "../variables";
+  .notify-wraper {
+    overflow: hidden;
+  }
+
+  .notify-row1 {
+    height: 100%;
+  }
+
+  .notify-box {
+    min-height: 10vh;
+    background: #fff;
+    border-radius: 2vh;
+    -webkit-box-shadow: 0 1px 3px #b7b7b7;
+    box-shadow: 0 1px 3px #b7b7b7;
+    -webkit-transition: height 50ms ease-out 5ms;
+    transition: height 50ms ease-out 5ms;
+    margin: 4vh 0px;
+  }
+
+  .side-notify {
+    height: 100%;
+    margin-right: 5px;
+    border-left: 1px solid #ececec;
+  }
+
+  .main-content-notify {
+    height: 100%;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .notify-float-right {
+    float: right;
+  }
+
+  .notify-font {
+    font-family: tw-regular!important;
+    font-size: 3.8vmin;
+    margin: auto;
+    position: relative;
+    top: 5px;
+    padding-left: 2px;
+
+  }
+
+  .circle {
+    width: 7vh;
+    height: 7vh;
+    border: .8vmin dotted #f86149;
+    border-radius: 100%;
+    text-align: center;
+    padding-top: 1vh;
+    margin: 2vh auto auto;
+
+  }
+
+  .notify-time {
+    text-align: center;
+    font-size: 4vmin;
+    padding-left: 2px;
+    position: relative;
+    bottom: -10%;
+    color: $inputfill;
+  }
+
+  .notify-icon {
+    width: 10vw;
+    float: right;
+  }
+
+  .notify-device-name {
+    font-size: 3.6vmin;
+    color: $inputfill;
+    float: right !important;
+    margin-left: 12vw;
+    margin-right: 3vw;
+  }
+
+  .notify-farsi {
+    float: right;
+    color: $inputfill;
+  }
+
+  .detail-width {
+    width: 30%;
+    font-size: 3.2vmin;
+    float: right;
+  }
+
+  .neg-margin {
+    right: -8vw;
+  }
+
+  .neg-margin2 {
+    width: 100%;
+    position: relative;
+    font-size: 3vmin;
+    direction: rtl;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .neg-margin3 {
+    //position: absolute;
+    font-size: 3vmin;
+    visibility: hidden;
+    // margin-top: 50px;
+    width: 100%;
+    transition-delay: 30ms;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+
+
+  .event-id {
+    font-size: 3vmin;
+    border: .8vw solid #f86149;
+    padding: 0 0 1px 4px;
+    width: 10%;
+    margin: 0;
+    float: right;
+    margin-top: 4vh;
+    clear: right;
+  }
+
+  .notify-farsi2 {
+    width: 83%;
+    font-size: 2.6vmin;
+    float: right;
+    color: $inputfill;
+    margin-top: -3vh;
+    margin-right: -5vw;
+    clear: right;
+  }
+
+  .show-more {
+    margin: 6vh 5vh 1vw 5vh;
+  }
+
+  .more-btn {
+    color: $inputfill;
+    border: 1px solid $inputfill;
+    padding: 1vh 5vh 2vw 8vw;
+    text-align: center;
+    font-size: 4vmin;
+  }
+
+  .gray-color {
+    color: #828282;
+    border: 1.5px dotted #828282;
+  }
+}

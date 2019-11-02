@@ -1,0 +1,22 @@
+<div style="width: 100%;;margin-top: 1vh;margin-bottom: 2vh">
+    <div class="row" style="margin-right: 2vw;margin-left: 2vw;margin-top: 1vh" (click)="editDevice()" *ngIf="dataPassService.manageMode">
+        <button  type="button" class="btn btn-success"
+                 style="font-size: 12px;text-align: center;float: right;">{{'shared.add'|translate}}
+        </button>
+    </div>
+    <hr>
+    <div *ngFor="let device of manageDeviceList;let i=index" class="search-cards">
+        <div class="row" style="margin-right: 2vw;margin-left: 2vw;margin-top: 1vh" (click)="editDevice(device)" >
+            <img *ngIf="!appService.darkTheme" src="./assets/images/footer/search/device-selected-light.png"
+                 style="float: right;height: 7vh;margin-top: -1vh">
+            <img *ngIf="appService.darkTheme" src="./assets/images/footer/search/device-selected-dark.png"
+                 style="float: right;height: 7vh;margin-top: -1vh">
+            <p class="device-result-name">{{device.type_name}}</p>
+            <p class="device-result-type">{{device.device_name}} </p>
+            <p class="device-result-location" >{{device.brand_name+'/'+device.model_name+'/'+device.serial_no}}</p>
+        </div>
+    </div>
+    <button  type="button" class="btn btn-primary" (click)="loadMoreDevice()" *ngIf="manageDeviceList.length>0"
+             style="font-size: 3.4vmin;text-align: center;display: flex;margin: auto;direction: rtl" >{{'shared.load-more'|translate}}
+    </button>
+</div>

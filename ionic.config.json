@@ -1,0 +1,7 @@
+{
+  "name": "Maata-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

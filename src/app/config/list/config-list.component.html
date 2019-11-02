@@ -1,0 +1,84 @@
+<div>
+    <form>
+        <div class="row" style="margin-left: 0px;margin-right: 0px;margin-top: 30px">
+            <div class="data-box" style="height: 430px;margin-bottom: 20px">
+                <div class="submit-box">
+                    <button *ngIf="!editMode&&!addMode" (click)="changeEditMode(true);" type="button" class="btn btn-primary"
+                            style="width: 80px;font-size: 13px;" >{{'shared.update'|translate}}
+                    </button>
+                    <button *ngIf="editMode||addMode" (click)="changeEditMode(false);" type="button"
+                            class="btn btn-danger"
+                            style="width: 80px;font-size: 13px;">{{'shared.cancel'|translate}}
+                    </button>
+                    <button *ngIf="editMode||addMode" (click)="save()" type="button" class="btn btn-success"
+                            style="width: 80px;font-size: 13px;">{{'shared.save'|translate}}
+                    </button>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6">
+                    <label for="device-type" class="farsi-font-im"
+                           style="font-size: 15px;font-weight: unset">{{'config-device.device-type'|translate}}</label>
+                    <input name="serial" [(ngModel)]="dataPassService.selectedPoint.deviceType" type="text"
+                           class="form-control farsi-font-im" id="device-type" disabled
+                    >
+                </div>
+                <div class="form-group col-xs-12 col-sm-6">
+                    <label for="model" class="farsi-font-im"
+                           style="font-size: 15px;font-weight: unset">{{'config-device.serial'|translate}}</label>
+                    <select class=" form-control" id="model" name="model" #modelList1="ngModel"
+                            style="padding: 0px 12px;"
+                            [(ngModel)]="createConfig.id" [disabled]="!editMode&&!addMode"
+                            [style.font-family]="appService.currentLang=='fa'?'Yekan':'tw-regular'"
+                            aria-placeholder="model" required>
+                        <option *ngFor="let serial of serialList" [ngValue]="serial.id">
+                            <p>{{serial.deviceSerial.serialNumber}}</p>
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6">
+                    <label for="device-name" class="farsi-font-im"
+                           style="font-size: 15px;font-weight: unset">{{'config-device.device-name'|translate}}</label>
+                    <input name="device-name" [(ngModel)]="createConfig.deviceName" type="text" [disabled]="!editMode&&!addMode"
+                           class="form-control farsi-font-im" id="device-name"
+                           [placeholder]="'config-device.device-name'|translate">
+                </div>
+                <div class="form-group col-xs-12 col-sm-6">
+                    <label for="installation-label" class="farsi-font-im"
+                           style="font-size: 15px;font-weight: unset">{{'config-device.installation-label'|translate}}</label>
+                    <input name="installation-label" [(ngModel)]="createConfig.installationLabel" type="text" [disabled]="!editMode&&!addMode"
+                           class="form-control farsi-font-im" id="installation-label"
+                           [placeholder]="'config-device.installation-label'|translate">
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+    <button type="button" class="btn btn-danger" *ngIf="!addMode"
+            style="width: 200px;font-size: 16px;text-align: center;display: flex;
+            margin: auto auto 30px;padding-left: 84px;"
+            (click)="openModal('delete')">
+        {{'shared.delete'|translate}}
+    </button>
+    <div id="delete" class="w3-modal" >
+        <div class="w3-modal-content w3-animate-zoom w3-card-4" >
+            <header class="w3-container " >
+        <span (click)="closeModal('delete')"
+              class="w3-button w3-display-topright">&times;</span>
+            </header>
+            <div class="w3-container">
+                <p class="farsi-font-im" style="float: none;text-align: center;">{{'shared.confirm'|translate}}</p>
+            </div>
+            <footer class="w3-container " >
+                <div class="modal-btn-container">
+                    <button  type="button" class="btn btn-danger" (click)="closeModal('delete')"
+                             >{{'shared.no'|translate}}
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="closeModal('delete');deleteConfig()"
+                            >{{'shared.yes'|translate}}
+                    </button>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+</div>

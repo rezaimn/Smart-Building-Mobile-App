@@ -1,0 +1,106 @@
+<div>
+    <tabset>
+        <tab [title]="'home.appliance-grid.summary' | translate">
+            <div class="tab-container">
+                <div class="row table-box scrollable-container">
+
+                    <div class="col-xs-4   left-top-curve  table-title table-side">
+                        <p>{{'home.parking-status.count'|translate}}</p>
+                    </div>
+                    <div class="col-xs-8  table-2-col-right right-top-curve  table-title table-side">
+                        <p>{{'home.parking-status.status'|translate}}</p>
+                    </div>
+
+                    <div class="col-xs-4  table-img  table-side">
+                        <p class="parking-seven-segment" style="color: #afcc10!important;font-size: 5vh;
+    margin-top: 3vh;">
+                            {{dataPassService.parkingModel.parkingStatus.free}}
+                        </p>
+                    </div>
+                    <div class="col-xs-8  table-img table-side table-2-col-right">
+                        <div class="col-xs-6" style="border: 0px!important;">
+                            <p >خالی</p>
+                        </div>
+                        <div class="col-xs-6" style="border: 0px!important;">
+                            <img src="./assets/images/home/parking/parking-vacant.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-4  table-img  table-side">
+                        <p class="parking-seven-segment" style="color: #f86149!important;font-size: 5vh;
+    margin-top: 3vh;">
+                            {{dataPassService.parkingModel.parkingStatus.occupied}}
+                        </p>
+                    </div>
+                    <div class="col-xs-8 table-img table-side table-2-col-right ">
+                        <div class="col-xs-6" style="border: 0px!important;">
+                            <p >اشغال شده</p>
+                        </div>
+                        <div class="col-xs-6" style="border: 0px!important;">
+                            <img src="./assets/images/home/parking/parking-occupied.png">
+                        </div>
+                    </div>
+                    <div class="col-xs-4  table-img  table-side left-down-curve">
+                        <p class="parking-seven-segment" style="color: #a5a5a5!important;font-size: 5vh;
+    margin-top: 3vh;">
+                            {{dataPassService.parkingModel.parkingStatus.outOfService}}
+                        </p>
+                    </div>
+                    <div class="col-xs-8  table-img table-side table-2-col-right right-down-curve">
+                        <div class="col-xs-6" style="border: 0px!important;">
+                            <p >خارج از سرویس</p>
+                        </div>
+                        <div class="col-xs-6" style="border: 0px!important;">
+                            <img src="./assets/images/home/parking/parking-out-of-service.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </tab>
+        <tab [title]="'home.appliance-grid.details' | translate">
+
+
+            <div class="scrolling-wrapper" style="margin-bottom: 4vh;margin-top: -2vh">
+
+                <div class="card" (click)="setFilter('all')">
+                    <p class="config-filter-p" [class.selected-Item]="filterStatus === 'all'">
+                        همه
+                    </p>
+                </div>
+                <div class="card" (click)="setFilter('free')">
+                    <p class="config-filter-p" [class.selected-Item]="filterStatus === 'free'">
+                        خالی
+                    </p>
+                </div>
+                <div class="card" (click)="setFilter('occupied')">
+                    <p class="config-filter-p" [class.selected-Item]="filterStatus === 'occupied'">
+                        اشغال شده
+                    </p>
+                </div>
+                <div class="card" (click)="setFilter('outOfService')">
+                    <p class="config-filter-p" [class.selected-Item]="filterStatus === 'outOfService'">
+                        غیرفعال
+                    </p>
+                </div>
+            </div>
+            <div class="tab-container" style="top: 26vh!important;">
+                <div class="row scrollable-container" style="margin-bottom: 10vh">
+                    <div *ngFor="let parking of dataPassService.parkingModel.parkingList">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 "    *ngIf="parking.status==filterStatus||filterStatus=='all'">
+
+                            <div class="parking">
+                                <p >{{parking.staffDesignation}}</p>
+                                <img *ngIf="parking.status=='occupied'" src="./assets/images/home/parking/parking-occupied.png">
+                                <img *ngIf="parking.status=='free'" src="./assets/images/home/parking/parking-vacant.png">
+                                <img *ngIf="parking.status=='outOfService'" src="./assets/images/home/parking/parking-out-of-service.png">
+                                <p >{{parking.areaName}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </tab>
+    </tabset>
+</div>

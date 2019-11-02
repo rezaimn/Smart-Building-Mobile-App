@@ -1,0 +1,37 @@
+
+organization-stats{
+
+  @import "../../variables";
+  .data{
+    font-family: tw-regular;
+    float: left!important;
+    direction: ltr;
+    font-size: 4vmin;
+    color: $inputfill;
+    width: 100%;
+  }
+  .data-row{
+    img{
+      height: 12vh;
+      width: 12vh;
+      border-radius: 100%;
+      float: right;
+      margin-top: -1vh;
+    }
+  }
+  .area-count{
+    color: $primary-clr;
+    text-align: center;
+  }
+  .details{
+    margin: 4vw!important;
+    width: 90%!important;
+    height: 16vh;
+  }
+  .data-box-title{
+    right: -.4vw;
+  }
+  .tab-container{
+    top:22vh!important;
+  }
+}

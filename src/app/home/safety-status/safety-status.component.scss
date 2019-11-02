@@ -1,0 +1,68 @@
+safety-status{
+
+  @import "../../variables";
+
+  .charge {
+    position: absolute;
+    top: 0vh;
+    left: 4vw;
+    height: 7vh;
+    width: 7vh;
+    border-radius: 50%;
+    border: 0px !important;
+    padding-top: 0px!important;
+
+  }
+  .battery-level{
+    font-size: 3.6vmin;
+    font-family: tw-regular;
+    position: absolute;
+    text-align: center;
+    top: 36%;
+    left: 33%;
+    color:$inputfill!important;
+  }
+  .safety-img {
+    img {
+      height: 6vh;
+      float: right;
+      margin-right: 6vw;
+      margin-top: .6vh;
+    }
+  }
+
+  .data {
+    margin-right: 10vw !important;
+    margin-top: 1vh;
+  }
+
+  .out-of-service {
+    border: solid .8vw #eebd08!important;
+  }
+  .triggered{
+    border: solid .8vw #a2350d!important;
+  }
+  .safety-details{
+    height:14vh;
+    border: solid .8vw #0fa205;
+    margin-top: 3vh;
+    margin-bottom: 4vh;
+    margin: 3vw;
+    span{
+      font-size: 3.2vmin;
+      float: right;
+      margin-right: 6vw;
+    }
+    .data{
+      font-size: 3.2vmin;
+      color: $inputfill;
+      float: right;
+      margin-right: 1vw;
+    }
+    .data-row{
+      direction: rtl;
+    }
+
+  }
+}
+

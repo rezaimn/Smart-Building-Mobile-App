@@ -1,0 +1,21 @@
+
+parking-status{
+  @import "../../variables";
+  .parking{
+    border: .5vw dotted $inputfill;
+    img{
+      height: 15vh;
+      margin-top: 1vh;
+    }
+    p{
+      font-family: tw-regular;
+      font-size: 3.6vmin;
+      text-align: center;
+    }
+  }
+  .tab-container {
+    top: 15vh!important;
+  }
+}
+
+

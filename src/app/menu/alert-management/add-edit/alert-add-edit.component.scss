@@ -1,0 +1,97 @@
+alert-add-edit{
+  @import "../../../variables";
+  .form-control{
+    height: 10vw !important;
+    padding: 1vw;
+    width: 100% !important;
+    color: $inputfill;
+    border-radius: 1vh!important;
+    font-size: 3.5vmin !important;
+    padding-left: 2vw!important;
+    padding-right: 2vw!important;
+  }
+
+  .alert-select-area{
+    border: 1px solid #ddd;
+    border-radius: 1vh;
+    height: 30vh;
+    padding: 10px 10px 10px 5px;
+  }
+
+  .daily{
+    position: relative;
+    top: -15vh;
+    padding: 10px 40px 10px 40px;
+  }
+  .scenario-time{
+    position: relative;
+    top: -20vh;
+    padding: 10px 40px 10px 40px;
+  }
+
+  .selected-staffs{
+    width:100%;
+    height:30vh;
+    margin-top: 1vh;
+    border: solid 1px #ddd;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    overflow-y: scroll;
+  }
+  option{
+    font-size: 3.4vmin!important;
+  }
+  .alert-staff{
+    color:  $inputfill;
+  }
+  .selected-Item {
+    color: #fff ;
+    background-color: $inputfill;
+  }
+
+  .siren-wraper {
+    position: relative;
+    top: -16px;
+    margin-bottom: 20px;
+  }
+
+  .delete-select {
+    .device-name {
+      width: 100%;
+      font-size:3vmin;
+      border: 1px solid $inputfill;
+      color: $inputfill;
+      height: 5vh;
+      text-align: center;
+      padding: 5px 5px 8px 32px;
+      float: right;
+      margin-bottom: 3vh;
+      border-radius:10vh;
+    }
+  }
+  .selected-device{
+    width:100%;
+    height:30vh;
+    margin-top: 1vh;
+    border: solid 1px #ddd;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    overflow-y: scroll;
+    border-radius: 2vh;
+  }
+  option{
+    font-size: 3.4vmin!important;
+  }
+  .tab-container{
+    top: 12vh+$extraTopForIphoneX;
+  }
+  .data-box{
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  hr{
+    margin-bottom: 0px;
+    margin-top: 10px;
+    border: solid 1px #222;
+  }
+}

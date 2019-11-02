@@ -1,0 +1,77 @@
+about {
+  @import "../../variables";
+
+  .about-power-img {
+    margin: auto;
+    display: flex;
+    height: 8vh;
+  }
+
+  .about-data {
+    p {
+      text-align: center;
+      color: $inputfill;
+      margin-top: 5vh;
+      width: 100%;
+    }
+  }
+
+  .mito-img {
+    display: flex;
+    margin: 4vh auto auto;
+  }
+
+  .container {
+    margin-top: 10vh+$extraTopForIphoneX;
+    position: absolute;
+    top: 0vh;
+    right: 4vw;
+    left: 4vw;
+    bottom: 8vh;
+    border-radius: 2vh;
+    box-shadow: 0 1px 3px #b7b7b7;
+    background: #fff;
+    height: 72vh;
+
+    p {
+      font-family: tw-regular;
+    }
+  }
+
+  .top-img {
+    height: 14vh;
+    margin: -7vh auto auto;
+    display: flex;
+    border-radius: 50%;
+  }
+
+  .phone {
+    color: $primary-clr !important;
+    text-align: center;
+    font-size: 4vmin;
+    margin-top: 1vh;
+  }
+
+  .email {
+    margin-top: 1vh;
+    margin-bottom: 2vh !important;
+    text-align: center;
+    color: $inputfill;
+    font-size: 5vmin;
+  }
+
+  .site {
+    margin-top: 5vh;
+    text-align: center;
+    color: $inputfill;
+    font-size: 6vmin;
+  }
+
+  .copy-right {
+    margin-top: 1vh;
+    text-align: center;
+    color: $inputfill;
+    font-size: 4vmin;
+  }
+}
+

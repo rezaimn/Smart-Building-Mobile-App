@@ -1,0 +1,87 @@
+<div class="row" style="margin-left: 0px;margin-right: 0px;margin-top: 6vh">
+    <div class="data-box"  >
+        <div class="submit-box">
+            <button *ngIf="!editMode" (click)="changeEditMode(true);" type="button" class="btn btn-primary"
+                     >{{'shared.update'|translate}}
+            </button>
+            <button *ngIf="editMode" (click)="changeEditMode(false);" type="button" class="btn btn-danger"
+                    >{{'shared.cancel'|translate}}
+            </button>
+            <button *ngIf="editMode" (click)="updateProfile()" type="button" class="btn btn-success"
+                    >{{'shared.save'|translate}}
+            </button>
+        </div>
+            <div class=" col-xs-12 col-sm-12">
+                <img [src]="dataPassService.loggedInUser.picture" class="img-thumbnail" style="border-radius: 100%;margin: auto;display: flex;width: 18vh">
+            </div>
+            <form>
+                <div class="row" style="margin-left: 0px;margin-right: 0px">
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="firstName" class="farsi-font-im"
+                              >نام</label>
+                        <input placeholder="نام" id="firstName" type="text"
+                               style="direction: rtl!important;" class="form-control"
+                               name="firstName" [(ngModel)]="profileLoadData.name" [disabled]="!editMode"
+                               required tabindex="2" minlength="3" maxlength="30"
+                        />
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="firstName" class="farsi-font-im"
+                               >نام خانوادگی</label>
+                        <input placeholder="نام خانوادگی" id="lastName" type="text"
+                               style="direction: rtl!important;" class="form-control"
+                               name="lastName" [(ngModel)]="profileLoadData.family_name" [disabled]="!editMode"
+                               required tabindex="2" minlength="3" maxlength="30"
+                        />
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="email" class="farsi-font-im"  >پست
+                            الکترونیکی</label>
+                        <input style="direction: ltr!important;" type="email" name="email" id="email"
+                               class="form-control"
+                               placeholder="ایمیل"
+                               name="email" [(ngModel)]="profileLoadData.email" [disabled]="!editMode"
+                               maxlength="30"
+                               pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$"
+                               tabindex="10"/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="mobileNo" class="farsi-font-im" >شماره
+                            تلفن</label>
+                        <input style="direction: ltr!important;" id="mobileNo"
+                               type="text" name="mobileNum" class="form-control"
+                               name="phone" [(ngModel)]="profileLoadData.phone_number" [disabled]="!editMode"
+                               required tabindex="9" minlength="10" maxlength="15"
+                        />
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="designation" class="farsi-font-im"  >نقش
+                            ها</label>
+                        <div id="designation" style="margin-top: 20px">
+                            <p *ngFor="let role of dataPassService.loggedInUser.roles"
+                               style="float: right;width: 100%;text-align: right;font-size: 18px;color: #f9961e;">
+                                {{role.roleName}}</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--<div style="margin-right: 10px;margin-left: 10px">-->
+                <!--<button *ngIf="!editMode" (click)="changeEditMode(true)" type="button"-->
+                        <!--class="btn btn-primary"-->
+                        <!--style="width: 80px;font-family: Yekan;font-size: 13px;float: right;margin-left: 10px;margin-right: 10px">-->
+                    <!--{{'shared.update'|translate}}-->
+                <!--</button>-->
+                <!--<button *ngIf="editMode" (click)="changeEditMode(false)" type="button"-->
+                        <!--class="btn btn-danger"-->
+                        <!--style="width: 80px;font-family: Yekan;font-size: 13px;float: right;margin-left: 10px;margin-right: 10px">-->
+                    <!--{{'shared.cancel'|translate}}-->
+                <!--</button>-->
+                <!--<button *ngIf="editMode" (click)="updateProfile()" type="button"-->
+                        <!--class="btn btn-success"-->
+                        <!--style="width: 80px;font-family: Yekan;font-size: 13px;float: right;margin-left: 10px;margin-right: 10px">-->
+                    <!--{{'shared.save'|translate}}-->
+                <!--</button>-->
+            <!--</div>-->
+
+    </div>
+</div>
